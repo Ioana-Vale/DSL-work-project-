@@ -1,4 +1,4 @@
-During my internship, I was involved in the development of a Domain-Specific Language (DSL) for the JavaScript programming language using Xtext. 
+During my internship, I was involved in the development of a Domain-Specific Language (DSL) for the JavaScript programming language using Eclipse, Xtext. 
 The main activities carried out included designing, implementing, and testing the DSL, providing advanced features such as code auto-completion and syntax validation.
 In the first stage, I defined the DSL grammars specific to JavaScript in Xtext, ensuring they accurately reflected the required syntax and structure. 
 This process included configuring syntax and semantic rules to adapt the DSL to JavaScript language requirements.
