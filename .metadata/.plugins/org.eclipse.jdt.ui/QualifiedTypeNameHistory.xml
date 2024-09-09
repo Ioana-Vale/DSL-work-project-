@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="org.xtext.example.mydsl.myDsl.VariableDeclaration"/>
+    <fullyQualifiedTypeName name="org.xtext.example.mydsl.myDsl.Type"/>
+    <fullyQualifiedTypeName name="org.xtext.example.mydsl.myDsl.MyDslFactory"/>
+    <fullyQualifiedTypeName name="org.eclipse.emf.ecore.EObject"/>
+    <fullyQualifiedTypeName name="org.eclipse.emf.ecore.EReference"/>
+    <fullyQualifiedTypeName name="org.xtext.example.mydsl.myDsl.FunctionDeclaration"/>
+    <fullyQualifiedTypeName name="java.lang.RuntimeException"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="org.eclipse.xtext.resource.IEObjectDescription"/>
+    <fullyQualifiedTypeName name="java.util.function.Function"/>
+    <fullyQualifiedTypeName name="org.eclipse.xtext.resource.EObjectDescription"/>
+    <fullyQualifiedTypeName name="java.util.stream.Collectors"/>
+    <fullyQualifiedTypeName name="org.eclipse.xtext.scoping.IScope"/>
+    <fullyQualifiedTypeName name="org.eclipse.xtext.scoping.impl.SimpleScope"/>
+    <fullyQualifiedTypeName name="org.eclipse.emf.ecore.resource.Resource"/>
+</qualifiedTypeNameHistroy>

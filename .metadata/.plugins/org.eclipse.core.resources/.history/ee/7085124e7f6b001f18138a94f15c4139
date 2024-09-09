@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="ACORN IT 2024" modelDirectory="/ro.acorn.zamolxis.oe.abl.demo.model/src"
+    editDirectory="/ro.acorn.zamolxis.oe.abl.demo.model.edit/src" editorDirectory="/ro.acorn.zamolxis.oe.abl.demo.model.editor/src"
+    modelPluginID="ro.acorn.zamolxis.oe.abl.demo.model" modelName="OpenEdgeAbl" editPluginClass="ro.acorn.zamolxis.oe.demo.abl.provider.OpenEdgeAblEditPlugin"
+    editorPluginClass="ro.acorn.zamolxis.oe.abl.demo.presentation.OpenEdgeAblEditorPlugin"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" testSuiteClass="ro.acorn.zamolxis.oe.abl.demo.tests.OpenEdgeAblAllTests"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="11.0" copyrightFields="false"
+    editPluginID="ro.acorn.zamolxis.oe.abl.demo.model.edit" editorPluginID="ro.acorn.zamolxis.oe.abl.demo.model.editor"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>OpenEdgeAbl.ecore</foreignModel>
+  <genPackages prefix="OpenEdgeAbl" basePackage="ro.acorn.zamolxis.oe.demo" disposableProviderFactory="true"
+      fileExtensions="p,i,w,cls" ecorePackage="OpenEdgeAbl.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="OpenEdgeAbl.ecore#//ShareType">
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//ShareType/shared"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//ShareType/new"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//ShareType/global"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="OpenEdgeAbl.ecore#//AccessType">
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//AccessType/public"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//AccessType/private"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//AccessType/protected"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//AccessType/package_private"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//AccessType/package_protected"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="OpenEdgeAbl.ecore#//UnaryOperator">
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//UnaryOperator/not"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//UnaryOperator/plus"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//UnaryOperator/minus"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="OpenEdgeAbl.ecore#//AssignmentOperator">
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//AssignmentOperator/assign"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//AssignmentOperator/addition"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//AssignmentOperator/substraction"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//AssignmentOperator/multiplication"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//AssignmentOperator/division"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="OpenEdgeAbl.ecore#//BinaryOperator">
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//BinaryOperator/eq"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//BinaryOperator/addition"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//BinaryOperator/substraction"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//BinaryOperator/multiplication"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//BinaryOperator/division"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//BinaryOperator/and"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//BinaryOperator/or"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//BinaryOperator/xor"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//BinaryOperator/ne"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//BinaryOperator/gt"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//BinaryOperator/ge"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//BinaryOperator/lt"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//BinaryOperator/le"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//BinaryOperator/begins"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//BinaryOperator/matches"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//BinaryOperator/modulo"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="OpenEdgeAbl.ecore#//ParameterDirection">
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//ParameterDirection/input"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//ParameterDirection/output"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//ParameterDirection/input_output"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//ParameterDirection/return"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="OpenEdgeAbl.ecore#//ImplementType">
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//ImplementType/default"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//ImplementType/abstract"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//ImplementType/final"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="OpenEdgeAbl.ecore#//BlockLevelType">
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//BlockLevelType/block"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//BlockLevelType/routine"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="OpenEdgeAbl.ecore#//UsingType">
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//UsingType/propath"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//UsingType/assembly"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="OpenEdgeAbl.ecore#//FieldDataType">
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//FieldDataType/character"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//FieldDataType/integer"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//FieldDataType/int64"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//FieldDataType/logical"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//FieldDataType/decimal"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//FieldDataType/date"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//FieldDataType/datetime"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//FieldDataType/datetime_tz"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//FieldDataType/raw"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//FieldDataType/recid"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//FieldDataType/rowid"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//FieldDataType/clob"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//FieldDataType/blob"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//FieldDataType/class"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="OpenEdgeAbl.ecore#//XmlNodeType">
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//XmlNodeType/element"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//XmlNodeType/attribute"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//XmlNodeType/text"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//XmlNodeType/hidden"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="OpenEdgeAbl.ecore#//XmlDataType">
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//XmlDataType/default"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//XmlDataType/dateTime"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//XmlDataType/boolean"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//XmlDataType/integer"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//XmlDataType/float"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//XmlDataType/double"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//XmlDataType/decimal"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//XmlDataType/anyURI"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//XmlDataType/base64Binary"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//XmlDataType/byte"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//XmlDataType/date"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//XmlDataType/duration"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//XmlDataType/hexBinary"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//XmlDataType/int"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//XmlDataType/long"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//XmlDataType/short"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//XmlDataType/time"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//XmlDataType/unsignedByte"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//XmlDataType/unsignedInt"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//XmlDataType/unsignedLong"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//XmlDataType/unsignedShort"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//XmlDataType/string"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="OpenEdgeAbl.ecore#//CallConventionType">
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//CallConventionType/stdcall"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//CallConventionType/cdecl"/>
+      <genEnumLiterals ecoreEnumLiteral="OpenEdgeAbl.ecore#//CallConventionType/pascal"/>
+    </genEnums>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//Model">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//Model/project"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//Model/main"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Model/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//Model/headers"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//Statement"/>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//Definition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//Definition/options"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//Definition/object"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//Assignment">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//Assignment/assignable"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//Assignment/expression"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Assignment/operator"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//Assignable"/>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//Reference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//Reference/reference"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//Property">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Property/access"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Property/serializable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Property/override"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Property/initial"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Property/serializeName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Property/noUndo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Property/abstract"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Property/static"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//Property/getter"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//Property/setter"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//Variable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Variable/share"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Variable/access"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Variable/serializable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Variable/noUndo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Variable/static"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Variable/contextHelpId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Variable/dropTarget"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//INamed">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//INamed/name"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//Option"/>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//ShareOption">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//ShareOption/share"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//AccessOption">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//AccessOption/mode"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//ObjectDefinition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//ObjectDefinition/options"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//InitialOption">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//InitialOption/value"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//NamedOption">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//NamedOption/retainShape"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//NamedOption/width"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//NamedOption/height"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//Expression"/>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//NumericExpression">
+      <genOperations ecoreOperation="OpenEdgeAbl.ecore#//NumericExpression/getLong"/>
+      <genOperations ecoreOperation="OpenEdgeAbl.ecore#//NumericExpression/getInt"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//UnaryExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//UnaryExpression/operator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//UnaryExpression/expression"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//StringExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//StringExpression/value"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//DateExpression">
+      <genOperations ecoreOperation="OpenEdgeAbl.ecore#//DateExpression/getDate"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//UnknownExpression"/>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//LogicalExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//LogicalExpression/value"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//Block">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//Block/statements"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//AssignBlock"/>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//IterationBlock"/>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//CodeBlock">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//CodeBlock/parameters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//CodeBlock/finally"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//CodeBlock/catch"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//DirectionalParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//DirectionalParameter/direction"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//DirectionalParameter/type"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//Interface">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//Interface/implements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//Interface/block"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//Class">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//Class/inherits"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Class/serializable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Class/widgetPool"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Class/implementation"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//BlockLevelStatement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//BlockLevelStatement/level"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//UsingStatement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//UsingStatement/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//UsingStatement/package"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//UsingStatement/class"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//BinaryExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//BinaryExpression/operator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//BinaryExpression/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//BinaryExpression/right"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//PropertyReference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//PropertyReference/object"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//ObjectReference"/>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//MethodReference">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//MethodReference/parameters"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//FunctionReference">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//FunctionReference/parameters"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//BuiltInFunctionReference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//BuiltInFunctionReference/function"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//BuiltinFunction"/>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//Primitive"/>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//DataType"/>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//Runtime">
+      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//Runtime/primitives"/>
+      <genOperations ecoreOperation="OpenEdgeAbl.ecore#//Runtime/getKeyword">
+        <genParameters ecoreParameter="OpenEdgeAbl.ecore#//Runtime/getKeyword/expression"/>
+      </genOperations>
+      <genOperations ecoreOperation="OpenEdgeAbl.ecore#//Runtime/getMajorVersion"/>
+      <genOperations ecoreOperation="OpenEdgeAbl.ecore#//Runtime/getMinorVersion"/>
+      <genOperations ecoreOperation="OpenEdgeAbl.ecore#//Runtime/getPatchVersion"/>
+      <genOperations ecoreOperation="OpenEdgeAbl.ecore#//Runtime/getVersion"/>
+      <genOperations ecoreOperation="OpenEdgeAbl.ecore#//Runtime/getPackage"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//Project">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//Project/runtime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Project/propath"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Project/location"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Project/runtimeVersion"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//Runtime12_2"/>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//Workspace">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//Workspace/projects"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//Workspace/runtimes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Workspace/location"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//ISerializable">
+      <genOperations ecoreOperation="OpenEdgeAbl.ecore#//ISerializable/serialize"/>
+      <genOperations ecoreOperation="OpenEdgeAbl.ecore#//ISerializable/deserialize">
+        <genParameters ecoreParameter="OpenEdgeAbl.ecore#//ISerializable/deserialize/file"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//IncludeStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//IncludeStatement/arguments"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//IncludeStatement/include"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//IncludeArgument">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//IncludeArgument/value"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//LoopBlock"/>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//NamedBlock">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//NamedBlock/block"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//ArgumentReference">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//ArgumentReference/index"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//PreprocessorReference"/>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//PreprocessorDirective">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//PreprocessorDirective/global"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//PreprocessorDirective/definition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//PreprocessorDirective/statement"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//UndefineDirective"/>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//VariableParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//VariableParameter/class"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//VariableParameter/handle"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//VariableParameter/dataType"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//Parameter"/>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//BufferParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//BufferParameter/table"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//BufferParameter/preselect"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//TypedParameter"/>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//TableParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//TableParameter/append"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//TableParameter/bind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//TableParameter/byValue"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//TableParameter/table"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//TempTable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//TempTable/access"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//TempTable/serializable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//TempTable/noUndo"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//TableHandleParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//TableHandleParameter/bind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//TableHandleParameter/byValue"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//Dataset">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Dataset/access"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Dataset/serializable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Dataset/noUndo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Dataset/namespaceUri"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Dataset/namespacePrefix"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Dataset/xmlNodeName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Dataset/serializeName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Dataset/serializeHidden"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Dataset/referenceOnly"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//Dataset/tables"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//DatasetHandleParameter"/>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//DatasetParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//DatasetParameter/append"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//DatasetParameter/bind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//DatasetParameter/byValue"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//DatasetParameter/dataset"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//Buffer">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Buffer/preselect"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Buffer/namespaceUri"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Buffer/namespacePrefix"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Buffer/xmlNodeName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Buffer/label"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//Buffer/table"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//TableReference"/>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//TempTableReference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//TempTableReference/table"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//ValueOption">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//ValueOption/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//ValueOption/fileName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//ValueOption/tooltip"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//ValueOption/bgColor"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//ValueOption/fgColor"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//AbstractVariable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//AbstractVariable/decimals"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//AbstractVariable/columnLabel"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//AbstractVariable/label"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//AbstractVariable/format"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//AbstractVariable/bgColor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//AbstractVariable/dColor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//AbstractVariable/fgColor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//AbstractVariable/font"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//AbstractVariable/help"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//AbstractVariable/pfColor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//AbstractVariable/initial"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//AbstractVariable/serializeName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//AbstractVariable/xmlNodeName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//AbstractVariable/mousePointer"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//AbstractVariable/xmlNodeType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//AbstractVariable/xmlDataType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//AbstractVariable/caseSensitive"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//TempTableField">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//TempTableField/ttCodePage"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//TempTableField/serializeHidden"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//TempTableFieldDataType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//TempTableFieldDataType/type"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//AccessCodeBlock">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//AccessCodeBlock/access"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//ReturnCodeBlock">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//ReturnCodeBlock/return"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//ReturnCodeBlock/extent"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//ReturnCodeBlock/extentLen"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//CatchBlock">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//CatchBlock/variable"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//CatchBlock/classType"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//FunctionBlock">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//FunctionBlock/forward"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//FunctionBlock/mapTo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//FunctionBlock/inSuper"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//FunctionBlock/inHandle"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//MethodBlock">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//MethodBlock/static"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//MethodBlock/abstract"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//MethodBlock/override"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//MethodBlock/final"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//ProcedureBlock">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//ProcedureBlock/persistent"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//ProcedureBlock/ordinal"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//ProcedureBlock/inSuper"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//ProcedureBlock/threadSafe"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//ProcedureBlock/callConvention"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//ProcedureBlock/external"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="OpenEdgeAbl.ecore#//IDataType">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//IDataType/dataType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//IDataType/extent"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//IDataType/extentLen"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//IfStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//IfStatement/condition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//IfStatement/then"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//IfStatement/else"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//Enum">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Enum/flags"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//Enum/members"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//CaseStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//CaseStatement/expression"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//CaseStatement/when"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//CaseStatement/otherwise"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//CaseWhen">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//CaseWhen/value"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//CaseWhen/statement"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//IfPreprocessor">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//IfPreprocessor/condition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//IfPreprocessor/then"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//IfPreprocessor/else"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//IfPreprocessor/elseIf"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//ElseIfPreprocessor">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//ElseIfPreprocessor/condition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//ElseIfPreprocessor/then"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//Annotation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Annotation/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Annotation/object"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//Annotation/value"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//EnumLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//EnumLiteral/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//EnumLiteral/members"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//OnWidgetTrigger">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//OnWidgetTrigger/entries"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//WidgetTrigger">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//WidgetTrigger/events"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//WidgetTrigger/anywhere"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//WidgetTrigger/widgets"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//WidgetTrigger/revert"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//WidgetTrigger/procedure"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//WidgetTrigger/parameters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//WidgetTrigger/in"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//WidgetTrigger/block"/>
+    </genClasses>
+    <genClasses ecoreClass="OpenEdgeAbl.ecore#//Image">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Image/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Image/tooltip"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Image/stretch_to_fit"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Image/transparent"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Image/convert_3d_colors"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OpenEdgeAbl.ecore#//Image/retain_shape"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//Image/bgColor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference OpenEdgeAbl.ecore#//Image/fgColor"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

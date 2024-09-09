@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="OpenEdgeAblParsingTest.loadModel" project="ro.acorn.zamolxis.oe.abl.demo.dsl.tests" tests="1" started="1" failures="0" errors="1" ignored="0">
+  <testsuite name="ro.acorn.zamolxis.oe.abl.dsl.tests.OpenEdgeAblParsingTest" time="0.355" displayname="OpenEdgeAblParsingTest" uniqueid="[engine:junit-jupiter]/[class:ro.acorn.zamolxis.oe.abl.dsl.tests.OpenEdgeAblParsingTest]">
+    <testcase name="loadModel" classname="ro.acorn.zamolxis.oe.abl.dsl.tests.OpenEdgeAblParsingTest" time="0.355" displayname="loadModel()" uniqueid="[engine:junit-jupiter]/[class:ro.acorn.zamolxis.oe.abl.dsl.tests.OpenEdgeAblParsingTest]/[method:loadModel()]">
+      <error>org.eclipse.xtext.parser.ParseException: java.lang.IllegalArgumentException: ValueOption.bgColor does not exist&#13;
+	at org.eclipse.xtext.parser.antlr.AbstractAntlrParser.doParse(AbstractAntlrParser.java:106)&#13;
+	at org.eclipse.xtext.parser.antlr.AbstractAntlrParser.parse(AbstractAntlrParser.java:85)&#13;
+	at org.eclipse.xtext.parser.antlr.AbstractAntlrParser.doParse(AbstractAntlrParser.java:63)&#13;
+	at org.eclipse.xtext.parser.AbstractParser.parse(AbstractParser.java:34)&#13;
+	at org.eclipse.xtext.resource.XtextResource.doLoad(XtextResource.java:206)&#13;
+	at org.eclipse.xtext.linking.lazy.LazyLinkingResource.doLoad(LazyLinkingResource.java:112)&#13;
+	at org.eclipse.emf.ecore.resource.impl.ResourceImpl.load(ResourceImpl.java:1563)&#13;
+	at org.eclipse.xtext.testing.util.ResourceHelper.resource(ResourceHelper.java:57)&#13;
+	at org.eclipse.xtext.testing.util.ParseHelper.parse(ParseHelper.java:50)&#13;
+	at org.eclipse.xtext.testing.util.ParseHelper.parse(ParseHelper.java:69)&#13;
+	at org.eclipse.xtext.testing.util.ParseHelper.parse(ParseHelper.java:65)&#13;
+	at ro.acorn.zamolxis.oe.abl.dsl.tests.OpenEdgeAblParsingTest.loadModel(OpenEdgeAblParsingTest.java:35)&#13;
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)&#13;
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)&#13;
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)&#13;
+Caused by: org.eclipse.emf.common.util.WrappedException: java.lang.IllegalArgumentException: ValueOption.bgColor does not exist&#13;
+	at org.eclipse.xtext.parser.antlr.AbstractInternalAntlrParser.parse(AbstractInternalAntlrParser.java:616)&#13;
+	at org.eclipse.xtext.parser.antlr.AbstractAntlrParser.doParse(AbstractAntlrParser.java:103)&#13;
+	... 14 more&#13;
+Caused by: java.lang.IllegalArgumentException: ValueOption.bgColor does not exist&#13;
+	at org.eclipse.xtext.parser.DefaultEcoreElementFactory.set(DefaultEcoreElementFactory.java:67)&#13;
+	at org.eclipse.xtext.parser.antlr.AbstractInternalAntlrParser.set(AbstractInternalAntlrParser.java:339)&#13;
+	at org.eclipse.xtext.parser.antlr.AbstractInternalAntlrParser.set(AbstractInternalAntlrParser.java:347)&#13;
+	at ro.acorn.zamolxis.oe.abl.dsl.parser.antlr.internal.InternalOpenEdgeAblParser.ruleBgColorOption(InternalOpenEdgeAblParser.java:2010)&#13;
+	at ro.acorn.zamolxis.oe.abl.dsl.parser.antlr.internal.InternalOpenEdgeAblParser.ruleImageOption(InternalOpenEdgeAblParser.java:1554)&#13;
+	at ro.acorn.zamolxis.oe.abl.dsl.parser.antlr.internal.InternalOpenEdgeAblParser.ruleImage(InternalOpenEdgeAblParser.java:1344)&#13;
+	at ro.acorn.zamolxis.oe.abl.dsl.parser.antlr.internal.InternalOpenEdgeAblParser.ruleObjectDefinition(InternalOpenEdgeAblParser.java:1154)&#13;
+	at ro.acorn.zamolxis.oe.abl.dsl.parser.antlr.internal.InternalOpenEdgeAblParser.ruleDefinition(InternalOpenEdgeAblParser.java:896)&#13;
+	at ro.acorn.zamolxis.oe.abl.dsl.parser.antlr.internal.InternalOpenEdgeAblParser.ruleStatement(InternalOpenEdgeAblParser.java:627)&#13;
+	at ro.acorn.zamolxis.oe.abl.dsl.parser.antlr.internal.InternalOpenEdgeAblParser.ruleBlock(InternalOpenEdgeAblParser.java:451)&#13;
+	at ro.acorn.zamolxis.oe.abl.dsl.parser.antlr.internal.InternalOpenEdgeAblParser.ruleModel(InternalOpenEdgeAblParser.java:294)&#13;
+	at ro.acorn.zamolxis.oe.abl.dsl.parser.antlr.internal.InternalOpenEdgeAblParser.entryRuleModel(InternalOpenEdgeAblParser.java:184)&#13;
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)&#13;
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)&#13;
+	at org.eclipse.xtext.parser.antlr.AbstractInternalAntlrParser.parse(AbstractInternalAntlrParser.java:593)&#13;
+	... 15 more&#13;
+&#13;
+</error>
+    </testcase>
+  </testsuite>
+</testrun>

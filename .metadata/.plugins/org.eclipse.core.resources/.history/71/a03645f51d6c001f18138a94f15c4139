@@ -1,0 +1,92 @@
+/**
+ * ACORN IT 2024
+ */
+package ro.acorn.zamolxis.oe.demo.abl;
+
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Named Option</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.NamedOption#isRetainShape <em>Retain Shape</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.NamedOption#getWidth <em>Width</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.NamedOption#getHeight <em>Height</em>}</li>
+ * </ul>
+ *
+ * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getNamedOption()
+ * @model
+ * @generated
+ */
+public interface NamedOption extends INamed, Option {
+
+	/**
+	 * Returns the value of the '<em><b>Retain Shape</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Retain Shape</em>' attribute.
+	 * @see #setRetainShape(boolean)
+	 * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getNamedOption_RetainShape()
+	 * @model
+	 * @generated
+	 */
+	boolean isRetainShape();
+
+	/**
+	 * Sets the value of the '{@link ro.acorn.zamolxis.oe.demo.abl.NamedOption#isRetainShape <em>Retain Shape</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Retain Shape</em>' attribute.
+	 * @see #isRetainShape()
+	 * @generated
+	 */
+	void setRetainShape(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Width</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Width</em>' attribute.
+	 * @see #setWidth(String)
+	 * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getNamedOption_Width()
+	 * @model
+	 * @generated
+	 */
+	String getWidth();
+
+	/**
+	 * Sets the value of the '{@link ro.acorn.zamolxis.oe.demo.abl.NamedOption#getWidth <em>Width</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Width</em>' attribute.
+	 * @see #getWidth()
+	 * @generated
+	 */
+	void setWidth(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Height</em>' attribute.
+	 * @see #setHeight(String)
+	 * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getNamedOption_Height()
+	 * @model
+	 * @generated
+	 */
+	String getHeight();
+
+	/**
+	 * Sets the value of the '{@link ro.acorn.zamolxis.oe.demo.abl.NamedOption#getHeight <em>Height</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Height</em>' attribute.
+	 * @see #getHeight()
+	 * @generated
+	 */
+	void setHeight(String value);
+} // NamedOption

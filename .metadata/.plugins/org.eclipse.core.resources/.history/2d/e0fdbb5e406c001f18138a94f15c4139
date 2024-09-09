@@ -1,0 +1,406 @@
+/**
+ * ACORN IT 2024
+ */
+package ro.acorn.zamolxis.oe.demo.abl;
+
+import org.eclipse.emf.common.util.EList;
+
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Button</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.Button#isAuto_go <em>Auto go</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.Button#isAuto_endkey <em>Auto endkey</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.Button#isDefault <em>Default</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.Button#getContext_help_id <em>Context help id</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.Button#getDcolor <em>Dcolor</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.Button#isDrop_target <em>Drop target</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.Button#getFont <em>Font</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.Button#getMouse_pointer <em>Mouse pointer</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.Button#getLike <em>Like</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.Button#isNo_convert_3d_colors <em>No convert 3d colors</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.Button#getPfccolor <em>Pfccolor</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.Button#isFlat_button <em>Flat button</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.Button#isNo_focus <em>No focus</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.Button#isImage_down <em>Image down</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.Button#isImage_up <em>Image up</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.Button#isImage_insensitive <em>Image insensitive</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.Button#getTrigger <em>Trigger</em>}</li>
+ * </ul>
+ *
+ * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getButton()
+ * @model
+ * @generated
+ */
+public interface Button extends ObjectDefinition {
+	/**
+	 * Returns the value of the '<em><b>Auto go</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Auto go</em>' attribute.
+	 * @see #setAuto_go(boolean)
+	 * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getButton_Auto_go()
+	 * @model
+	 * @generated
+	 */
+	boolean isAuto_go();
+
+	/**
+	 * Sets the value of the '{@link ro.acorn.zamolxis.oe.demo.abl.Button#isAuto_go <em>Auto go</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Auto go</em>' attribute.
+	 * @see #isAuto_go()
+	 * @generated
+	 */
+	void setAuto_go(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Auto endkey</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Auto endkey</em>' attribute.
+	 * @see #setAuto_endkey(boolean)
+	 * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getButton_Auto_endkey()
+	 * @model
+	 * @generated
+	 */
+	boolean isAuto_endkey();
+
+	/**
+	 * Sets the value of the '{@link ro.acorn.zamolxis.oe.demo.abl.Button#isAuto_endkey <em>Auto endkey</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Auto endkey</em>' attribute.
+	 * @see #isAuto_endkey()
+	 * @generated
+	 */
+	void setAuto_endkey(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Default</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Default</em>' attribute.
+	 * @see #setDefault(boolean)
+	 * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getButton_Default()
+	 * @model
+	 * @generated
+	 */
+	boolean isDefault();
+
+	/**
+	 * Sets the value of the '{@link ro.acorn.zamolxis.oe.demo.abl.Button#isDefault <em>Default</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Default</em>' attribute.
+	 * @see #isDefault()
+	 * @generated
+	 */
+	void setDefault(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Context help id</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Context help id</em>' reference.
+	 * @see #setContext_help_id(Expression)
+	 * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getButton_Context_help_id()
+	 * @model
+	 * @generated
+	 */
+	Expression getContext_help_id();
+
+	/**
+	 * Sets the value of the '{@link ro.acorn.zamolxis.oe.demo.abl.Button#getContext_help_id <em>Context help id</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Context help id</em>' reference.
+	 * @see #getContext_help_id()
+	 * @generated
+	 */
+	void setContext_help_id(Expression value);
+
+	/**
+	 * Returns the value of the '<em><b>Dcolor</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Dcolor</em>' reference.
+	 * @see #setDcolor(Expression)
+	 * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getButton_Dcolor()
+	 * @model
+	 * @generated
+	 */
+	Expression getDcolor();
+
+	/**
+	 * Sets the value of the '{@link ro.acorn.zamolxis.oe.demo.abl.Button#getDcolor <em>Dcolor</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Dcolor</em>' reference.
+	 * @see #getDcolor()
+	 * @generated
+	 */
+	void setDcolor(Expression value);
+
+	/**
+	 * Returns the value of the '<em><b>Drop target</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Drop target</em>' attribute.
+	 * @see #setDrop_target(boolean)
+	 * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getButton_Drop_target()
+	 * @model
+	 * @generated
+	 */
+	boolean isDrop_target();
+
+	/**
+	 * Sets the value of the '{@link ro.acorn.zamolxis.oe.demo.abl.Button#isDrop_target <em>Drop target</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Drop target</em>' attribute.
+	 * @see #isDrop_target()
+	 * @generated
+	 */
+	void setDrop_target(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Font</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Font</em>' attribute.
+	 * @see #setFont(String)
+	 * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getButton_Font()
+	 * @model
+	 * @generated
+	 */
+	String getFont();
+
+	/**
+	 * Sets the value of the '{@link ro.acorn.zamolxis.oe.demo.abl.Button#getFont <em>Font</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Font</em>' attribute.
+	 * @see #getFont()
+	 * @generated
+	 */
+	void setFont(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Mouse pointer</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Mouse pointer</em>' attribute.
+	 * @see #setMouse_pointer(String)
+	 * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getButton_Mouse_pointer()
+	 * @model
+	 * @generated
+	 */
+	String getMouse_pointer();
+
+	/**
+	 * Sets the value of the '{@link ro.acorn.zamolxis.oe.demo.abl.Button#getMouse_pointer <em>Mouse pointer</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Mouse pointer</em>' attribute.
+	 * @see #getMouse_pointer()
+	 * @generated
+	 */
+	void setMouse_pointer(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Like</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Like</em>' attribute.
+	 * @see #setLike(String)
+	 * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getButton_Like()
+	 * @model
+	 * @generated
+	 */
+	String getLike();
+
+	/**
+	 * Sets the value of the '{@link ro.acorn.zamolxis.oe.demo.abl.Button#getLike <em>Like</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Like</em>' attribute.
+	 * @see #getLike()
+	 * @generated
+	 */
+	void setLike(String value);
+
+	/**
+	 * Returns the value of the '<em><b>No convert 3d colors</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>No convert 3d colors</em>' attribute.
+	 * @see #setNo_convert_3d_colors(boolean)
+	 * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getButton_No_convert_3d_colors()
+	 * @model annotation="meta name='no-convert-3d-colors'"
+	 * @generated
+	 */
+	boolean isNo_convert_3d_colors();
+
+	/**
+	 * Sets the value of the '{@link ro.acorn.zamolxis.oe.demo.abl.Button#isNo_convert_3d_colors <em>No convert 3d colors</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>No convert 3d colors</em>' attribute.
+	 * @see #isNo_convert_3d_colors()
+	 * @generated
+	 */
+	void setNo_convert_3d_colors(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Pfccolor</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Pfccolor</em>' reference.
+	 * @see #setPfccolor(Expression)
+	 * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getButton_Pfccolor()
+	 * @model
+	 * @generated
+	 */
+	Expression getPfccolor();
+
+	/**
+	 * Sets the value of the '{@link ro.acorn.zamolxis.oe.demo.abl.Button#getPfccolor <em>Pfccolor</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Pfccolor</em>' reference.
+	 * @see #getPfccolor()
+	 * @generated
+	 */
+	void setPfccolor(Expression value);
+
+	/**
+	 * Returns the value of the '<em><b>Flat button</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Flat button</em>' attribute.
+	 * @see #setFlat_button(boolean)
+	 * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getButton_Flat_button()
+	 * @model annotation="meta name='flat-button'"
+	 * @generated
+	 */
+	boolean isFlat_button();
+
+	/**
+	 * Sets the value of the '{@link ro.acorn.zamolxis.oe.demo.abl.Button#isFlat_button <em>Flat button</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Flat button</em>' attribute.
+	 * @see #isFlat_button()
+	 * @generated
+	 */
+	void setFlat_button(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>No focus</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>No focus</em>' attribute.
+	 * @see #setNo_focus(boolean)
+	 * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getButton_No_focus()
+	 * @model annotation="meta name='no-focus'"
+	 * @generated
+	 */
+	boolean isNo_focus();
+
+	/**
+	 * Sets the value of the '{@link ro.acorn.zamolxis.oe.demo.abl.Button#isNo_focus <em>No focus</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>No focus</em>' attribute.
+	 * @see #isNo_focus()
+	 * @generated
+	 */
+	void setNo_focus(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Image down</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Image down</em>' attribute.
+	 * @see #setImage_down(boolean)
+	 * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getButton_Image_down()
+	 * @model
+	 * @generated
+	 */
+	boolean isImage_down();
+
+	/**
+	 * Sets the value of the '{@link ro.acorn.zamolxis.oe.demo.abl.Button#isImage_down <em>Image down</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Image down</em>' attribute.
+	 * @see #isImage_down()
+	 * @generated
+	 */
+	void setImage_down(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Image up</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Image up</em>' attribute.
+	 * @see #setImage_up(boolean)
+	 * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getButton_Image_up()
+	 * @model
+	 * @generated
+	 */
+	boolean isImage_up();
+
+	/**
+	 * Sets the value of the '{@link ro.acorn.zamolxis.oe.demo.abl.Button#isImage_up <em>Image up</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Image up</em>' attribute.
+	 * @see #isImage_up()
+	 * @generated
+	 */
+	void setImage_up(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Image insensitive</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Image insensitive</em>' attribute.
+	 * @see #setImage_insensitive(boolean)
+	 * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getButton_Image_insensitive()
+	 * @model
+	 * @generated
+	 */
+	boolean isImage_insensitive();
+
+	/**
+	 * Sets the value of the '{@link ro.acorn.zamolxis.oe.demo.abl.Button#isImage_insensitive <em>Image insensitive</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Image insensitive</em>' attribute.
+	 * @see #isImage_insensitive()
+	 * @generated
+	 */
+	void setImage_insensitive(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Trigger</b></em>' containment reference list.
+	 * The list contents are of type {@link ro.acorn.zamolxis.oe.demo.abl.WidgetTrigger}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Trigger</em>' containment reference list.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getButton_Trigger()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<WidgetTrigger> getTrigger();
+
+} // Button

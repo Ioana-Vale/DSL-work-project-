@@ -1,0 +1,1373 @@
+/**
+ * ACORN IT 2024
+ */
+package ro.acorn.zamolxis.oe.demo.abl.impl;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+
+import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import ro.acorn.zamolxis.oe.demo.abl.AccessCodeBlock;
+import ro.acorn.zamolxis.oe.demo.abl.AccessOption;
+import ro.acorn.zamolxis.oe.demo.abl.AccessType;
+import ro.acorn.zamolxis.oe.demo.abl.Annotation;
+import ro.acorn.zamolxis.oe.demo.abl.ArgumentReference;
+import ro.acorn.zamolxis.oe.demo.abl.AssignBlock;
+import ro.acorn.zamolxis.oe.demo.abl.Assignable;
+import ro.acorn.zamolxis.oe.demo.abl.Assignment;
+import ro.acorn.zamolxis.oe.demo.abl.AssignmentOperator;
+import ro.acorn.zamolxis.oe.demo.abl.BinaryExpression;
+import ro.acorn.zamolxis.oe.demo.abl.BinaryOperator;
+import ro.acorn.zamolxis.oe.demo.abl.Block;
+import ro.acorn.zamolxis.oe.demo.abl.BlockLevelStatement;
+import ro.acorn.zamolxis.oe.demo.abl.BlockLevelType;
+import ro.acorn.zamolxis.oe.demo.abl.Buffer;
+import ro.acorn.zamolxis.oe.demo.abl.BufferParameter;
+import ro.acorn.zamolxis.oe.demo.abl.BuiltInFunctionReference;
+import ro.acorn.zamolxis.oe.demo.abl.BuiltinFunction;
+import ro.acorn.zamolxis.oe.demo.abl.CallConventionType;
+import ro.acorn.zamolxis.oe.demo.abl.CaseStatement;
+import ro.acorn.zamolxis.oe.demo.abl.CaseWhen;
+import ro.acorn.zamolxis.oe.demo.abl.CatchBlock;
+import ro.acorn.zamolxis.oe.demo.abl.CodeBlock;
+import ro.acorn.zamolxis.oe.demo.abl.DatasetHandleParameter;
+import ro.acorn.zamolxis.oe.demo.abl.DatasetParameter;
+import ro.acorn.zamolxis.oe.demo.abl.DateExpression;
+import ro.acorn.zamolxis.oe.demo.abl.Definition;
+import ro.acorn.zamolxis.oe.demo.abl.DirectionalParameter;
+import ro.acorn.zamolxis.oe.demo.abl.ElseIfPreprocessor;
+import ro.acorn.zamolxis.oe.demo.abl.EnumLiteral;
+import ro.acorn.zamolxis.oe.demo.abl.FieldDataType;
+import ro.acorn.zamolxis.oe.demo.abl.FunctionBlock;
+import ro.acorn.zamolxis.oe.demo.abl.FunctionReference;
+import ro.acorn.zamolxis.oe.demo.abl.IfPreprocessor;
+import ro.acorn.zamolxis.oe.demo.abl.IfStatement;
+import ro.acorn.zamolxis.oe.demo.abl.ImplementType;
+import ro.acorn.zamolxis.oe.demo.abl.IncludeArgument;
+import ro.acorn.zamolxis.oe.demo.abl.IncludeStatement;
+import ro.acorn.zamolxis.oe.demo.abl.InitialOption;
+import ro.acorn.zamolxis.oe.demo.abl.Interface;
+import ro.acorn.zamolxis.oe.demo.abl.IterationBlock;
+import ro.acorn.zamolxis.oe.demo.abl.LogicalExpression;
+import ro.acorn.zamolxis.oe.demo.abl.LoopBlock;
+import ro.acorn.zamolxis.oe.demo.abl.MethodBlock;
+import ro.acorn.zamolxis.oe.demo.abl.MethodReference;
+import ro.acorn.zamolxis.oe.demo.abl.Model;
+import ro.acorn.zamolxis.oe.demo.abl.NamedBlock;
+import ro.acorn.zamolxis.oe.demo.abl.NamedOption;
+import ro.acorn.zamolxis.oe.demo.abl.NumericExpression;
+import ro.acorn.zamolxis.oe.demo.abl.ObjectDefinition;
+import ro.acorn.zamolxis.oe.demo.abl.OnWidgetTrigger;
+import ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblFactory;
+import ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage;
+import ro.acorn.zamolxis.oe.demo.abl.Option;
+import ro.acorn.zamolxis.oe.demo.abl.ParameterDirection;
+import ro.acorn.zamolxis.oe.demo.abl.PreprocessorDirective;
+import ro.acorn.zamolxis.oe.demo.abl.PreprocessorReference;
+import ro.acorn.zamolxis.oe.demo.abl.Primitive;
+import ro.acorn.zamolxis.oe.demo.abl.ProcedureBlock;
+import ro.acorn.zamolxis.oe.demo.abl.Project;
+import ro.acorn.zamolxis.oe.demo.abl.Property;
+import ro.acorn.zamolxis.oe.demo.abl.PropertyReference;
+import ro.acorn.zamolxis.oe.demo.abl.Reference;
+import ro.acorn.zamolxis.oe.demo.abl.Runtime12_2;
+import ro.acorn.zamolxis.oe.demo.abl.ShareOption;
+import ro.acorn.zamolxis.oe.demo.abl.ShareType;
+import ro.acorn.zamolxis.oe.demo.abl.StringExpression;
+import ro.acorn.zamolxis.oe.demo.abl.TableHandleParameter;
+import ro.acorn.zamolxis.oe.demo.abl.TableParameter;
+import ro.acorn.zamolxis.oe.demo.abl.TempTableField;
+import ro.acorn.zamolxis.oe.demo.abl.TempTableFieldDataType;
+import ro.acorn.zamolxis.oe.demo.abl.TempTableReference;
+import ro.acorn.zamolxis.oe.demo.abl.UnaryExpression;
+import ro.acorn.zamolxis.oe.demo.abl.UnaryOperator;
+import ro.acorn.zamolxis.oe.demo.abl.UndefineDirective;
+import ro.acorn.zamolxis.oe.demo.abl.UnknownExpression;
+import ro.acorn.zamolxis.oe.demo.abl.UsingStatement;
+import ro.acorn.zamolxis.oe.demo.abl.UsingType;
+import ro.acorn.zamolxis.oe.demo.abl.ValueOption;
+import ro.acorn.zamolxis.oe.demo.abl.Variable;
+import ro.acorn.zamolxis.oe.demo.abl.VariableParameter;
+import ro.acorn.zamolxis.oe.demo.abl.WidgetTrigger;
+import ro.acorn.zamolxis.oe.demo.abl.Workspace;
+import ro.acorn.zamolxis.oe.demo.abl.XmlDataType;
+import ro.acorn.zamolxis.oe.demo.abl.XmlNodeType;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model <b>Factory</b>.
+ * <!-- end-user-doc -->
+ * @generated
+ */
+public class OpenEdgeAblFactoryImpl extends EFactoryImpl implements OpenEdgeAblFactory {
+	/**
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static OpenEdgeAblFactory init() {
+		try {
+			OpenEdgeAblFactory theOpenEdgeAblFactory = (OpenEdgeAblFactory)EPackage.Registry.INSTANCE.getEFactory(OpenEdgeAblPackage.eNS_URI);
+			if (theOpenEdgeAblFactory != null) {
+				return theOpenEdgeAblFactory;
+			}
+		}
+		catch (Exception exception) {
+			EcorePlugin.INSTANCE.log(exception);
+		}
+		return new OpenEdgeAblFactoryImpl();
+	}
+
+	/**
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OpenEdgeAblFactoryImpl() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EObject create(EClass eClass) {
+		switch (eClass.getClassifierID()) {
+			case OpenEdgeAblPackage.MODEL: return createModel();
+			case OpenEdgeAblPackage.DEFINITION: return createDefinition();
+			case OpenEdgeAblPackage.ASSIGNMENT: return createAssignment();
+			case OpenEdgeAblPackage.ASSIGNABLE: return createAssignable();
+			case OpenEdgeAblPackage.REFERENCE: return createReference();
+			case OpenEdgeAblPackage.PROPERTY: return createProperty();
+			case OpenEdgeAblPackage.VARIABLE: return createVariable();
+			case OpenEdgeAblPackage.OPTION: return createOption();
+			case OpenEdgeAblPackage.SHARE_OPTION: return createShareOption();
+			case OpenEdgeAblPackage.ACCESS_OPTION: return createAccessOption();
+			case OpenEdgeAblPackage.OBJECT_DEFINITION: return createObjectDefinition();
+			case OpenEdgeAblPackage.INITIAL_OPTION: return createInitialOption();
+			case OpenEdgeAblPackage.NAMED_OPTION: return createNamedOption();
+			case OpenEdgeAblPackage.NUMERIC_EXPRESSION: return createNumericExpression();
+			case OpenEdgeAblPackage.UNARY_EXPRESSION: return createUnaryExpression();
+			case OpenEdgeAblPackage.STRING_EXPRESSION: return createStringExpression();
+			case OpenEdgeAblPackage.DATE_EXPRESSION: return createDateExpression();
+			case OpenEdgeAblPackage.UNKNOWN_EXPRESSION: return createUnknownExpression();
+			case OpenEdgeAblPackage.LOGICAL_EXPRESSION: return createLogicalExpression();
+			case OpenEdgeAblPackage.BLOCK: return createBlock();
+			case OpenEdgeAblPackage.ASSIGN_BLOCK: return createAssignBlock();
+			case OpenEdgeAblPackage.ITERATION_BLOCK: return createIterationBlock();
+			case OpenEdgeAblPackage.CODE_BLOCK: return createCodeBlock();
+			case OpenEdgeAblPackage.DIRECTIONAL_PARAMETER: return createDirectionalParameter();
+			case OpenEdgeAblPackage.INTERFACE: return createInterface();
+			case OpenEdgeAblPackage.CLASS: return createClass();
+			case OpenEdgeAblPackage.BLOCK_LEVEL_STATEMENT: return createBlockLevelStatement();
+			case OpenEdgeAblPackage.USING_STATEMENT: return createUsingStatement();
+			case OpenEdgeAblPackage.BINARY_EXPRESSION: return createBinaryExpression();
+			case OpenEdgeAblPackage.PROPERTY_REFERENCE: return createPropertyReference();
+			case OpenEdgeAblPackage.METHOD_REFERENCE: return createMethodReference();
+			case OpenEdgeAblPackage.FUNCTION_REFERENCE: return createFunctionReference();
+			case OpenEdgeAblPackage.BUILT_IN_FUNCTION_REFERENCE: return createBuiltInFunctionReference();
+			case OpenEdgeAblPackage.BUILTIN_FUNCTION: return createBuiltinFunction();
+			case OpenEdgeAblPackage.PRIMITIVE: return createPrimitive();
+			case OpenEdgeAblPackage.PROJECT: return createProject();
+			case OpenEdgeAblPackage.RUNTIME12_2: return createRuntime12_2();
+			case OpenEdgeAblPackage.WORKSPACE: return createWorkspace();
+			case OpenEdgeAblPackage.INCLUDE_STATEMENT: return createIncludeStatement();
+			case OpenEdgeAblPackage.INCLUDE_ARGUMENT: return createIncludeArgument();
+			case OpenEdgeAblPackage.LOOP_BLOCK: return createLoopBlock();
+			case OpenEdgeAblPackage.NAMED_BLOCK: return createNamedBlock();
+			case OpenEdgeAblPackage.ARGUMENT_REFERENCE: return createArgumentReference();
+			case OpenEdgeAblPackage.PREPROCESSOR_REFERENCE: return createPreprocessorReference();
+			case OpenEdgeAblPackage.PREPROCESSOR_DIRECTIVE: return createPreprocessorDirective();
+			case OpenEdgeAblPackage.UNDEFINE_DIRECTIVE: return createUndefineDirective();
+			case OpenEdgeAblPackage.VARIABLE_PARAMETER: return createVariableParameter();
+			case OpenEdgeAblPackage.BUFFER_PARAMETER: return createBufferParameter();
+			case OpenEdgeAblPackage.TABLE_PARAMETER: return createTableParameter();
+			case OpenEdgeAblPackage.TABLE_HANDLE_PARAMETER: return createTableHandleParameter();
+			case OpenEdgeAblPackage.DATASET_HANDLE_PARAMETER: return createDatasetHandleParameter();
+			case OpenEdgeAblPackage.DATASET_PARAMETER: return createDatasetParameter();
+			case OpenEdgeAblPackage.BUFFER: return createBuffer();
+			case OpenEdgeAblPackage.TEMP_TABLE_REFERENCE: return createTempTableReference();
+			case OpenEdgeAblPackage.VALUE_OPTION: return createValueOption();
+			case OpenEdgeAblPackage.TEMP_TABLE_FIELD: return createTempTableField();
+			case OpenEdgeAblPackage.TEMP_TABLE_FIELD_DATA_TYPE: return createTempTableFieldDataType();
+			case OpenEdgeAblPackage.ACCESS_CODE_BLOCK: return createAccessCodeBlock();
+			case OpenEdgeAblPackage.CATCH_BLOCK: return createCatchBlock();
+			case OpenEdgeAblPackage.FUNCTION_BLOCK: return createFunctionBlock();
+			case OpenEdgeAblPackage.METHOD_BLOCK: return createMethodBlock();
+			case OpenEdgeAblPackage.PROCEDURE_BLOCK: return createProcedureBlock();
+			case OpenEdgeAblPackage.IF_STATEMENT: return createIfStatement();
+			case OpenEdgeAblPackage.CASE_STATEMENT: return createCaseStatement();
+			case OpenEdgeAblPackage.CASE_WHEN: return createCaseWhen();
+			case OpenEdgeAblPackage.IF_PREPROCESSOR: return createIfPreprocessor();
+			case OpenEdgeAblPackage.ELSE_IF_PREPROCESSOR: return createElseIfPreprocessor();
+			case OpenEdgeAblPackage.ANNOTATION: return createAnnotation();
+			case OpenEdgeAblPackage.ENUM: return createEnum();
+			case OpenEdgeAblPackage.ENUM_LITERAL: return createEnumLiteral();
+			case OpenEdgeAblPackage.ON_WIDGET_TRIGGER: return createOnWidgetTrigger();
+			case OpenEdgeAblPackage.WIDGET_TRIGGER: return createWidgetTrigger();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
+			case OpenEdgeAblPackage.SHARE_TYPE:
+				return createShareTypeFromString(eDataType, initialValue);
+			case OpenEdgeAblPackage.ACCESS_TYPE:
+				return createAccessTypeFromString(eDataType, initialValue);
+			case OpenEdgeAblPackage.UNARY_OPERATOR:
+				return createUnaryOperatorFromString(eDataType, initialValue);
+			case OpenEdgeAblPackage.ASSIGNMENT_OPERATOR:
+				return createAssignmentOperatorFromString(eDataType, initialValue);
+			case OpenEdgeAblPackage.BINARY_OPERATOR:
+				return createBinaryOperatorFromString(eDataType, initialValue);
+			case OpenEdgeAblPackage.PARAMETER_DIRECTION:
+				return createParameterDirectionFromString(eDataType, initialValue);
+			case OpenEdgeAblPackage.IMPLEMENT_TYPE:
+				return createImplementTypeFromString(eDataType, initialValue);
+			case OpenEdgeAblPackage.BLOCK_LEVEL_TYPE:
+				return createBlockLevelTypeFromString(eDataType, initialValue);
+			case OpenEdgeAblPackage.USING_TYPE:
+				return createUsingTypeFromString(eDataType, initialValue);
+			case OpenEdgeAblPackage.FIELD_DATA_TYPE:
+				return createFieldDataTypeFromString(eDataType, initialValue);
+			case OpenEdgeAblPackage.XML_NODE_TYPE:
+				return createXmlNodeTypeFromString(eDataType, initialValue);
+			case OpenEdgeAblPackage.XML_DATA_TYPE:
+				return createXmlDataTypeFromString(eDataType, initialValue);
+			case OpenEdgeAblPackage.CALL_CONVENTION_TYPE:
+				return createCallConventionTypeFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
+			case OpenEdgeAblPackage.SHARE_TYPE:
+				return convertShareTypeToString(eDataType, instanceValue);
+			case OpenEdgeAblPackage.ACCESS_TYPE:
+				return convertAccessTypeToString(eDataType, instanceValue);
+			case OpenEdgeAblPackage.UNARY_OPERATOR:
+				return convertUnaryOperatorToString(eDataType, instanceValue);
+			case OpenEdgeAblPackage.ASSIGNMENT_OPERATOR:
+				return convertAssignmentOperatorToString(eDataType, instanceValue);
+			case OpenEdgeAblPackage.BINARY_OPERATOR:
+				return convertBinaryOperatorToString(eDataType, instanceValue);
+			case OpenEdgeAblPackage.PARAMETER_DIRECTION:
+				return convertParameterDirectionToString(eDataType, instanceValue);
+			case OpenEdgeAblPackage.IMPLEMENT_TYPE:
+				return convertImplementTypeToString(eDataType, instanceValue);
+			case OpenEdgeAblPackage.BLOCK_LEVEL_TYPE:
+				return convertBlockLevelTypeToString(eDataType, instanceValue);
+			case OpenEdgeAblPackage.USING_TYPE:
+				return convertUsingTypeToString(eDataType, instanceValue);
+			case OpenEdgeAblPackage.FIELD_DATA_TYPE:
+				return convertFieldDataTypeToString(eDataType, instanceValue);
+			case OpenEdgeAblPackage.XML_NODE_TYPE:
+				return convertXmlNodeTypeToString(eDataType, instanceValue);
+			case OpenEdgeAblPackage.XML_DATA_TYPE:
+				return convertXmlDataTypeToString(eDataType, instanceValue);
+			case OpenEdgeAblPackage.CALL_CONVENTION_TYPE:
+				return convertCallConventionTypeToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Model createModel() {
+		ModelImpl model = new ModelImpl();
+		return model;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Definition createDefinition() {
+		DefinitionImpl definition = new DefinitionImpl();
+		return definition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Assignment createAssignment() {
+		AssignmentImpl assignment = new AssignmentImpl();
+		return assignment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Assignable createAssignable() {
+		AssignableImpl assignable = new AssignableImpl();
+		return assignable;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Reference createReference() {
+		ReferenceImpl reference = new ReferenceImpl();
+		return reference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Property createProperty() {
+		PropertyImpl property = new PropertyImpl();
+		return property;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Variable createVariable() {
+		VariableImpl variable = new VariableImpl();
+		return variable;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Option createOption() {
+		OptionImpl option = new OptionImpl();
+		return option;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ShareOption createShareOption() {
+		ShareOptionImpl shareOption = new ShareOptionImpl();
+		return shareOption;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public AccessOption createAccessOption() {
+		AccessOptionImpl accessOption = new AccessOptionImpl();
+		return accessOption;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ObjectDefinition createObjectDefinition() {
+		ObjectDefinitionImpl objectDefinition = new ObjectDefinitionImpl();
+		return objectDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public InitialOption createInitialOption() {
+		InitialOptionImpl initialOption = new InitialOptionImpl();
+		return initialOption;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NamedOption createNamedOption() {
+		NamedOptionImpl namedOption = new NamedOptionImpl();
+		return namedOption;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NumericExpression createNumericExpression() {
+		NumericExpressionImpl numericExpression = new NumericExpressionImpl();
+		return numericExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public UnaryExpression createUnaryExpression() {
+		UnaryExpressionImpl unaryExpression = new UnaryExpressionImpl();
+		return unaryExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public StringExpression createStringExpression() {
+		StringExpressionImpl stringExpression = new StringExpressionImpl();
+		return stringExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public DateExpression createDateExpression() {
+		DateExpressionImpl dateExpression = new DateExpressionImpl();
+		return dateExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public UnknownExpression createUnknownExpression() {
+		UnknownExpressionImpl unknownExpression = new UnknownExpressionImpl();
+		return unknownExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public LogicalExpression createLogicalExpression() {
+		LogicalExpressionImpl logicalExpression = new LogicalExpressionImpl();
+		return logicalExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Block createBlock() {
+		BlockImpl block = new BlockImpl();
+		return block;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public AssignBlock createAssignBlock() {
+		AssignBlockImpl assignBlock = new AssignBlockImpl();
+		return assignBlock;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public IterationBlock createIterationBlock() {
+		IterationBlockImpl iterationBlock = new IterationBlockImpl();
+		return iterationBlock;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CodeBlock createCodeBlock() {
+		CodeBlockImpl codeBlock = new CodeBlockImpl();
+		return codeBlock;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public DirectionalParameter createDirectionalParameter() {
+		DirectionalParameterImpl directionalParameter = new DirectionalParameterImpl();
+		return directionalParameter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Interface createInterface() {
+		InterfaceImpl interface_ = new InterfaceImpl();
+		return interface_;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ro.acorn.zamolxis.oe.demo.abl.Class createClass() {
+		ClassImpl class_ = new ClassImpl();
+		return class_;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public BlockLevelStatement createBlockLevelStatement() {
+		BlockLevelStatementImpl blockLevelStatement = new BlockLevelStatementImpl();
+		return blockLevelStatement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public UsingStatement createUsingStatement() {
+		UsingStatementImpl usingStatement = new UsingStatementImpl();
+		return usingStatement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public BinaryExpression createBinaryExpression() {
+		BinaryExpressionImpl binaryExpression = new BinaryExpressionImpl();
+		return binaryExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public PropertyReference createPropertyReference() {
+		PropertyReferenceImpl propertyReference = new PropertyReferenceImpl();
+		return propertyReference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public MethodReference createMethodReference() {
+		MethodReferenceImpl methodReference = new MethodReferenceImpl();
+		return methodReference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public FunctionReference createFunctionReference() {
+		FunctionReferenceImpl functionReference = new FunctionReferenceImpl();
+		return functionReference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public BuiltInFunctionReference createBuiltInFunctionReference() {
+		BuiltInFunctionReferenceImpl builtInFunctionReference = new BuiltInFunctionReferenceImpl();
+		return builtInFunctionReference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public BuiltinFunction createBuiltinFunction() {
+		BuiltinFunctionImpl builtinFunction = new BuiltinFunctionImpl();
+		return builtinFunction;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Primitive createPrimitive() {
+		PrimitiveImpl primitive = new PrimitiveImpl();
+		return primitive;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Project createProject() {
+		ProjectImpl project = new ProjectImpl();
+		return project;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Runtime12_2 createRuntime12_2() {
+		Runtime12_2Impl runtime12_2 = new Runtime12_2Impl();
+		return runtime12_2;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Workspace createWorkspace() {
+		WorkspaceImpl workspace = new WorkspaceImpl();
+		return workspace;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public IncludeStatement createIncludeStatement() {
+		IncludeStatementImpl includeStatement = new IncludeStatementImpl();
+		return includeStatement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public IncludeArgument createIncludeArgument() {
+		IncludeArgumentImpl includeArgument = new IncludeArgumentImpl();
+		return includeArgument;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public LoopBlock createLoopBlock() {
+		LoopBlockImpl loopBlock = new LoopBlockImpl();
+		return loopBlock;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NamedBlock createNamedBlock() {
+		NamedBlockImpl namedBlock = new NamedBlockImpl();
+		return namedBlock;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ArgumentReference createArgumentReference() {
+		ArgumentReferenceImpl argumentReference = new ArgumentReferenceImpl();
+		return argumentReference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public PreprocessorReference createPreprocessorReference() {
+		PreprocessorReferenceImpl preprocessorReference = new PreprocessorReferenceImpl();
+		return preprocessorReference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public PreprocessorDirective createPreprocessorDirective() {
+		PreprocessorDirectiveImpl preprocessorDirective = new PreprocessorDirectiveImpl();
+		return preprocessorDirective;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public UndefineDirective createUndefineDirective() {
+		UndefineDirectiveImpl undefineDirective = new UndefineDirectiveImpl();
+		return undefineDirective;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public VariableParameter createVariableParameter() {
+		VariableParameterImpl variableParameter = new VariableParameterImpl();
+		return variableParameter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public BufferParameter createBufferParameter() {
+		BufferParameterImpl bufferParameter = new BufferParameterImpl();
+		return bufferParameter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public TableParameter createTableParameter() {
+		TableParameterImpl tableParameter = new TableParameterImpl();
+		return tableParameter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public TableHandleParameter createTableHandleParameter() {
+		TableHandleParameterImpl tableHandleParameter = new TableHandleParameterImpl();
+		return tableHandleParameter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public DatasetHandleParameter createDatasetHandleParameter() {
+		DatasetHandleParameterImpl datasetHandleParameter = new DatasetHandleParameterImpl();
+		return datasetHandleParameter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public DatasetParameter createDatasetParameter() {
+		DatasetParameterImpl datasetParameter = new DatasetParameterImpl();
+		return datasetParameter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Buffer createBuffer() {
+		BufferImpl buffer = new BufferImpl();
+		return buffer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public TempTableReference createTempTableReference() {
+		TempTableReferenceImpl tempTableReference = new TempTableReferenceImpl();
+		return tempTableReference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ValueOption createValueOption() {
+		ValueOptionImpl valueOption = new ValueOptionImpl();
+		return valueOption;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public TempTableField createTempTableField() {
+		TempTableFieldImpl tempTableField = new TempTableFieldImpl();
+		return tempTableField;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public TempTableFieldDataType createTempTableFieldDataType() {
+		TempTableFieldDataTypeImpl tempTableFieldDataType = new TempTableFieldDataTypeImpl();
+		return tempTableFieldDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public AccessCodeBlock createAccessCodeBlock() {
+		AccessCodeBlockImpl accessCodeBlock = new AccessCodeBlockImpl();
+		return accessCodeBlock;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CatchBlock createCatchBlock() {
+		CatchBlockImpl catchBlock = new CatchBlockImpl();
+		return catchBlock;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public FunctionBlock createFunctionBlock() {
+		FunctionBlockImpl functionBlock = new FunctionBlockImpl();
+		return functionBlock;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public MethodBlock createMethodBlock() {
+		MethodBlockImpl methodBlock = new MethodBlockImpl();
+		return methodBlock;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ProcedureBlock createProcedureBlock() {
+		ProcedureBlockImpl procedureBlock = new ProcedureBlockImpl();
+		return procedureBlock;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public IfStatement createIfStatement() {
+		IfStatementImpl ifStatement = new IfStatementImpl();
+		return ifStatement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CaseStatement createCaseStatement() {
+		CaseStatementImpl caseStatement = new CaseStatementImpl();
+		return caseStatement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CaseWhen createCaseWhen() {
+		CaseWhenImpl caseWhen = new CaseWhenImpl();
+		return caseWhen;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public IfPreprocessor createIfPreprocessor() {
+		IfPreprocessorImpl ifPreprocessor = new IfPreprocessorImpl();
+		return ifPreprocessor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ElseIfPreprocessor createElseIfPreprocessor() {
+		ElseIfPreprocessorImpl elseIfPreprocessor = new ElseIfPreprocessorImpl();
+		return elseIfPreprocessor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Annotation createAnnotation() {
+		AnnotationImpl annotation = new AnnotationImpl();
+		return annotation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ro.acorn.zamolxis.oe.demo.abl.Enum createEnum() {
+		EnumImpl enum_ = new EnumImpl();
+		return enum_;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EnumLiteral createEnumLiteral() {
+		EnumLiteralImpl enumLiteral = new EnumLiteralImpl();
+		return enumLiteral;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public OnWidgetTrigger createOnWidgetTrigger() {
+		OnWidgetTriggerImpl onWidgetTrigger = new OnWidgetTriggerImpl();
+		return onWidgetTrigger;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public WidgetTrigger createWidgetTrigger() {
+		WidgetTriggerImpl widgetTrigger = new WidgetTriggerImpl();
+		return widgetTrigger;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ShareType createShareTypeFromString(EDataType eDataType, String initialValue) {
+		ShareType result = ShareType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertShareTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AccessType createAccessTypeFromString(EDataType eDataType, String initialValue) {
+		AccessType result = AccessType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertAccessTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UnaryOperator createUnaryOperatorFromString(EDataType eDataType, String initialValue) {
+		UnaryOperator result = UnaryOperator.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertUnaryOperatorToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AssignmentOperator createAssignmentOperatorFromString(EDataType eDataType, String initialValue) {
+		AssignmentOperator result = AssignmentOperator.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertAssignmentOperatorToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BinaryOperator createBinaryOperatorFromString(EDataType eDataType, String initialValue) {
+		BinaryOperator result = BinaryOperator.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertBinaryOperatorToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ParameterDirection createParameterDirectionFromString(EDataType eDataType, String initialValue) {
+		ParameterDirection result = ParameterDirection.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertParameterDirectionToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ImplementType createImplementTypeFromString(EDataType eDataType, String initialValue) {
+		ImplementType result = ImplementType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertImplementTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BlockLevelType createBlockLevelTypeFromString(EDataType eDataType, String initialValue) {
+		BlockLevelType result = BlockLevelType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertBlockLevelTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UsingType createUsingTypeFromString(EDataType eDataType, String initialValue) {
+		UsingType result = UsingType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertUsingTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FieldDataType createFieldDataTypeFromString(EDataType eDataType, String initialValue) {
+		FieldDataType result = FieldDataType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertFieldDataTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public XmlNodeType createXmlNodeTypeFromString(EDataType eDataType, String initialValue) {
+		XmlNodeType result = XmlNodeType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertXmlNodeTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public XmlDataType createXmlDataTypeFromString(EDataType eDataType, String initialValue) {
+		XmlDataType result = XmlDataType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertXmlDataTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CallConventionType createCallConventionTypeFromString(EDataType eDataType, String initialValue) {
+		CallConventionType result = CallConventionType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertCallConventionTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public OpenEdgeAblPackage getOpenEdgeAblPackage() {
+		return (OpenEdgeAblPackage)getEPackage();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @deprecated
+	 * @generated
+	 */
+	@Deprecated
+	public static OpenEdgeAblPackage getPackage() {
+		return OpenEdgeAblPackage.eINSTANCE;
+	}
+
+} //OpenEdgeAblFactoryImpl

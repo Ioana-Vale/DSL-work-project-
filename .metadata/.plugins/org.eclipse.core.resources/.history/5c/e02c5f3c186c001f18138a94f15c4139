@@ -1,0 +1,138 @@
+/**
+ * ACORN IT 2024
+ */
+package ro.acorn.zamolxis.oe.demo.abl;
+
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Value Option</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.ValueOption#getValue <em>Value</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.ValueOption#getFileName <em>File Name</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.ValueOption#getTooltip <em>Tooltip</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.ValueOption#getBgColor <em>Bg Color</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.ValueOption#getFgColor <em>Fg Color</em>}</li>
+ * </ul>
+ *
+ * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getValueOption()
+ * @model
+ * @generated
+ */
+public interface ValueOption extends NamedOption {
+	/**
+	 * Returns the value of the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Value</em>' attribute.
+	 * @see #setValue(Object)
+	 * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getValueOption_Value()
+	 * @model
+	 * @generated
+	 */
+	Object getValue();
+
+	/**
+	 * Sets the value of the '{@link ro.acorn.zamolxis.oe.demo.abl.ValueOption#getValue <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Value</em>' attribute.
+	 * @see #getValue()
+	 * @generated
+	 */
+	void setValue(Object value);
+
+	/**
+	 * Returns the value of the '<em><b>File Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>File Name</em>' attribute.
+	 * @see #setFileName(String)
+	 * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getValueOption_FileName()
+	 * @model
+	 * @generated
+	 */
+	String getFileName();
+
+	/**
+	 * Sets the value of the '{@link ro.acorn.zamolxis.oe.demo.abl.ValueOption#getFileName <em>File Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>File Name</em>' attribute.
+	 * @see #getFileName()
+	 * @generated
+	 */
+	void setFileName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Tooltip</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Tooltip</em>' attribute.
+	 * @see #setTooltip(String)
+	 * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getValueOption_Tooltip()
+	 * @model
+	 * @generated
+	 */
+	String getTooltip();
+
+	/**
+	 * Sets the value of the '{@link ro.acorn.zamolxis.oe.demo.abl.ValueOption#getTooltip <em>Tooltip</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Tooltip</em>' attribute.
+	 * @see #getTooltip()
+	 * @generated
+	 */
+	void setTooltip(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Bg Color</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Bg Color</em>' containment reference.
+	 * @see #setBgColor(Expression)
+	 * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getValueOption_BgColor()
+	 * @model containment="true"
+	 * @generated
+	 */
+	Expression getBgColor();
+
+	/**
+	 * Sets the value of the '{@link ro.acorn.zamolxis.oe.demo.abl.ValueOption#getBgColor <em>Bg Color</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Bg Color</em>' containment reference.
+	 * @see #getBgColor()
+	 * @generated
+	 */
+	void setBgColor(Expression value);
+
+	/**
+	 * Returns the value of the '<em><b>Fg Color</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Fg Color</em>' containment reference.
+	 * @see #setFgColor(Expression)
+	 * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getValueOption_FgColor()
+	 * @model containment="true"
+	 * @generated
+	 */
+	Expression getFgColor();
+
+	/**
+	 * Sets the value of the '{@link ro.acorn.zamolxis.oe.demo.abl.ValueOption#getFgColor <em>Fg Color</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Fg Color</em>' containment reference.
+	 * @see #getFgColor()
+	 * @generated
+	 */
+	void setFgColor(Expression value);
+
+} // ValueOption

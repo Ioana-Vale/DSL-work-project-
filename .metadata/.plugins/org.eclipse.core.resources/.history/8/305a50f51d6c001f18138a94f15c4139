@@ -1,0 +1,334 @@
+/**
+ * ACORN IT 2024
+ */
+package ro.acorn.zamolxis.oe.demo.abl.impl;
+
+import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import ro.acorn.zamolxis.oe.demo.abl.NamedOption;
+import ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Named Option</b></em>'.
+ * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * </p>
+ * <ul>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.impl.NamedOptionImpl#getName <em>Name</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.impl.NamedOptionImpl#isRetainShape <em>Retain Shape</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.impl.NamedOptionImpl#getWidth <em>Width</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.impl.NamedOptionImpl#getHeight <em>Height</em>}</li>
+ * </ul>
+ *
+ * @generated
+ */
+public class NamedOptionImpl extends MinimalEObjectImpl.Container implements NamedOption {
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isRetainShape() <em>Retain Shape</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isRetainShape()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean RETAIN_SHAPE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isRetainShape() <em>Retain Shape</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isRetainShape()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean retainShape = RETAIN_SHAPE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getWidth() <em>Width</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWidth()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String WIDTH_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getWidth() <em>Width</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWidth()
+	 * @generated
+	 * @ordered
+	 */
+	protected String width = WIDTH_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getHeight() <em>Height</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getHeight()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String HEIGHT_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getHeight() <em>Height</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getHeight()
+	 * @generated
+	 * @ordered
+	 */
+	protected String height = HEIGHT_EDEFAULT;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected NamedOptionImpl() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return OpenEdgeAblPackage.Literals.NAMED_OPTION;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.NAMED_OPTION__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isRetainShape() {
+		return retainShape;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setRetainShape(boolean newRetainShape) {
+		boolean oldRetainShape = retainShape;
+		retainShape = newRetainShape;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.NAMED_OPTION__RETAIN_SHAPE, oldRetainShape, retainShape));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getWidth() {
+		return width;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setWidth(String newWidth) {
+		String oldWidth = width;
+		width = newWidth;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.NAMED_OPTION__WIDTH, oldWidth, width));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getHeight() {
+		return height;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setHeight(String newHeight) {
+		String oldHeight = height;
+		height = newHeight;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.NAMED_OPTION__HEIGHT, oldHeight, height));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case OpenEdgeAblPackage.NAMED_OPTION__NAME:
+				return getName();
+			case OpenEdgeAblPackage.NAMED_OPTION__RETAIN_SHAPE:
+				return isRetainShape();
+			case OpenEdgeAblPackage.NAMED_OPTION__WIDTH:
+				return getWidth();
+			case OpenEdgeAblPackage.NAMED_OPTION__HEIGHT:
+				return getHeight();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case OpenEdgeAblPackage.NAMED_OPTION__NAME:
+				setName((String)newValue);
+				return;
+			case OpenEdgeAblPackage.NAMED_OPTION__RETAIN_SHAPE:
+				setRetainShape((Boolean)newValue);
+				return;
+			case OpenEdgeAblPackage.NAMED_OPTION__WIDTH:
+				setWidth((String)newValue);
+				return;
+			case OpenEdgeAblPackage.NAMED_OPTION__HEIGHT:
+				setHeight((String)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case OpenEdgeAblPackage.NAMED_OPTION__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case OpenEdgeAblPackage.NAMED_OPTION__RETAIN_SHAPE:
+				setRetainShape(RETAIN_SHAPE_EDEFAULT);
+				return;
+			case OpenEdgeAblPackage.NAMED_OPTION__WIDTH:
+				setWidth(WIDTH_EDEFAULT);
+				return;
+			case OpenEdgeAblPackage.NAMED_OPTION__HEIGHT:
+				setHeight(HEIGHT_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case OpenEdgeAblPackage.NAMED_OPTION__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case OpenEdgeAblPackage.NAMED_OPTION__RETAIN_SHAPE:
+				return retainShape != RETAIN_SHAPE_EDEFAULT;
+			case OpenEdgeAblPackage.NAMED_OPTION__WIDTH:
+				return WIDTH_EDEFAULT == null ? width != null : !WIDTH_EDEFAULT.equals(width);
+			case OpenEdgeAblPackage.NAMED_OPTION__HEIGHT:
+				return HEIGHT_EDEFAULT == null ? height != null : !HEIGHT_EDEFAULT.equals(height);
+		}
+		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (name: ");
+		result.append(name);
+		result.append(", retainShape: ");
+		result.append(retainShape);
+		result.append(", width: ");
+		result.append(width);
+		result.append(", height: ");
+		result.append(height);
+		result.append(')');
+		return result.toString();
+	}
+
+} //NamedOptionImpl

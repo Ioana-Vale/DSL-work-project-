@@ -1,0 +1,2183 @@
+/**
+ * ACORN IT 2024
+ */
+package ro.acorn.zamolxis.oe.demo.abl.util;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+
+import org.eclipse.emf.ecore.util.Switch;
+
+import ro.acorn.zamolxis.oe.demo.abl.AbstractVariable;
+import ro.acorn.zamolxis.oe.demo.abl.AccessCodeBlock;
+import ro.acorn.zamolxis.oe.demo.abl.AccessOption;
+import ro.acorn.zamolxis.oe.demo.abl.Annotation;
+import ro.acorn.zamolxis.oe.demo.abl.ArgumentReference;
+import ro.acorn.zamolxis.oe.demo.abl.AssignBlock;
+import ro.acorn.zamolxis.oe.demo.abl.Assignable;
+import ro.acorn.zamolxis.oe.demo.abl.Assignment;
+import ro.acorn.zamolxis.oe.demo.abl.BinaryExpression;
+import ro.acorn.zamolxis.oe.demo.abl.Block;
+import ro.acorn.zamolxis.oe.demo.abl.BlockLevelStatement;
+import ro.acorn.zamolxis.oe.demo.abl.Buffer;
+import ro.acorn.zamolxis.oe.demo.abl.BufferParameter;
+import ro.acorn.zamolxis.oe.demo.abl.BuiltInFunctionReference;
+import ro.acorn.zamolxis.oe.demo.abl.BuiltinFunction;
+import ro.acorn.zamolxis.oe.demo.abl.CaseStatement;
+import ro.acorn.zamolxis.oe.demo.abl.CaseWhen;
+import ro.acorn.zamolxis.oe.demo.abl.CatchBlock;
+import ro.acorn.zamolxis.oe.demo.abl.CodeBlock;
+import ro.acorn.zamolxis.oe.demo.abl.DataType;
+import ro.acorn.zamolxis.oe.demo.abl.Dataset;
+import ro.acorn.zamolxis.oe.demo.abl.DatasetHandleParameter;
+import ro.acorn.zamolxis.oe.demo.abl.DatasetParameter;
+import ro.acorn.zamolxis.oe.demo.abl.DateExpression;
+import ro.acorn.zamolxis.oe.demo.abl.Definition;
+import ro.acorn.zamolxis.oe.demo.abl.DirectionalParameter;
+import ro.acorn.zamolxis.oe.demo.abl.ElseIfPreprocessor;
+import ro.acorn.zamolxis.oe.demo.abl.EnumLiteral;
+import ro.acorn.zamolxis.oe.demo.abl.Expression;
+import ro.acorn.zamolxis.oe.demo.abl.FunctionBlock;
+import ro.acorn.zamolxis.oe.demo.abl.FunctionReference;
+import ro.acorn.zamolxis.oe.demo.abl.IDataType;
+import ro.acorn.zamolxis.oe.demo.abl.INamed;
+import ro.acorn.zamolxis.oe.demo.abl.ISerializable;
+import ro.acorn.zamolxis.oe.demo.abl.IfPreprocessor;
+import ro.acorn.zamolxis.oe.demo.abl.IfStatement;
+import ro.acorn.zamolxis.oe.demo.abl.IncludeArgument;
+import ro.acorn.zamolxis.oe.demo.abl.IncludeStatement;
+import ro.acorn.zamolxis.oe.demo.abl.InitialOption;
+import ro.acorn.zamolxis.oe.demo.abl.Interface;
+import ro.acorn.zamolxis.oe.demo.abl.IterationBlock;
+import ro.acorn.zamolxis.oe.demo.abl.LogicalExpression;
+import ro.acorn.zamolxis.oe.demo.abl.LoopBlock;
+import ro.acorn.zamolxis.oe.demo.abl.MethodBlock;
+import ro.acorn.zamolxis.oe.demo.abl.MethodReference;
+import ro.acorn.zamolxis.oe.demo.abl.Model;
+import ro.acorn.zamolxis.oe.demo.abl.NamedBlock;
+import ro.acorn.zamolxis.oe.demo.abl.NamedOption;
+import ro.acorn.zamolxis.oe.demo.abl.NumericExpression;
+import ro.acorn.zamolxis.oe.demo.abl.ObjectDefinition;
+import ro.acorn.zamolxis.oe.demo.abl.ObjectReference;
+import ro.acorn.zamolxis.oe.demo.abl.OnWidgetTrigger;
+import ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage;
+import ro.acorn.zamolxis.oe.demo.abl.Option;
+import ro.acorn.zamolxis.oe.demo.abl.Parameter;
+import ro.acorn.zamolxis.oe.demo.abl.PreprocessorDirective;
+import ro.acorn.zamolxis.oe.demo.abl.PreprocessorReference;
+import ro.acorn.zamolxis.oe.demo.abl.Primitive;
+import ro.acorn.zamolxis.oe.demo.abl.ProcedureBlock;
+import ro.acorn.zamolxis.oe.demo.abl.Project;
+import ro.acorn.zamolxis.oe.demo.abl.Property;
+import ro.acorn.zamolxis.oe.demo.abl.PropertyReference;
+import ro.acorn.zamolxis.oe.demo.abl.Reference;
+import ro.acorn.zamolxis.oe.demo.abl.ReturnCodeBlock;
+import ro.acorn.zamolxis.oe.demo.abl.Runtime12_2;
+import ro.acorn.zamolxis.oe.demo.abl.ShareOption;
+import ro.acorn.zamolxis.oe.demo.abl.Statement;
+import ro.acorn.zamolxis.oe.demo.abl.StringExpression;
+import ro.acorn.zamolxis.oe.demo.abl.TableHandleParameter;
+import ro.acorn.zamolxis.oe.demo.abl.TableParameter;
+import ro.acorn.zamolxis.oe.demo.abl.TableReference;
+import ro.acorn.zamolxis.oe.demo.abl.TempTable;
+import ro.acorn.zamolxis.oe.demo.abl.TempTableField;
+import ro.acorn.zamolxis.oe.demo.abl.TempTableFieldDataType;
+import ro.acorn.zamolxis.oe.demo.abl.TempTableReference;
+import ro.acorn.zamolxis.oe.demo.abl.TypedParameter;
+import ro.acorn.zamolxis.oe.demo.abl.UnaryExpression;
+import ro.acorn.zamolxis.oe.demo.abl.UndefineDirective;
+import ro.acorn.zamolxis.oe.demo.abl.UnknownExpression;
+import ro.acorn.zamolxis.oe.demo.abl.UsingStatement;
+import ro.acorn.zamolxis.oe.demo.abl.ValueOption;
+import ro.acorn.zamolxis.oe.demo.abl.Variable;
+import ro.acorn.zamolxis.oe.demo.abl.VariableParameter;
+import ro.acorn.zamolxis.oe.demo.abl.WidgetTrigger;
+import ro.acorn.zamolxis.oe.demo.abl.Workspace;
+
+/**
+ * <!-- begin-user-doc -->
+ * The <b>Switch</b> for the model's inheritance hierarchy.
+ * It supports the call {@link #doSwitch(EObject) doSwitch(object)}
+ * to invoke the <code>caseXXX</code> method for each class of the model,
+ * starting with the actual class of the object
+ * and proceeding up the inheritance hierarchy
+ * until a non-null result is returned,
+ * which is the result of the switch.
+ * <!-- end-user-doc -->
+ * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage
+ * @generated
+ */
+public class OpenEdgeAblSwitch<T> extends Switch<T> {
+	/**
+	 * The cached model package
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static OpenEdgeAblPackage modelPackage;
+
+	/**
+	 * Creates an instance of the switch.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OpenEdgeAblSwitch() {
+		if (modelPackage == null) {
+			modelPackage = OpenEdgeAblPackage.eINSTANCE;
+		}
+	}
+
+	/**
+	 * Checks whether this is a switch for the given package.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param ePackage the package in question.
+	 * @return whether this is a switch for the given package.
+	 * @generated
+	 */
+	@Override
+	protected boolean isSwitchFor(EPackage ePackage) {
+		return ePackage == modelPackage;
+	}
+
+	/**
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the first non-null result returned by a <code>caseXXX</code> call.
+	 * @generated
+	 */
+	@Override
+	protected T doSwitch(int classifierID, EObject theEObject) {
+		switch (classifierID) {
+			case OpenEdgeAblPackage.MODEL: {
+				Model model = (Model)theEObject;
+				T result = caseModel(model);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.STATEMENT: {
+				Statement statement = (Statement)theEObject;
+				T result = caseStatement(statement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.DEFINITION: {
+				Definition definition = (Definition)theEObject;
+				T result = caseDefinition(definition);
+				if (result == null) result = caseStatement(definition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.ASSIGNMENT: {
+				Assignment assignment = (Assignment)theEObject;
+				T result = caseAssignment(assignment);
+				if (result == null) result = caseStatement(assignment);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.ASSIGNABLE: {
+				Assignable assignable = (Assignable)theEObject;
+				T result = caseAssignable(assignable);
+				if (result == null) result = caseExpression(assignable);
+				if (result == null) result = caseStatement(assignable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.REFERENCE: {
+				Reference reference = (Reference)theEObject;
+				T result = caseReference(reference);
+				if (result == null) result = caseAssignable(reference);
+				if (result == null) result = caseExpression(reference);
+				if (result == null) result = caseStatement(reference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.PROPERTY: {
+				Property property = (Property)theEObject;
+				T result = caseProperty(property);
+				if (result == null) result = caseObjectDefinition(property);
+				if (result == null) result = caseIDataType(property);
+				if (result == null) result = caseINamed(property);
+				if (result == null) result = caseObjectReference(property);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.VARIABLE: {
+				Variable variable = (Variable)theEObject;
+				T result = caseVariable(variable);
+				if (result == null) result = caseAbstractVariable(variable);
+				if (result == null) result = caseObjectDefinition(variable);
+				if (result == null) result = caseIDataType(variable);
+				if (result == null) result = caseINamed(variable);
+				if (result == null) result = caseObjectReference(variable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.INAMED: {
+				INamed iNamed = (INamed)theEObject;
+				T result = caseINamed(iNamed);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.OPTION: {
+				Option option = (Option)theEObject;
+				T result = caseOption(option);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.SHARE_OPTION: {
+				ShareOption shareOption = (ShareOption)theEObject;
+				T result = caseShareOption(shareOption);
+				if (result == null) result = caseOption(shareOption);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.ACCESS_OPTION: {
+				AccessOption accessOption = (AccessOption)theEObject;
+				T result = caseAccessOption(accessOption);
+				if (result == null) result = caseOption(accessOption);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.OBJECT_DEFINITION: {
+				ObjectDefinition objectDefinition = (ObjectDefinition)theEObject;
+				T result = caseObjectDefinition(objectDefinition);
+				if (result == null) result = caseINamed(objectDefinition);
+				if (result == null) result = caseObjectReference(objectDefinition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.INITIAL_OPTION: {
+				InitialOption initialOption = (InitialOption)theEObject;
+				T result = caseInitialOption(initialOption);
+				if (result == null) result = caseOption(initialOption);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.NAMED_OPTION: {
+				NamedOption namedOption = (NamedOption)theEObject;
+				T result = caseNamedOption(namedOption);
+				if (result == null) result = caseINamed(namedOption);
+				if (result == null) result = caseOption(namedOption);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.EXPRESSION: {
+				Expression expression = (Expression)theEObject;
+				T result = caseExpression(expression);
+				if (result == null) result = caseStatement(expression);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.NUMERIC_EXPRESSION: {
+				NumericExpression numericExpression = (NumericExpression)theEObject;
+				T result = caseNumericExpression(numericExpression);
+				if (result == null) result = caseDateExpression(numericExpression);
+				if (result == null) result = caseStringExpression(numericExpression);
+				if (result == null) result = caseExpression(numericExpression);
+				if (result == null) result = caseStatement(numericExpression);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.UNARY_EXPRESSION: {
+				UnaryExpression unaryExpression = (UnaryExpression)theEObject;
+				T result = caseUnaryExpression(unaryExpression);
+				if (result == null) result = caseExpression(unaryExpression);
+				if (result == null) result = caseStatement(unaryExpression);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.STRING_EXPRESSION: {
+				StringExpression stringExpression = (StringExpression)theEObject;
+				T result = caseStringExpression(stringExpression);
+				if (result == null) result = caseExpression(stringExpression);
+				if (result == null) result = caseStatement(stringExpression);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.DATE_EXPRESSION: {
+				DateExpression dateExpression = (DateExpression)theEObject;
+				T result = caseDateExpression(dateExpression);
+				if (result == null) result = caseStringExpression(dateExpression);
+				if (result == null) result = caseExpression(dateExpression);
+				if (result == null) result = caseStatement(dateExpression);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.UNKNOWN_EXPRESSION: {
+				UnknownExpression unknownExpression = (UnknownExpression)theEObject;
+				T result = caseUnknownExpression(unknownExpression);
+				if (result == null) result = caseExpression(unknownExpression);
+				if (result == null) result = caseStatement(unknownExpression);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.LOGICAL_EXPRESSION: {
+				LogicalExpression logicalExpression = (LogicalExpression)theEObject;
+				T result = caseLogicalExpression(logicalExpression);
+				if (result == null) result = caseExpression(logicalExpression);
+				if (result == null) result = caseStatement(logicalExpression);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.BLOCK: {
+				Block block = (Block)theEObject;
+				T result = caseBlock(block);
+				if (result == null) result = caseStatement(block);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.ASSIGN_BLOCK: {
+				AssignBlock assignBlock = (AssignBlock)theEObject;
+				T result = caseAssignBlock(assignBlock);
+				if (result == null) result = caseBlock(assignBlock);
+				if (result == null) result = caseStatement(assignBlock);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.ITERATION_BLOCK: {
+				IterationBlock iterationBlock = (IterationBlock)theEObject;
+				T result = caseIterationBlock(iterationBlock);
+				if (result == null) result = caseBlock(iterationBlock);
+				if (result == null) result = caseStatement(iterationBlock);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.CODE_BLOCK: {
+				CodeBlock codeBlock = (CodeBlock)theEObject;
+				T result = caseCodeBlock(codeBlock);
+				if (result == null) result = caseObjectDefinition(codeBlock);
+				if (result == null) result = caseBlock(codeBlock);
+				if (result == null) result = caseINamed(codeBlock);
+				if (result == null) result = caseObjectReference(codeBlock);
+				if (result == null) result = caseStatement(codeBlock);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.DIRECTIONAL_PARAMETER: {
+				DirectionalParameter directionalParameter = (DirectionalParameter)theEObject;
+				T result = caseDirectionalParameter(directionalParameter);
+				if (result == null) result = caseParameter(directionalParameter);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.INTERFACE: {
+				Interface interface_ = (Interface)theEObject;
+				T result = caseInterface(interface_);
+				if (result == null) result = caseStatement(interface_);
+				if (result == null) result = caseDataType(interface_);
+				if (result == null) result = caseINamed(interface_);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.CLASS: {
+				ro.acorn.zamolxis.oe.demo.abl.Class class_ = (ro.acorn.zamolxis.oe.demo.abl.Class)theEObject;
+				T result = caseClass(class_);
+				if (result == null) result = caseInterface(class_);
+				if (result == null) result = caseStatement(class_);
+				if (result == null) result = caseDataType(class_);
+				if (result == null) result = caseINamed(class_);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.BLOCK_LEVEL_STATEMENT: {
+				BlockLevelStatement blockLevelStatement = (BlockLevelStatement)theEObject;
+				T result = caseBlockLevelStatement(blockLevelStatement);
+				if (result == null) result = caseStatement(blockLevelStatement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.USING_STATEMENT: {
+				UsingStatement usingStatement = (UsingStatement)theEObject;
+				T result = caseUsingStatement(usingStatement);
+				if (result == null) result = caseStatement(usingStatement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.BINARY_EXPRESSION: {
+				BinaryExpression binaryExpression = (BinaryExpression)theEObject;
+				T result = caseBinaryExpression(binaryExpression);
+				if (result == null) result = caseExpression(binaryExpression);
+				if (result == null) result = caseStatement(binaryExpression);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.PROPERTY_REFERENCE: {
+				PropertyReference propertyReference = (PropertyReference)theEObject;
+				T result = casePropertyReference(propertyReference);
+				if (result == null) result = caseReference(propertyReference);
+				if (result == null) result = caseAssignable(propertyReference);
+				if (result == null) result = caseExpression(propertyReference);
+				if (result == null) result = caseStatement(propertyReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.OBJECT_REFERENCE: {
+				ObjectReference objectReference = (ObjectReference)theEObject;
+				T result = caseObjectReference(objectReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.METHOD_REFERENCE: {
+				MethodReference methodReference = (MethodReference)theEObject;
+				T result = caseMethodReference(methodReference);
+				if (result == null) result = casePropertyReference(methodReference);
+				if (result == null) result = caseReference(methodReference);
+				if (result == null) result = caseAssignable(methodReference);
+				if (result == null) result = caseExpression(methodReference);
+				if (result == null) result = caseStatement(methodReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.FUNCTION_REFERENCE: {
+				FunctionReference functionReference = (FunctionReference)theEObject;
+				T result = caseFunctionReference(functionReference);
+				if (result == null) result = caseReference(functionReference);
+				if (result == null) result = caseAssignable(functionReference);
+				if (result == null) result = caseExpression(functionReference);
+				if (result == null) result = caseStatement(functionReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.BUILT_IN_FUNCTION_REFERENCE: {
+				BuiltInFunctionReference builtInFunctionReference = (BuiltInFunctionReference)theEObject;
+				T result = caseBuiltInFunctionReference(builtInFunctionReference);
+				if (result == null) result = caseFunctionReference(builtInFunctionReference);
+				if (result == null) result = caseReference(builtInFunctionReference);
+				if (result == null) result = caseAssignable(builtInFunctionReference);
+				if (result == null) result = caseExpression(builtInFunctionReference);
+				if (result == null) result = caseStatement(builtInFunctionReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.BUILTIN_FUNCTION: {
+				BuiltinFunction builtinFunction = (BuiltinFunction)theEObject;
+				T result = caseBuiltinFunction(builtinFunction);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.PRIMITIVE: {
+				Primitive primitive = (Primitive)theEObject;
+				T result = casePrimitive(primitive);
+				if (result == null) result = caseDataType(primitive);
+				if (result == null) result = caseINamed(primitive);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.DATA_TYPE: {
+				DataType dataType = (DataType)theEObject;
+				T result = caseDataType(dataType);
+				if (result == null) result = caseINamed(dataType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.RUNTIME: {
+				ro.acorn.zamolxis.oe.demo.abl.Runtime runtime = (ro.acorn.zamolxis.oe.demo.abl.Runtime)theEObject;
+				T result = caseRuntime(runtime);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.PROJECT: {
+				Project project = (Project)theEObject;
+				T result = caseProject(project);
+				if (result == null) result = caseINamed(project);
+				if (result == null) result = caseISerializable(project);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.RUNTIME12_2: {
+				Runtime12_2 runtime12_2 = (Runtime12_2)theEObject;
+				T result = caseRuntime12_2(runtime12_2);
+				if (result == null) result = caseRuntime(runtime12_2);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.WORKSPACE: {
+				Workspace workspace = (Workspace)theEObject;
+				T result = caseWorkspace(workspace);
+				if (result == null) result = caseISerializable(workspace);
+				if (result == null) result = caseINamed(workspace);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.ISERIALIZABLE: {
+				ISerializable iSerializable = (ISerializable)theEObject;
+				T result = caseISerializable(iSerializable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.INCLUDE_STATEMENT: {
+				IncludeStatement includeStatement = (IncludeStatement)theEObject;
+				T result = caseIncludeStatement(includeStatement);
+				if (result == null) result = caseStatement(includeStatement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.INCLUDE_ARGUMENT: {
+				IncludeArgument includeArgument = (IncludeArgument)theEObject;
+				T result = caseIncludeArgument(includeArgument);
+				if (result == null) result = caseINamed(includeArgument);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.LOOP_BLOCK: {
+				LoopBlock loopBlock = (LoopBlock)theEObject;
+				T result = caseLoopBlock(loopBlock);
+				if (result == null) result = caseBlock(loopBlock);
+				if (result == null) result = caseStatement(loopBlock);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.NAMED_BLOCK: {
+				NamedBlock namedBlock = (NamedBlock)theEObject;
+				T result = caseNamedBlock(namedBlock);
+				if (result == null) result = caseINamed(namedBlock);
+				if (result == null) result = caseStatement(namedBlock);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.ARGUMENT_REFERENCE: {
+				ArgumentReference argumentReference = (ArgumentReference)theEObject;
+				T result = caseArgumentReference(argumentReference);
+				if (result == null) result = caseExpression(argumentReference);
+				if (result == null) result = caseStatement(argumentReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.PREPROCESSOR_REFERENCE: {
+				PreprocessorReference preprocessorReference = (PreprocessorReference)theEObject;
+				T result = casePreprocessorReference(preprocessorReference);
+				if (result == null) result = caseExpression(preprocessorReference);
+				if (result == null) result = caseINamed(preprocessorReference);
+				if (result == null) result = caseStatement(preprocessorReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.PREPROCESSOR_DIRECTIVE: {
+				PreprocessorDirective preprocessorDirective = (PreprocessorDirective)theEObject;
+				T result = casePreprocessorDirective(preprocessorDirective);
+				if (result == null) result = caseINamed(preprocessorDirective);
+				if (result == null) result = caseStatement(preprocessorDirective);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.UNDEFINE_DIRECTIVE: {
+				UndefineDirective undefineDirective = (UndefineDirective)theEObject;
+				T result = caseUndefineDirective(undefineDirective);
+				if (result == null) result = caseINamed(undefineDirective);
+				if (result == null) result = caseStatement(undefineDirective);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.VARIABLE_PARAMETER: {
+				VariableParameter variableParameter = (VariableParameter)theEObject;
+				T result = caseVariableParameter(variableParameter);
+				if (result == null) result = caseTypedParameter(variableParameter);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.PARAMETER: {
+				Parameter parameter = (Parameter)theEObject;
+				T result = caseParameter(parameter);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.BUFFER_PARAMETER: {
+				BufferParameter bufferParameter = (BufferParameter)theEObject;
+				T result = caseBufferParameter(bufferParameter);
+				if (result == null) result = caseParameter(bufferParameter);
+				if (result == null) result = caseINamed(bufferParameter);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.TYPED_PARAMETER: {
+				TypedParameter typedParameter = (TypedParameter)theEObject;
+				T result = caseTypedParameter(typedParameter);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.TABLE_PARAMETER: {
+				TableParameter tableParameter = (TableParameter)theEObject;
+				T result = caseTableParameter(tableParameter);
+				if (result == null) result = caseTypedParameter(tableParameter);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.TEMP_TABLE: {
+				TempTable tempTable = (TempTable)theEObject;
+				T result = caseTempTable(tempTable);
+				if (result == null) result = caseObjectDefinition(tempTable);
+				if (result == null) result = caseINamed(tempTable);
+				if (result == null) result = caseObjectReference(tempTable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.TABLE_HANDLE_PARAMETER: {
+				TableHandleParameter tableHandleParameter = (TableHandleParameter)theEObject;
+				T result = caseTableHandleParameter(tableHandleParameter);
+				if (result == null) result = caseTypedParameter(tableHandleParameter);
+				if (result == null) result = caseINamed(tableHandleParameter);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.DATASET: {
+				Dataset dataset = (Dataset)theEObject;
+				T result = caseDataset(dataset);
+				if (result == null) result = caseObjectDefinition(dataset);
+				if (result == null) result = caseINamed(dataset);
+				if (result == null) result = caseObjectReference(dataset);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.DATASET_HANDLE_PARAMETER: {
+				DatasetHandleParameter datasetHandleParameter = (DatasetHandleParameter)theEObject;
+				T result = caseDatasetHandleParameter(datasetHandleParameter);
+				if (result == null) result = caseTableHandleParameter(datasetHandleParameter);
+				if (result == null) result = caseTypedParameter(datasetHandleParameter);
+				if (result == null) result = caseINamed(datasetHandleParameter);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.DATASET_PARAMETER: {
+				DatasetParameter datasetParameter = (DatasetParameter)theEObject;
+				T result = caseDatasetParameter(datasetParameter);
+				if (result == null) result = caseTypedParameter(datasetParameter);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.BUFFER: {
+				Buffer buffer = (Buffer)theEObject;
+				T result = caseBuffer(buffer);
+				if (result == null) result = caseObjectDefinition(buffer);
+				if (result == null) result = caseINamed(buffer);
+				if (result == null) result = caseObjectReference(buffer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.TABLE_REFERENCE: {
+				TableReference tableReference = (TableReference)theEObject;
+				T result = caseTableReference(tableReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.TEMP_TABLE_REFERENCE: {
+				TempTableReference tempTableReference = (TempTableReference)theEObject;
+				T result = caseTempTableReference(tempTableReference);
+				if (result == null) result = caseTableReference(tempTableReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.VALUE_OPTION: {
+				ValueOption valueOption = (ValueOption)theEObject;
+				T result = caseValueOption(valueOption);
+				if (result == null) result = caseNamedOption(valueOption);
+				if (result == null) result = caseINamed(valueOption);
+				if (result == null) result = caseOption(valueOption);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.ABSTRACT_VARIABLE: {
+				AbstractVariable abstractVariable = (AbstractVariable)theEObject;
+				T result = caseAbstractVariable(abstractVariable);
+				if (result == null) result = caseObjectDefinition(abstractVariable);
+				if (result == null) result = caseIDataType(abstractVariable);
+				if (result == null) result = caseINamed(abstractVariable);
+				if (result == null) result = caseObjectReference(abstractVariable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.TEMP_TABLE_FIELD: {
+				TempTableField tempTableField = (TempTableField)theEObject;
+				T result = caseTempTableField(tempTableField);
+				if (result == null) result = caseAbstractVariable(tempTableField);
+				if (result == null) result = caseObjectDefinition(tempTableField);
+				if (result == null) result = caseIDataType(tempTableField);
+				if (result == null) result = caseINamed(tempTableField);
+				if (result == null) result = caseObjectReference(tempTableField);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.TEMP_TABLE_FIELD_DATA_TYPE: {
+				TempTableFieldDataType tempTableFieldDataType = (TempTableFieldDataType)theEObject;
+				T result = caseTempTableFieldDataType(tempTableFieldDataType);
+				if (result == null) result = caseDataType(tempTableFieldDataType);
+				if (result == null) result = caseINamed(tempTableFieldDataType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.ACCESS_CODE_BLOCK: {
+				AccessCodeBlock accessCodeBlock = (AccessCodeBlock)theEObject;
+				T result = caseAccessCodeBlock(accessCodeBlock);
+				if (result == null) result = caseCodeBlock(accessCodeBlock);
+				if (result == null) result = caseObjectDefinition(accessCodeBlock);
+				if (result == null) result = caseBlock(accessCodeBlock);
+				if (result == null) result = caseINamed(accessCodeBlock);
+				if (result == null) result = caseObjectReference(accessCodeBlock);
+				if (result == null) result = caseStatement(accessCodeBlock);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.RETURN_CODE_BLOCK: {
+				ReturnCodeBlock returnCodeBlock = (ReturnCodeBlock)theEObject;
+				T result = caseReturnCodeBlock(returnCodeBlock);
+				if (result == null) result = caseAccessCodeBlock(returnCodeBlock);
+				if (result == null) result = caseCodeBlock(returnCodeBlock);
+				if (result == null) result = caseObjectDefinition(returnCodeBlock);
+				if (result == null) result = caseBlock(returnCodeBlock);
+				if (result == null) result = caseINamed(returnCodeBlock);
+				if (result == null) result = caseObjectReference(returnCodeBlock);
+				if (result == null) result = caseStatement(returnCodeBlock);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.CATCH_BLOCK: {
+				CatchBlock catchBlock = (CatchBlock)theEObject;
+				T result = caseCatchBlock(catchBlock);
+				if (result == null) result = caseBlock(catchBlock);
+				if (result == null) result = caseStatement(catchBlock);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.FUNCTION_BLOCK: {
+				FunctionBlock functionBlock = (FunctionBlock)theEObject;
+				T result = caseFunctionBlock(functionBlock);
+				if (result == null) result = caseReturnCodeBlock(functionBlock);
+				if (result == null) result = caseAccessCodeBlock(functionBlock);
+				if (result == null) result = caseCodeBlock(functionBlock);
+				if (result == null) result = caseObjectDefinition(functionBlock);
+				if (result == null) result = caseBlock(functionBlock);
+				if (result == null) result = caseINamed(functionBlock);
+				if (result == null) result = caseObjectReference(functionBlock);
+				if (result == null) result = caseStatement(functionBlock);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.METHOD_BLOCK: {
+				MethodBlock methodBlock = (MethodBlock)theEObject;
+				T result = caseMethodBlock(methodBlock);
+				if (result == null) result = caseReturnCodeBlock(methodBlock);
+				if (result == null) result = caseAccessCodeBlock(methodBlock);
+				if (result == null) result = caseCodeBlock(methodBlock);
+				if (result == null) result = caseObjectDefinition(methodBlock);
+				if (result == null) result = caseBlock(methodBlock);
+				if (result == null) result = caseINamed(methodBlock);
+				if (result == null) result = caseObjectReference(methodBlock);
+				if (result == null) result = caseStatement(methodBlock);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.PROCEDURE_BLOCK: {
+				ProcedureBlock procedureBlock = (ProcedureBlock)theEObject;
+				T result = caseProcedureBlock(procedureBlock);
+				if (result == null) result = caseCodeBlock(procedureBlock);
+				if (result == null) result = caseObjectDefinition(procedureBlock);
+				if (result == null) result = caseBlock(procedureBlock);
+				if (result == null) result = caseINamed(procedureBlock);
+				if (result == null) result = caseObjectReference(procedureBlock);
+				if (result == null) result = caseStatement(procedureBlock);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.IDATA_TYPE: {
+				IDataType iDataType = (IDataType)theEObject;
+				T result = caseIDataType(iDataType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.IF_STATEMENT: {
+				IfStatement ifStatement = (IfStatement)theEObject;
+				T result = caseIfStatement(ifStatement);
+				if (result == null) result = caseExpression(ifStatement);
+				if (result == null) result = caseStatement(ifStatement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.CASE_STATEMENT: {
+				CaseStatement caseStatement = (CaseStatement)theEObject;
+				T result = caseCaseStatement(caseStatement);
+				if (result == null) result = caseStatement(caseStatement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.CASE_WHEN: {
+				CaseWhen caseWhen = (CaseWhen)theEObject;
+				T result = caseCaseWhen(caseWhen);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.IF_PREPROCESSOR: {
+				IfPreprocessor ifPreprocessor = (IfPreprocessor)theEObject;
+				T result = caseIfPreprocessor(ifPreprocessor);
+				if (result == null) result = caseStatement(ifPreprocessor);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.ELSE_IF_PREPROCESSOR: {
+				ElseIfPreprocessor elseIfPreprocessor = (ElseIfPreprocessor)theEObject;
+				T result = caseElseIfPreprocessor(elseIfPreprocessor);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.ANNOTATION: {
+				Annotation annotation = (Annotation)theEObject;
+				T result = caseAnnotation(annotation);
+				if (result == null) result = caseStatement(annotation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.ENUM: {
+				ro.acorn.zamolxis.oe.demo.abl.Enum enum_ = (ro.acorn.zamolxis.oe.demo.abl.Enum)theEObject;
+				T result = caseEnum(enum_);
+				if (result == null) result = caseStatement(enum_);
+				if (result == null) result = caseDataType(enum_);
+				if (result == null) result = caseINamed(enum_);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.ENUM_LITERAL: {
+				EnumLiteral enumLiteral = (EnumLiteral)theEObject;
+				T result = caseEnumLiteral(enumLiteral);
+				if (result == null) result = caseINamed(enumLiteral);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.ON_WIDGET_TRIGGER: {
+				OnWidgetTrigger onWidgetTrigger = (OnWidgetTrigger)theEObject;
+				T result = caseOnWidgetTrigger(onWidgetTrigger);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OpenEdgeAblPackage.WIDGET_TRIGGER: {
+				WidgetTrigger widgetTrigger = (WidgetTrigger)theEObject;
+				T result = caseWidgetTrigger(widgetTrigger);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			default: return defaultCase(theEObject);
+		}
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Model</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Model</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModel(Model object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Statement</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStatement(Statement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Definition</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDefinition(Definition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Assignment</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Assignment</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAssignment(Assignment object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Assignable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Assignable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAssignable(Assignable object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseReference(Reference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Property</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Property</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseProperty(Property object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Variable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Variable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVariable(Variable object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>INamed</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>INamed</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseINamed(INamed object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Option</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Option</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOption(Option object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Share Option</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Share Option</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseShareOption(ShareOption object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Access Option</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Access Option</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAccessOption(AccessOption object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Object Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Object Definition</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseObjectDefinition(ObjectDefinition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Initial Option</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Initial Option</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInitialOption(InitialOption object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Named Option</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Named Option</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNamedOption(NamedOption object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Expression</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExpression(Expression object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Numeric Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Numeric Expression</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNumericExpression(NumericExpression object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Unary Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Unary Expression</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUnaryExpression(UnaryExpression object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>String Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>String Expression</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStringExpression(StringExpression object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Date Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Date Expression</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDateExpression(DateExpression object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Unknown Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Unknown Expression</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUnknownExpression(UnknownExpression object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Logical Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Logical Expression</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLogicalExpression(LogicalExpression object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Block</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Block</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBlock(Block object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Assign Block</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Assign Block</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAssignBlock(AssignBlock object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Iteration Block</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Iteration Block</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIterationBlock(IterationBlock object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Code Block</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Code Block</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCodeBlock(CodeBlock object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Directional Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Directional Parameter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDirectionalParameter(DirectionalParameter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Interface</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Interface</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInterface(Interface object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Class</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Class</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseClass(ro.acorn.zamolxis.oe.demo.abl.Class object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Block Level Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Block Level Statement</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBlockLevelStatement(BlockLevelStatement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Using Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Using Statement</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUsingStatement(UsingStatement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Binary Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Binary Expression</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBinaryExpression(BinaryExpression object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Property Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Property Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePropertyReference(PropertyReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Object Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Object Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseObjectReference(ObjectReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Method Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Method Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMethodReference(MethodReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Function Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Function Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFunctionReference(FunctionReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Built In Function Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Built In Function Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBuiltInFunctionReference(BuiltInFunctionReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Builtin Function</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Builtin Function</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBuiltinFunction(BuiltinFunction object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Primitive</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Primitive</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePrimitive(Primitive object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Data Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Data Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDataType(DataType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Runtime</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Runtime</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRuntime(ro.acorn.zamolxis.oe.demo.abl.Runtime object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Project</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Project</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseProject(Project object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Runtime12 2</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Runtime12 2</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRuntime12_2(Runtime12_2 object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Workspace</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Workspace</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseWorkspace(Workspace object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>ISerializable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>ISerializable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseISerializable(ISerializable object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Include Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Include Statement</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIncludeStatement(IncludeStatement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Include Argument</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Include Argument</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIncludeArgument(IncludeArgument object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Loop Block</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Loop Block</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLoopBlock(LoopBlock object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Named Block</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Named Block</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNamedBlock(NamedBlock object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Argument Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Argument Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseArgumentReference(ArgumentReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Preprocessor Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Preprocessor Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePreprocessorReference(PreprocessorReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Preprocessor Directive</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Preprocessor Directive</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePreprocessorDirective(PreprocessorDirective object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Undefine Directive</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Undefine Directive</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUndefineDirective(UndefineDirective object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Variable Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Variable Parameter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVariableParameter(VariableParameter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Parameter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseParameter(Parameter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Buffer Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Buffer Parameter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBufferParameter(BufferParameter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Typed Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Typed Parameter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTypedParameter(TypedParameter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Table Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Table Parameter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTableParameter(TableParameter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Temp Table</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Temp Table</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTempTable(TempTable object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Table Handle Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Table Handle Parameter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTableHandleParameter(TableHandleParameter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Dataset</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Dataset</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDataset(Dataset object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Dataset Handle Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Dataset Handle Parameter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDatasetHandleParameter(DatasetHandleParameter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Dataset Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Dataset Parameter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDatasetParameter(DatasetParameter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Buffer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Buffer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBuffer(Buffer object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Table Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Table Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTableReference(TableReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Temp Table Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Temp Table Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTempTableReference(TempTableReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Value Option</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Value Option</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseValueOption(ValueOption object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Abstract Variable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Abstract Variable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAbstractVariable(AbstractVariable object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Temp Table Field</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Temp Table Field</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTempTableField(TempTableField object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Temp Table Field Data Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Temp Table Field Data Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTempTableFieldDataType(TempTableFieldDataType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Access Code Block</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Access Code Block</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAccessCodeBlock(AccessCodeBlock object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Return Code Block</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Return Code Block</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseReturnCodeBlock(ReturnCodeBlock object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Catch Block</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Catch Block</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCatchBlock(CatchBlock object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Function Block</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Function Block</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFunctionBlock(FunctionBlock object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Method Block</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Method Block</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMethodBlock(MethodBlock object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Procedure Block</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Procedure Block</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseProcedureBlock(ProcedureBlock object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IData Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IData Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIDataType(IDataType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>If Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>If Statement</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfStatement(IfStatement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Case Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Case Statement</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCaseStatement(CaseStatement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Case When</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Case When</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCaseWhen(CaseWhen object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>If Preprocessor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>If Preprocessor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfPreprocessor(IfPreprocessor object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Else If Preprocessor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Else If Preprocessor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseElseIfPreprocessor(ElseIfPreprocessor object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Annotation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Annotation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAnnotation(Annotation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Enum</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Enum</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEnum(ro.acorn.zamolxis.oe.demo.abl.Enum object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Enum Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Enum Literal</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEnumLiteral(EnumLiteral object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>On Widget Trigger</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>On Widget Trigger</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOnWidgetTrigger(OnWidgetTrigger object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Widget Trigger</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Widget Trigger</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseWidgetTrigger(WidgetTrigger object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch, but this is the last case anyway.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
+	 * @generated
+	 */
+	@Override
+	public T defaultCase(EObject object) {
+		return null;
+	}
+
+} //OpenEdgeAblSwitch

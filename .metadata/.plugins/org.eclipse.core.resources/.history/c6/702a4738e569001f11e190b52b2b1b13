@@ -1,0 +1,195 @@
+grammar org.xtext.example.mydsl.MyDsl with org.eclipse.xtext.common.Terminals
+
+generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
+
+DomainModel:
+    
+        (statements+=Statement)*
+    ;
+
+Import:
+	"import" ((importedElement+=ImportElement ","? |"{"(importedElements+=ImportElement  (',' importedElements+=ImportElement)*)?"}" )+ "from")? importURI=STRING
+;
+
+ImportElement returns Import:
+	element=(ID|"*"|STRING) ("as" alias=ID)?
+;
+     
+Statement:
+    VariableDeclaration | ExpressionStatement | IfStatement | ForLoop | 
+    WhileLoop | DoWhileLoop | ContinueStatement | BreakStatement | FunctionDeclaration | 
+    FunctionCall | FunctionReturn | ConsoleLogStatement | TryCatchStatement | SwitchStatement |
+    StringManipulationStatement | ThrowStatement|Import;
+
+Block:
+    '{' statements+=Statement* '}';
+
+VariableDeclaration:
+    type=Type name=ID ('=' expr=Expression)? ';';
+
+ExpressionStatement:
+    expr=Expression';';
+
+Expression:
+  LogicalExpression| PostfixOperator | PrefixOperator | AugmentedAssignment;
+
+AugmentedAssignment:
+    VariableReference AugmentedOperator expr=Expression;
+
+LogicalExpression returns Expression:
+    ComparisonExpression (({LogicalExpression.left=current} LogicalOperator) right=ComparisonExpression)*;
+
+   // ('?' trueExpr=Expression ':' falseExpr=Expression)?;
+
+ComparisonExpression returns Expression:
+    ArithmeticExpression ({ComparisonExpression.left=current} ComparisonOperator right=ArithmeticExpression)*;
+
+ArithmeticExpression returns Expression:
+    MultiplicationExpression ({ArithmeticExpression.left=current} ArithmeticOperator right=MultiplicationExpression)*;
+
+MultiplicationExpression returns Expression:
+    ExponentiationExpression ({MultiplicationExpression.left=current} MultiplicationOperator right=ExponentiationExpression)*;
+
+ExponentiationExpression returns Expression:
+    Primary ({ExponentiationExpression.left=current} ExponentiationOperator right=Primary)*;
+
+Primary returns Expression:
+    '(' Expression ')' | NumberLiteral | StringLiteral | CharLiteral | VariableReference | 
+    AnonymousFunction | Boolean| NotBoolean;
+
+UnaryExpression returns Expression:
+    Primary;
+
+PostfixOperator:
+    VariableReference ( '++' | '--') ;
+
+PrefixOperator:
+    ('++' | '--') VariableReference;
+
+AnonymousFunction:
+    'function' '(' (parameters+=ID (',' parameters+=ID)*)? ')' body=Block;
+
+NumberLiteral:
+    value=NUMBER;
+    
+terminal NUMBER:
+  ('0'..'9')+;
+       
+Boolean returns Expression:
+    {Boolean} value=("true" | "false" | "null");
+
+NotBoolean returns Expression:
+    {NotBoolean} value=NOT;
+    
+    terminal NOT:
+    '!'? ("true" | "false");
+    
+   StringLiteral:
+    value=STRING;
+
+CharLiteral:
+    value=CHAR;
+
+VariableReference:
+    name=[VariableDeclaration|ID];
+
+ComparisonOperator:
+    '<=' | '<' | '>=' | '>' | '!=' | '==' | '=';
+
+LogicalOperator:
+    '&&'|'||';
+
+MultiplicationOperator:
+    '*' | '/' | '%';
+
+ArithmeticOperator:
+    '+' | '-';
+
+ExponentiationOperator:
+    '**';
+
+AugmentedOperator:
+    '+=' | '-=' | '*=' | '/=' | '%=' | '**=';
+
+IfStatement:
+    'if' '(' condition=Expression ')' thenBranch=Block ('else' elseBranch=Block)?;
+
+ForLoop:
+    'for' '(' initialization=Expression ';' condition=Expression ';' increment=Expression ')' body=Block;
+
+WhileLoop:
+    'while' '(' condition=Expression ')' body=Block;
+
+DoWhileLoop:
+    'do' body=Block 'while' '(' condition=Expression ')' ';';
+
+ContinueStatement:
+    'continue' ';';
+
+BreakStatement:
+    'break' ';';
+
+FunctionDeclaration:
+    (returnType=Type)? 'function' name=ID '(' (parameters+=ID (',' parameters+=ID)*)? ')' body=Block;
+
+FunctionCall:
+    name=[FunctionDeclaration|ID] '(' (arguments+=Expression (',' arguments+=Expression)*)? ')' ';';
+
+FunctionReturn:
+    'return' expr=Expression ';';
+
+ConsoleLogStatement:
+    {ConsoleLogStatement} 'console.log' '(' (arguments+=Expression (',' arguments+=Expression)*)? ')' ';';
+
+TryCatchStatement:
+    'try' tryBlock=Block 'catch' '(' exception=ID ')' catchBlock=Block;
+
+SwitchStatement:
+    'switch' '(' expression=Expression ')' '{' 
+    cases+=Case* 
+    (defaultCase=Default)? 
+    '}';
+
+Case:
+    'case' value=Expression ':' statements+=Statement*;
+
+Default:
+    {Default} 'default' ':' statements+=Statement*;
+
+enum Type:
+    int |
+    String |
+    char |
+    let |
+    boolean |
+    float |
+    var |
+    const|
+    void
+    ;
+
+StringManipulationStatement:
+    StringManipulationFunctionCall ';';
+
+StringManipulationFunctionCall:
+    SplitFunctionCall | JoinFunctionCall | SliceFunctionCall;
+
+SplitFunctionCall:
+    'split' '(' str=Expression ',' delimiter=StringLiteral ')';
+
+JoinFunctionCall:
+    'join' '(' str+=Expression (',' str+=Expression)* ',' delimiter=StringLiteral ')';
+
+SliceFunctionCall:
+    'slice' '(' str=Expression ',' start=INT ',' end=INT ')';
+
+ThrowStatement:
+    'throw' expr=Expression ';';
+
+terminal STRING:
+    '"' ('\\' . | !('\\' | '"'))* '"';
+
+terminal CHAR:
+    '\'' ('a'..'z' | 'A'..'Z' | '0'..'9') '\'';
+
+    

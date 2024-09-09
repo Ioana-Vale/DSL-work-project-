@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+    <!-- Definirea plugin-ului -->
+    <id>com.example.mydsl</id>
+    <version>1.0.0</version>
+    <provider-name>MyDSL Provider</provider-name>
+    <requires>
+        <import plugin="org.eclipse.core.runtime"/>
+        <import plugin="org.eclipse.emf.ecore"/>
+        <import plugin="org.eclipse.xtext.core"/>
+        <import plugin="org.eclipse.xtext.ui.editor"/>
+    </requires>
+
+    <!-- Definirea extensiei pentru pachetele generate de EMF -->
+    <extension point="org.eclipse.emf.ecore.generated_package">
+        <package
+            uri="http://www.xtext.org/example/mydsl/MyDsl"
+            class="org.xtext.example.mydsl.myDsl.MyDslPackage"
+            genModel="model/generated/MyDsl.genmodel" />
+    </extension>
+
+    <!-- Definirea extensiei pentru resource service provider -->
+    <extension point="org.eclipse.emf.ecore.resource.serviceFactory">
+        <serviceFactory
+            class="com.example.mydsl.resource.TestResourceServiceProvider"
+            uri="http://www.xtext.org/example/mydsl/MyDsl"/>
+    </extension>
+
+    <!-- Definirea extensiei pentru editorul Xtext -->
+    <extension point="org.eclipse.xtext.ui.editor.quickfix">
+        <quickfixProvider
+            class="org.xtext.example.mydsl.ui.quickfix.MyDslQuickfixProvider"/>
+    </extension>
+
+    <!-- Definirea extensiei pentru generarea editorului Xtext -->
+    <extension point="org.eclipse.xtext.ui.editor.contentassist.contentAssistProcessor">
+        <contentAssistProcessor
+            class="org.xtext.example.mydsl.ui.contentassist.MyDslProposalProvider"/>
+    </extension>
+</plugin>

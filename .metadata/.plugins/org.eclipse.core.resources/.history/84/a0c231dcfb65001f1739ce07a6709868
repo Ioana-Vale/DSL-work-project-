@@ -1,0 +1,69 @@
+package org.xtext.example.mydsl;
+
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtext.parser.IEncodingProvider;
+import org.eclipse.xtext.resource.IResourceDescription.Manager;
+import org.eclipse.xtext.resource.IResourceServiceProvider;
+import org.eclipse.xtext.validation.IResourceValidator;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
+public class TestResourceServiceProvider implements IResourceServiceProvider {
+
+    public static final TestResourceServiceProvider INSTANCE = new TestResourceServiceProvider();
+
+    public IResourceServiceProvider get(URI uri) {
+        if ("test".equals(uri.scheme())) {
+            return INSTANCE;
+        }
+        return null;
+    }
+
+    
+    public Resource createResource(ResourceSet resourceSet, URI uri) {
+        // Returnați resursa corespunzătoare pentru URI-ul dat
+        return null; // Înlocuiți cu implementarea reală
+    }
+
+
+	@Override
+	public IResourceValidator getResourceValidator() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Manager getResourceDescriptionManager() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public org.eclipse.xtext.resource.IContainer.Manager getContainerManager() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public boolean canHandle(URI uri) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public IEncodingProvider getEncodingProvider() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public <T> T get(Class<T> t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

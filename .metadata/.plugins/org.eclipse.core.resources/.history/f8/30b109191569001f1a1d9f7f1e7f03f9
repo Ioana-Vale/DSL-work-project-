@@ -1,0 +1,108 @@
+package org.xtext.example.mydsl.scoping;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.scoping.IScope;
+import org.eclipse.xtext.scoping.Scopes;
+import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
+import org.xtext.example.mydsl.builtin.MyDslBuiltInFunctions;
+import org.xtext.example.mydsl.myDsl.Block;
+import org.xtext.example.mydsl.myDsl.FunctionCall;
+import org.xtext.example.mydsl.myDsl.FunctionDeclaration;
+import org.xtext.example.mydsl.myDsl.MyDslPackage;
+import org.xtext.example.mydsl.myDsl.VariableDeclaration;
+import org.xtext.example.mydsl.myDsl.VariableReference;
+
+/**
+ * This class contains custom scoping description.
+ * 
+ * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#scoping
+ * on how and when to use it.
+ */
+public class MyDslScopeProvider extends AbstractDeclarativeScopeProvider {
+
+    /**
+     * Returns the scope for variable references.
+     * @param ref the variable reference.
+     * @return the scope containing the variable declarations.
+     */
+    public IScope scope_VariableReference_name(VariableReference ref) {
+      
+        FunctionDeclaration function = EcoreUtil2.getContainerOfType(ref, FunctionDeclaration.class);
+        if (function != null) {
+           
+            return Scopes.scopeFor(function.getBody().getStatements().stream()
+                .filter(stmt -> stmt instanceof VariableDeclaration)
+                .map(stmt -> (VariableDeclaration) stmt)
+                .collect(Collectors.toList()));
+        }
+
+       
+        Block block = EcoreUtil2.getContainerOfType(ref, Block.class);
+        if (block != null) {
+       
+            return Scopes.scopeFor(block.getStatements().stream()
+                .filter(stmt -> stmt instanceof VariableDeclaration)
+                .map(stmt -> (VariableDeclaration) stmt)
+                .collect(Collectors.toList()));
+        }
+
+       
+        return Scopes.scopeFor(List.of());
+    }
+
+    /**
+     * Returns the scope for function calls.
+     * @param call the function call.
+     * @return the scope containing the function declarations.
+     */
+    public IScope scope_FunctionCall_name(FunctionCall call) {
+        FunctionDeclaration enclosingFunction = EcoreUtil2.getContainerOfType(call, FunctionDeclaration.class);
+        if (enclosingFunction != null) {
+          
+            return Scopes.scopeFor(enclosingFunction.getBody().getStatements().stream()
+                .filter(stmt -> stmt instanceof FunctionDeclaration)
+                .map(stmt -> (FunctionDeclaration) stmt)
+                .collect(Collectors.toList()));
+        }
+
+        Block enclosingBlock = EcoreUtil2.getContainerOfType(call, Block.class);
+        if (enclosingBlock != null) {
+          
+            return Scopes.scopeFor(enclosingBlock.getStatements().stream()
+                .filter(stmt -> stmt instanceof FunctionDeclaration)
+                .map(stmt -> (FunctionDeclaration) stmt)
+                .collect(Collectors.toList()));
+        }
+
+        return Scopes.scopeFor(List.of());
+    }
+    
+    @Override
+    public IScope getScope(EObject context, EReference reference) {
+        if (reference.equals(MyDslPackage.Literals.FUNCTION_CALL__NAME)) {
+            return scope_FunctionCall_name((FunctionCall) context);
+        } else if (reference.equals(MyDslPackage.Literals.VARIABLE_REFERENCE__NAME)) {
+            return scope_VariableReference_name((VariableReference) context);
+        }
+        
+        if (reference.getEType() == MyDslPackage.Literals.FUNCTION_DECLARATION) {
+            List<FunctionDeclaration> builtInFunctions = MyDslBuiltInFunctions.loadBuiltInFunctions();
+            return Scopes.scopeFor(Stream.concat(
+                    builtInFunctions.stream(),
+                   
+                    Stream.empty() 
+                ).collect(Collectors.toList()));
+        }
+
+        return super.getScope(context, reference);
+    }
+}
+
+

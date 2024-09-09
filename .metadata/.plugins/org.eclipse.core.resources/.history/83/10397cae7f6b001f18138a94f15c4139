@@ -1,0 +1,682 @@
+/**
+ * ACORN IT 2024
+ */
+package ro.acorn.zamolxis.oe.demo.abl;
+
+import org.eclipse.emf.ecore.EFactory;
+
+/**
+ * <!-- begin-user-doc -->
+ * The <b>Factory</b> for the model.
+ * It provides a create method for each non-abstract class of the model.
+ * <!-- end-user-doc -->
+ * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage
+ * @generated
+ */
+public interface OpenEdgeAblFactory extends EFactory {
+	/**
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	OpenEdgeAblFactory eINSTANCE = ro.acorn.zamolxis.oe.demo.abl.impl.OpenEdgeAblFactoryImpl.init();
+
+	/**
+	 * Returns a new object of class '<em>Model</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Model</em>'.
+	 * @generated
+	 */
+	Model createModel();
+
+	/**
+	 * Returns a new object of class '<em>Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Definition</em>'.
+	 * @generated
+	 */
+	Definition createDefinition();
+
+	/**
+	 * Returns a new object of class '<em>Assignment</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Assignment</em>'.
+	 * @generated
+	 */
+	Assignment createAssignment();
+
+	/**
+	 * Returns a new object of class '<em>Assignable</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Assignable</em>'.
+	 * @generated
+	 */
+	Assignable createAssignable();
+
+	/**
+	 * Returns a new object of class '<em>Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Reference</em>'.
+	 * @generated
+	 */
+	Reference createReference();
+
+	/**
+	 * Returns a new object of class '<em>Property</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Property</em>'.
+	 * @generated
+	 */
+	Property createProperty();
+
+	/**
+	 * Returns a new object of class '<em>Variable</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Variable</em>'.
+	 * @generated
+	 */
+	Variable createVariable();
+
+	/**
+	 * Returns a new object of class '<em>Option</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Option</em>'.
+	 * @generated
+	 */
+	Option createOption();
+
+	/**
+	 * Returns a new object of class '<em>Share Option</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Share Option</em>'.
+	 * @generated
+	 */
+	ShareOption createShareOption();
+
+	/**
+	 * Returns a new object of class '<em>Access Option</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Access Option</em>'.
+	 * @generated
+	 */
+	AccessOption createAccessOption();
+
+	/**
+	 * Returns a new object of class '<em>Object Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Object Definition</em>'.
+	 * @generated
+	 */
+	ObjectDefinition createObjectDefinition();
+
+	/**
+	 * Returns a new object of class '<em>Initial Option</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Initial Option</em>'.
+	 * @generated
+	 */
+	InitialOption createInitialOption();
+
+	/**
+	 * Returns a new object of class '<em>Named Option</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Named Option</em>'.
+	 * @generated
+	 */
+	NamedOption createNamedOption();
+
+	/**
+	 * Returns a new object of class '<em>Numeric Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Numeric Expression</em>'.
+	 * @generated
+	 */
+	NumericExpression createNumericExpression();
+
+	/**
+	 * Returns a new object of class '<em>Unary Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Unary Expression</em>'.
+	 * @generated
+	 */
+	UnaryExpression createUnaryExpression();
+
+	/**
+	 * Returns a new object of class '<em>String Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>String Expression</em>'.
+	 * @generated
+	 */
+	StringExpression createStringExpression();
+
+	/**
+	 * Returns a new object of class '<em>Date Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Date Expression</em>'.
+	 * @generated
+	 */
+	DateExpression createDateExpression();
+
+	/**
+	 * Returns a new object of class '<em>Unknown Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Unknown Expression</em>'.
+	 * @generated
+	 */
+	UnknownExpression createUnknownExpression();
+
+	/**
+	 * Returns a new object of class '<em>Logical Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Logical Expression</em>'.
+	 * @generated
+	 */
+	LogicalExpression createLogicalExpression();
+
+	/**
+	 * Returns a new object of class '<em>Block</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Block</em>'.
+	 * @generated
+	 */
+	Block createBlock();
+
+	/**
+	 * Returns a new object of class '<em>Assign Block</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Assign Block</em>'.
+	 * @generated
+	 */
+	AssignBlock createAssignBlock();
+
+	/**
+	 * Returns a new object of class '<em>Iteration Block</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Iteration Block</em>'.
+	 * @generated
+	 */
+	IterationBlock createIterationBlock();
+
+	/**
+	 * Returns a new object of class '<em>Code Block</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Code Block</em>'.
+	 * @generated
+	 */
+	CodeBlock createCodeBlock();
+
+	/**
+	 * Returns a new object of class '<em>Directional Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Directional Parameter</em>'.
+	 * @generated
+	 */
+	DirectionalParameter createDirectionalParameter();
+
+	/**
+	 * Returns a new object of class '<em>Interface</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Interface</em>'.
+	 * @generated
+	 */
+	Interface createInterface();
+
+	/**
+	 * Returns a new object of class '<em>Class</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Class</em>'.
+	 * @generated
+	 */
+	Class createClass();
+
+	/**
+	 * Returns a new object of class '<em>Block Level Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Block Level Statement</em>'.
+	 * @generated
+	 */
+	BlockLevelStatement createBlockLevelStatement();
+
+	/**
+	 * Returns a new object of class '<em>Using Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Using Statement</em>'.
+	 * @generated
+	 */
+	UsingStatement createUsingStatement();
+
+	/**
+	 * Returns a new object of class '<em>Binary Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Binary Expression</em>'.
+	 * @generated
+	 */
+	BinaryExpression createBinaryExpression();
+
+	/**
+	 * Returns a new object of class '<em>Property Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Property Reference</em>'.
+	 * @generated
+	 */
+	PropertyReference createPropertyReference();
+
+	/**
+	 * Returns a new object of class '<em>Method Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Method Reference</em>'.
+	 * @generated
+	 */
+	MethodReference createMethodReference();
+
+	/**
+	 * Returns a new object of class '<em>Function Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Function Reference</em>'.
+	 * @generated
+	 */
+	FunctionReference createFunctionReference();
+
+	/**
+	 * Returns a new object of class '<em>Built In Function Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Built In Function Reference</em>'.
+	 * @generated
+	 */
+	BuiltInFunctionReference createBuiltInFunctionReference();
+
+	/**
+	 * Returns a new object of class '<em>Builtin Function</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Builtin Function</em>'.
+	 * @generated
+	 */
+	BuiltinFunction createBuiltinFunction();
+
+	/**
+	 * Returns a new object of class '<em>Primitive</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Primitive</em>'.
+	 * @generated
+	 */
+	Primitive createPrimitive();
+
+	/**
+	 * Returns a new object of class '<em>Project</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Project</em>'.
+	 * @generated
+	 */
+	Project createProject();
+
+	/**
+	 * Returns a new object of class '<em>Runtime12 2</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Runtime12 2</em>'.
+	 * @generated
+	 */
+	Runtime12_2 createRuntime12_2();
+
+	/**
+	 * Returns a new object of class '<em>Workspace</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Workspace</em>'.
+	 * @generated
+	 */
+	Workspace createWorkspace();
+
+	/**
+	 * Returns a new object of class '<em>Include Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Include Statement</em>'.
+	 * @generated
+	 */
+	IncludeStatement createIncludeStatement();
+
+	/**
+	 * Returns a new object of class '<em>Include Argument</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Include Argument</em>'.
+	 * @generated
+	 */
+	IncludeArgument createIncludeArgument();
+
+	/**
+	 * Returns a new object of class '<em>Loop Block</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Loop Block</em>'.
+	 * @generated
+	 */
+	LoopBlock createLoopBlock();
+
+	/**
+	 * Returns a new object of class '<em>Named Block</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Named Block</em>'.
+	 * @generated
+	 */
+	NamedBlock createNamedBlock();
+
+	/**
+	 * Returns a new object of class '<em>Argument Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Argument Reference</em>'.
+	 * @generated
+	 */
+	ArgumentReference createArgumentReference();
+
+	/**
+	 * Returns a new object of class '<em>Preprocessor Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Preprocessor Reference</em>'.
+	 * @generated
+	 */
+	PreprocessorReference createPreprocessorReference();
+
+	/**
+	 * Returns a new object of class '<em>Preprocessor Directive</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Preprocessor Directive</em>'.
+	 * @generated
+	 */
+	PreprocessorDirective createPreprocessorDirective();
+
+	/**
+	 * Returns a new object of class '<em>Undefine Directive</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Undefine Directive</em>'.
+	 * @generated
+	 */
+	UndefineDirective createUndefineDirective();
+
+	/**
+	 * Returns a new object of class '<em>Variable Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Variable Parameter</em>'.
+	 * @generated
+	 */
+	VariableParameter createVariableParameter();
+
+	/**
+	 * Returns a new object of class '<em>Buffer Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Buffer Parameter</em>'.
+	 * @generated
+	 */
+	BufferParameter createBufferParameter();
+
+	/**
+	 * Returns a new object of class '<em>Table Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Table Parameter</em>'.
+	 * @generated
+	 */
+	TableParameter createTableParameter();
+
+	/**
+	 * Returns a new object of class '<em>Table Handle Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Table Handle Parameter</em>'.
+	 * @generated
+	 */
+	TableHandleParameter createTableHandleParameter();
+
+	/**
+	 * Returns a new object of class '<em>Dataset Handle Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Dataset Handle Parameter</em>'.
+	 * @generated
+	 */
+	DatasetHandleParameter createDatasetHandleParameter();
+
+	/**
+	 * Returns a new object of class '<em>Dataset Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Dataset Parameter</em>'.
+	 * @generated
+	 */
+	DatasetParameter createDatasetParameter();
+
+	/**
+	 * Returns a new object of class '<em>Buffer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Buffer</em>'.
+	 * @generated
+	 */
+	Buffer createBuffer();
+
+	/**
+	 * Returns a new object of class '<em>Temp Table Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Temp Table Reference</em>'.
+	 * @generated
+	 */
+	TempTableReference createTempTableReference();
+
+	/**
+	 * Returns a new object of class '<em>Value Option</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Value Option</em>'.
+	 * @generated
+	 */
+	ValueOption createValueOption();
+
+	/**
+	 * Returns a new object of class '<em>Temp Table Field</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Temp Table Field</em>'.
+	 * @generated
+	 */
+	TempTableField createTempTableField();
+
+	/**
+	 * Returns a new object of class '<em>Temp Table Field Data Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Temp Table Field Data Type</em>'.
+	 * @generated
+	 */
+	TempTableFieldDataType createTempTableFieldDataType();
+
+	/**
+	 * Returns a new object of class '<em>Access Code Block</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Access Code Block</em>'.
+	 * @generated
+	 */
+	AccessCodeBlock createAccessCodeBlock();
+
+	/**
+	 * Returns a new object of class '<em>Catch Block</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Catch Block</em>'.
+	 * @generated
+	 */
+	CatchBlock createCatchBlock();
+
+	/**
+	 * Returns a new object of class '<em>Function Block</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Function Block</em>'.
+	 * @generated
+	 */
+	FunctionBlock createFunctionBlock();
+
+	/**
+	 * Returns a new object of class '<em>Method Block</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Method Block</em>'.
+	 * @generated
+	 */
+	MethodBlock createMethodBlock();
+
+	/**
+	 * Returns a new object of class '<em>Procedure Block</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Procedure Block</em>'.
+	 * @generated
+	 */
+	ProcedureBlock createProcedureBlock();
+
+	/**
+	 * Returns a new object of class '<em>If Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>If Statement</em>'.
+	 * @generated
+	 */
+	IfStatement createIfStatement();
+
+	/**
+	 * Returns a new object of class '<em>Case Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Case Statement</em>'.
+	 * @generated
+	 */
+	CaseStatement createCaseStatement();
+
+	/**
+	 * Returns a new object of class '<em>Case When</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Case When</em>'.
+	 * @generated
+	 */
+	CaseWhen createCaseWhen();
+
+	/**
+	 * Returns a new object of class '<em>If Preprocessor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>If Preprocessor</em>'.
+	 * @generated
+	 */
+	IfPreprocessor createIfPreprocessor();
+
+	/**
+	 * Returns a new object of class '<em>Else If Preprocessor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Else If Preprocessor</em>'.
+	 * @generated
+	 */
+	ElseIfPreprocessor createElseIfPreprocessor();
+
+	/**
+	 * Returns a new object of class '<em>Annotation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Annotation</em>'.
+	 * @generated
+	 */
+	Annotation createAnnotation();
+
+	/**
+	 * Returns a new object of class '<em>Enum</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Enum</em>'.
+	 * @generated
+	 */
+	Enum createEnum();
+
+	/**
+	 * Returns a new object of class '<em>Enum Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Enum Literal</em>'.
+	 * @generated
+	 */
+	EnumLiteral createEnumLiteral();
+
+	/**
+	 * Returns a new object of class '<em>On Widget Trigger</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>On Widget Trigger</em>'.
+	 * @generated
+	 */
+	OnWidgetTrigger createOnWidgetTrigger();
+
+	/**
+	 * Returns a new object of class '<em>Widget Trigger</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Widget Trigger</em>'.
+	 * @generated
+	 */
+	WidgetTrigger createWidgetTrigger();
+
+	/**
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the package supported by this factory.
+	 * @generated
+	 */
+	OpenEdgeAblPackage getOpenEdgeAblPackage();
+
+} //OpenEdgeAblFactory

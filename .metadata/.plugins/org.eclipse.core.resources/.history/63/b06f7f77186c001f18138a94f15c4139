@@ -1,0 +1,596 @@
+/**
+ * ACORN IT 2024
+ */
+package ro.acorn.zamolxis.oe.demo.abl.impl;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import ro.acorn.zamolxis.oe.demo.abl.Expression;
+import ro.acorn.zamolxis.oe.demo.abl.Image;
+import ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Image</b></em>'.
+ * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * </p>
+ * <ul>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.impl.ImageImpl#getTooltip <em>Tooltip</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.impl.ImageImpl#isStretch_to_fit <em>Stretch to fit</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.impl.ImageImpl#isTransparent <em>Transparent</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.impl.ImageImpl#isConvert_3d_colors <em>Convert 3d colors</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.impl.ImageImpl#isRetain_shape <em>Retain shape</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.impl.ImageImpl#getBgColor <em>Bg Color</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.impl.ImageImpl#getFgColor <em>Fg Color</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.impl.ImageImpl#getFileName <em>File Name</em>}</li>
+ * </ul>
+ *
+ * @generated
+ */
+public class ImageImpl extends ObjectDefinitionImpl implements Image {
+	/**
+	 * The default value of the '{@link #getTooltip() <em>Tooltip</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTooltip()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String TOOLTIP_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getTooltip() <em>Tooltip</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTooltip()
+	 * @generated
+	 * @ordered
+	 */
+	protected String tooltip = TOOLTIP_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isStretch_to_fit() <em>Stretch to fit</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isStretch_to_fit()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean STRETCH_TO_FIT_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isStretch_to_fit() <em>Stretch to fit</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isStretch_to_fit()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean stretch_to_fit = STRETCH_TO_FIT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isTransparent() <em>Transparent</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isTransparent()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean TRANSPARENT_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isTransparent() <em>Transparent</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isTransparent()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean transparent = TRANSPARENT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isConvert_3d_colors() <em>Convert 3d colors</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isConvert_3d_colors()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean CONVERT_3D_COLORS_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isConvert_3d_colors() <em>Convert 3d colors</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isConvert_3d_colors()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean convert_3d_colors = CONVERT_3D_COLORS_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isRetain_shape() <em>Retain shape</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isRetain_shape()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean RETAIN_SHAPE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isRetain_shape() <em>Retain shape</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isRetain_shape()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean retain_shape = RETAIN_SHAPE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getBgColor() <em>Bg Color</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBgColor()
+	 * @generated
+	 * @ordered
+	 */
+	protected Expression bgColor;
+
+	/**
+	 * The cached value of the '{@link #getFgColor() <em>Fg Color</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFgColor()
+	 * @generated
+	 * @ordered
+	 */
+	protected Expression fgColor;
+
+	/**
+	 * The default value of the '{@link #getFileName() <em>File Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFileName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String FILE_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getFileName() <em>File Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFileName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String fileName = FILE_NAME_EDEFAULT;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ImageImpl() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return OpenEdgeAblPackage.Literals.IMAGE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getTooltip() {
+		return tooltip;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setTooltip(String newTooltip) {
+		String oldTooltip = tooltip;
+		tooltip = newTooltip;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.IMAGE__TOOLTIP, oldTooltip, tooltip));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isStretch_to_fit() {
+		return stretch_to_fit;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setStretch_to_fit(boolean newStretch_to_fit) {
+		boolean oldStretch_to_fit = stretch_to_fit;
+		stretch_to_fit = newStretch_to_fit;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.IMAGE__STRETCH_TO_FIT, oldStretch_to_fit, stretch_to_fit));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isTransparent() {
+		return transparent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setTransparent(boolean newTransparent) {
+		boolean oldTransparent = transparent;
+		transparent = newTransparent;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.IMAGE__TRANSPARENT, oldTransparent, transparent));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isConvert_3d_colors() {
+		return convert_3d_colors;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setConvert_3d_colors(boolean newConvert_3d_colors) {
+		boolean oldConvert_3d_colors = convert_3d_colors;
+		convert_3d_colors = newConvert_3d_colors;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.IMAGE__CONVERT_3D_COLORS, oldConvert_3d_colors, convert_3d_colors));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isRetain_shape() {
+		return retain_shape;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setRetain_shape(boolean newRetain_shape) {
+		boolean oldRetain_shape = retain_shape;
+		retain_shape = newRetain_shape;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.IMAGE__RETAIN_SHAPE, oldRetain_shape, retain_shape));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Expression getBgColor() {
+		return bgColor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetBgColor(Expression newBgColor, NotificationChain msgs) {
+		Expression oldBgColor = bgColor;
+		bgColor = newBgColor;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.IMAGE__BG_COLOR, oldBgColor, newBgColor);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setBgColor(Expression newBgColor) {
+		if (newBgColor != bgColor) {
+			NotificationChain msgs = null;
+			if (bgColor != null)
+				msgs = ((InternalEObject)bgColor).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OpenEdgeAblPackage.IMAGE__BG_COLOR, null, msgs);
+			if (newBgColor != null)
+				msgs = ((InternalEObject)newBgColor).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OpenEdgeAblPackage.IMAGE__BG_COLOR, null, msgs);
+			msgs = basicSetBgColor(newBgColor, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.IMAGE__BG_COLOR, newBgColor, newBgColor));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Expression getFgColor() {
+		return fgColor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetFgColor(Expression newFgColor, NotificationChain msgs) {
+		Expression oldFgColor = fgColor;
+		fgColor = newFgColor;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.IMAGE__FG_COLOR, oldFgColor, newFgColor);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setFgColor(Expression newFgColor) {
+		if (newFgColor != fgColor) {
+			NotificationChain msgs = null;
+			if (fgColor != null)
+				msgs = ((InternalEObject)fgColor).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OpenEdgeAblPackage.IMAGE__FG_COLOR, null, msgs);
+			if (newFgColor != null)
+				msgs = ((InternalEObject)newFgColor).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OpenEdgeAblPackage.IMAGE__FG_COLOR, null, msgs);
+			msgs = basicSetFgColor(newFgColor, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.IMAGE__FG_COLOR, newFgColor, newFgColor));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getFileName() {
+		return fileName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setFileName(String newFileName) {
+		String oldFileName = fileName;
+		fileName = newFileName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.IMAGE__FILE_NAME, oldFileName, fileName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case OpenEdgeAblPackage.IMAGE__BG_COLOR:
+				return basicSetBgColor(null, msgs);
+			case OpenEdgeAblPackage.IMAGE__FG_COLOR:
+				return basicSetFgColor(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case OpenEdgeAblPackage.IMAGE__TOOLTIP:
+				return getTooltip();
+			case OpenEdgeAblPackage.IMAGE__STRETCH_TO_FIT:
+				return isStretch_to_fit();
+			case OpenEdgeAblPackage.IMAGE__TRANSPARENT:
+				return isTransparent();
+			case OpenEdgeAblPackage.IMAGE__CONVERT_3D_COLORS:
+				return isConvert_3d_colors();
+			case OpenEdgeAblPackage.IMAGE__RETAIN_SHAPE:
+				return isRetain_shape();
+			case OpenEdgeAblPackage.IMAGE__BG_COLOR:
+				return getBgColor();
+			case OpenEdgeAblPackage.IMAGE__FG_COLOR:
+				return getFgColor();
+			case OpenEdgeAblPackage.IMAGE__FILE_NAME:
+				return getFileName();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case OpenEdgeAblPackage.IMAGE__TOOLTIP:
+				setTooltip((String)newValue);
+				return;
+			case OpenEdgeAblPackage.IMAGE__STRETCH_TO_FIT:
+				setStretch_to_fit((Boolean)newValue);
+				return;
+			case OpenEdgeAblPackage.IMAGE__TRANSPARENT:
+				setTransparent((Boolean)newValue);
+				return;
+			case OpenEdgeAblPackage.IMAGE__CONVERT_3D_COLORS:
+				setConvert_3d_colors((Boolean)newValue);
+				return;
+			case OpenEdgeAblPackage.IMAGE__RETAIN_SHAPE:
+				setRetain_shape((Boolean)newValue);
+				return;
+			case OpenEdgeAblPackage.IMAGE__BG_COLOR:
+				setBgColor((Expression)newValue);
+				return;
+			case OpenEdgeAblPackage.IMAGE__FG_COLOR:
+				setFgColor((Expression)newValue);
+				return;
+			case OpenEdgeAblPackage.IMAGE__FILE_NAME:
+				setFileName((String)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case OpenEdgeAblPackage.IMAGE__TOOLTIP:
+				setTooltip(TOOLTIP_EDEFAULT);
+				return;
+			case OpenEdgeAblPackage.IMAGE__STRETCH_TO_FIT:
+				setStretch_to_fit(STRETCH_TO_FIT_EDEFAULT);
+				return;
+			case OpenEdgeAblPackage.IMAGE__TRANSPARENT:
+				setTransparent(TRANSPARENT_EDEFAULT);
+				return;
+			case OpenEdgeAblPackage.IMAGE__CONVERT_3D_COLORS:
+				setConvert_3d_colors(CONVERT_3D_COLORS_EDEFAULT);
+				return;
+			case OpenEdgeAblPackage.IMAGE__RETAIN_SHAPE:
+				setRetain_shape(RETAIN_SHAPE_EDEFAULT);
+				return;
+			case OpenEdgeAblPackage.IMAGE__BG_COLOR:
+				setBgColor((Expression)null);
+				return;
+			case OpenEdgeAblPackage.IMAGE__FG_COLOR:
+				setFgColor((Expression)null);
+				return;
+			case OpenEdgeAblPackage.IMAGE__FILE_NAME:
+				setFileName(FILE_NAME_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case OpenEdgeAblPackage.IMAGE__TOOLTIP:
+				return TOOLTIP_EDEFAULT == null ? tooltip != null : !TOOLTIP_EDEFAULT.equals(tooltip);
+			case OpenEdgeAblPackage.IMAGE__STRETCH_TO_FIT:
+				return stretch_to_fit != STRETCH_TO_FIT_EDEFAULT;
+			case OpenEdgeAblPackage.IMAGE__TRANSPARENT:
+				return transparent != TRANSPARENT_EDEFAULT;
+			case OpenEdgeAblPackage.IMAGE__CONVERT_3D_COLORS:
+				return convert_3d_colors != CONVERT_3D_COLORS_EDEFAULT;
+			case OpenEdgeAblPackage.IMAGE__RETAIN_SHAPE:
+				return retain_shape != RETAIN_SHAPE_EDEFAULT;
+			case OpenEdgeAblPackage.IMAGE__BG_COLOR:
+				return bgColor != null;
+			case OpenEdgeAblPackage.IMAGE__FG_COLOR:
+				return fgColor != null;
+			case OpenEdgeAblPackage.IMAGE__FILE_NAME:
+				return FILE_NAME_EDEFAULT == null ? fileName != null : !FILE_NAME_EDEFAULT.equals(fileName);
+		}
+		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (tooltip: ");
+		result.append(tooltip);
+		result.append(", stretch_to_fit: ");
+		result.append(stretch_to_fit);
+		result.append(", transparent: ");
+		result.append(transparent);
+		result.append(", convert_3d_colors: ");
+		result.append(convert_3d_colors);
+		result.append(", retain_shape: ");
+		result.append(retain_shape);
+		result.append(", fileName: ");
+		result.append(fileName);
+		result.append(')');
+		return result.toString();
+	}
+
+} //ImageImpl

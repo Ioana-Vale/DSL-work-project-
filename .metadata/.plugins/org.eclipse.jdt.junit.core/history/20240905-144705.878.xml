@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="OpenEdgeAblParsingTest.loadModel" project="ro.acorn.zamolxis.oe.abl.demo.dsl.tests" tests="1" started="1" failures="0" errors="1" ignored="0">
+  <testsuite name="ro.acorn.zamolxis.oe.abl.dsl.tests.OpenEdgeAblParsingTest" time="0.234" displayname="OpenEdgeAblParsingTest" uniqueid="[engine:junit-jupiter]/[class:ro.acorn.zamolxis.oe.abl.dsl.tests.OpenEdgeAblParsingTest]">
+    <testcase name="loadModel" classname="ro.acorn.zamolxis.oe.abl.dsl.tests.OpenEdgeAblParsingTest" time="0.234" displayname="loadModel()" uniqueid="[engine:junit-jupiter]/[class:ro.acorn.zamolxis.oe.abl.dsl.tests.OpenEdgeAblParsingTest]/[method:loadModel()]">
+      <error>org.eclipse.xtext.parser.ParseException: java.lang.IllegalStateException: Unresolved proxy http://ro.acorn.zamolxis.oe.demo.abl/OpenEdge/1.0#//Model. Make sure the EPackage has been registered.&#13;
+	at org.eclipse.xtext.parser.antlr.AbstractAntlrParser.doParse(AbstractAntlrParser.java:106)&#13;
+	at org.eclipse.xtext.parser.antlr.AbstractAntlrParser.parse(AbstractAntlrParser.java:85)&#13;
+	at org.eclipse.xtext.parser.antlr.AbstractAntlrParser.doParse(AbstractAntlrParser.java:63)&#13;
+	at org.eclipse.xtext.parser.AbstractParser.parse(AbstractParser.java:34)&#13;
+	at org.eclipse.xtext.resource.XtextResource.doLoad(XtextResource.java:206)&#13;
+	at org.eclipse.xtext.linking.lazy.LazyLinkingResource.doLoad(LazyLinkingResource.java:112)&#13;
+	at org.eclipse.emf.ecore.resource.impl.ResourceImpl.load(ResourceImpl.java:1563)&#13;
+	at org.eclipse.xtext.testing.util.ResourceHelper.resource(ResourceHelper.java:57)&#13;
+	at org.eclipse.xtext.testing.util.ParseHelper.parse(ParseHelper.java:50)&#13;
+	at org.eclipse.xtext.testing.util.ParseHelper.parse(ParseHelper.java:69)&#13;
+	at org.eclipse.xtext.testing.util.ParseHelper.parse(ParseHelper.java:65)&#13;
+	at ro.acorn.zamolxis.oe.abl.dsl.tests.OpenEdgeAblParsingTest.loadModel(OpenEdgeAblParsingTest.java:36)&#13;
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)&#13;
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)&#13;
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)&#13;
+Caused by: org.eclipse.emf.common.util.WrappedException: java.lang.IllegalStateException: Unresolved proxy http://ro.acorn.zamolxis.oe.demo.abl/OpenEdge/1.0#//Model. Make sure the EPackage has been registered.&#13;
+	at org.eclipse.xtext.parser.antlr.AbstractInternalAntlrParser.parse(AbstractInternalAntlrParser.java:616)&#13;
+	at org.eclipse.xtext.parser.antlr.AbstractAntlrParser.doParse(AbstractAntlrParser.java:103)&#13;
+	... 14 more&#13;
+Caused by: java.lang.IllegalStateException: Unresolved proxy http://ro.acorn.zamolxis.oe.demo.abl/OpenEdge/1.0#//Model. Make sure the EPackage has been registered.&#13;
+	at org.eclipse.xtext.parser.DefaultEcoreElementFactory.create(DefaultEcoreElementFactory.java:59)&#13;
+	at org.eclipse.xtext.parser.antlr.AbstractInternalAntlrParser.forceCreateModelElement(AbstractInternalAntlrParser.java:721)&#13;
+	at ro.acorn.zamolxis.oe.abl.dsl.parser.antlr.internal.InternalOpenEdgeAblParser.ruleModel(InternalOpenEdgeAblParser.java:229)&#13;
+	at ro.acorn.zamolxis.oe.abl.dsl.parser.antlr.internal.InternalOpenEdgeAblParser.entryRuleModel(InternalOpenEdgeAblParser.java:182)&#13;
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)&#13;
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)&#13;
+	at org.eclipse.xtext.parser.antlr.AbstractInternalAntlrParser.parse(AbstractInternalAntlrParser.java:593)&#13;
+	... 15 more&#13;
+&#13;
+</error>
+    </testcase>
+  </testsuite>
+</testrun>

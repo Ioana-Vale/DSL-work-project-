@@ -1,0 +1,69 @@
+/**
+ * ACORN IT 2024
+ */
+package ro.acorn.zamolxis.oe.demo.abl;
+
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Expression Option</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.ExpressionOption#getBgColor <em>Bg Color</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.ExpressionOption#getFgColor <em>Fg Color</em>}</li>
+ * </ul>
+ *
+ * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getExpressionOption()
+ * @model
+ * @generated
+ */
+public interface ExpressionOption extends ValueOption {
+	/**
+	 * Returns the value of the '<em><b>Bg Color</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Bg Color</em>' containment reference.
+	 * @see #setBgColor(Expression)
+	 * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getExpressionOption_BgColor()
+	 * @model containment="true"
+	 * @generated
+	 */
+	Expression getBgColor();
+
+	/**
+	 * Sets the value of the '{@link ro.acorn.zamolxis.oe.demo.abl.ExpressionOption#getBgColor <em>Bg Color</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Bg Color</em>' containment reference.
+	 * @see #getBgColor()
+	 * @generated
+	 */
+	void setBgColor(Expression value);
+
+	/**
+	 * Returns the value of the '<em><b>Fg Color</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Fg Color</em>' containment reference.
+	 * @see #setFgColor(Expression)
+	 * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getExpressionOption_FgColor()
+	 * @model containment="true"
+	 * @generated
+	 */
+	Expression getFgColor();
+
+	/**
+	 * Sets the value of the '{@link ro.acorn.zamolxis.oe.demo.abl.ExpressionOption#getFgColor <em>Fg Color</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Fg Color</em>' containment reference.
+	 * @see #getFgColor()
+	 * @generated
+	 */
+	void setFgColor(Expression value);
+
+} // ExpressionOption

@@ -1,0 +1,1080 @@
+/**
+ * ACORN IT 2024
+ */
+package ro.acorn.zamolxis.oe.demo.abl.impl;
+
+import java.util.Collection;
+import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+import ro.acorn.zamolxis.oe.demo.abl.Button;
+import ro.acorn.zamolxis.oe.demo.abl.Expression;
+import ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage;
+import ro.acorn.zamolxis.oe.demo.abl.WidgetTrigger;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Button</b></em>'.
+ * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * </p>
+ * <ul>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.impl.ButtonImpl#isAutoGo <em>Auto Go</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.impl.ButtonImpl#isAutoEndkey <em>Auto Endkey</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.impl.ButtonImpl#isDefault <em>Default</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.impl.ButtonImpl#getContextHelpId <em>Context Help Id</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.impl.ButtonImpl#getDcolor <em>Dcolor</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.impl.ButtonImpl#isDropTarget <em>Drop Target</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.impl.ButtonImpl#getFont <em>Font</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.impl.ButtonImpl#getMousePointer <em>Mouse Pointer</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.impl.ButtonImpl#getLike <em>Like</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.impl.ButtonImpl#isNoConvert3dColors <em>No Convert3d Colors</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.impl.ButtonImpl#getPfccolor <em>Pfccolor</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.impl.ButtonImpl#isFlatButton <em>Flat Button</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.impl.ButtonImpl#isNoFocus <em>No Focus</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.impl.ButtonImpl#isImageDown <em>Image Down</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.impl.ButtonImpl#isImageUp <em>Image Up</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.impl.ButtonImpl#isImageInsensitive <em>Image Insensitive</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.impl.ButtonImpl#getTrigger <em>Trigger</em>}</li>
+ * </ul>
+ *
+ * @generated
+ */
+public class ButtonImpl extends ObjectDefinitionImpl implements Button {
+	/**
+	 * The default value of the '{@link #isAutoGo() <em>Auto Go</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isAutoGo()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean AUTO_GO_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isAutoGo() <em>Auto Go</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isAutoGo()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean autoGo = AUTO_GO_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isAutoEndkey() <em>Auto Endkey</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isAutoEndkey()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean AUTO_ENDKEY_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isAutoEndkey() <em>Auto Endkey</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isAutoEndkey()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean autoEndkey = AUTO_ENDKEY_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isDefault() <em>Default</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDefault()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean DEFAULT_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isDefault() <em>Default</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDefault()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean default_ = DEFAULT_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getContextHelpId() <em>Context Help Id</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getContextHelpId()
+	 * @generated
+	 * @ordered
+	 */
+	protected Expression contextHelpId;
+
+	/**
+	 * The cached value of the '{@link #getDcolor() <em>Dcolor</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDcolor()
+	 * @generated
+	 * @ordered
+	 */
+	protected Expression dcolor;
+
+	/**
+	 * The default value of the '{@link #isDropTarget() <em>Drop Target</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDropTarget()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean DROP_TARGET_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isDropTarget() <em>Drop Target</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDropTarget()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean dropTarget = DROP_TARGET_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getFont() <em>Font</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFont()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String FONT_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getFont() <em>Font</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFont()
+	 * @generated
+	 * @ordered
+	 */
+	protected String font = FONT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getMousePointer() <em>Mouse Pointer</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMousePointer()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String MOUSE_POINTER_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getMousePointer() <em>Mouse Pointer</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMousePointer()
+	 * @generated
+	 * @ordered
+	 */
+	protected String mousePointer = MOUSE_POINTER_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getLike() <em>Like</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLike()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String LIKE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getLike() <em>Like</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLike()
+	 * @generated
+	 * @ordered
+	 */
+	protected String like = LIKE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isNoConvert3dColors() <em>No Convert3d Colors</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isNoConvert3dColors()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean NO_CONVERT3D_COLORS_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isNoConvert3dColors() <em>No Convert3d Colors</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isNoConvert3dColors()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean noConvert3dColors = NO_CONVERT3D_COLORS_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getPfccolor() <em>Pfccolor</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPfccolor()
+	 * @generated
+	 * @ordered
+	 */
+	protected Expression pfccolor;
+
+	/**
+	 * The default value of the '{@link #isFlatButton() <em>Flat Button</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isFlatButton()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean FLAT_BUTTON_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isFlatButton() <em>Flat Button</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isFlatButton()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean flatButton = FLAT_BUTTON_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isNoFocus() <em>No Focus</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isNoFocus()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean NO_FOCUS_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isNoFocus() <em>No Focus</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isNoFocus()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean noFocus = NO_FOCUS_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isImageDown() <em>Image Down</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isImageDown()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IMAGE_DOWN_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isImageDown() <em>Image Down</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isImageDown()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean imageDown = IMAGE_DOWN_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isImageUp() <em>Image Up</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isImageUp()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IMAGE_UP_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isImageUp() <em>Image Up</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isImageUp()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean imageUp = IMAGE_UP_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isImageInsensitive() <em>Image Insensitive</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isImageInsensitive()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IMAGE_INSENSITIVE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isImageInsensitive() <em>Image Insensitive</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isImageInsensitive()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean imageInsensitive = IMAGE_INSENSITIVE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getTrigger() <em>Trigger</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTrigger()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<WidgetTrigger> trigger;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ButtonImpl() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return OpenEdgeAblPackage.Literals.BUTTON;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isAutoGo() {
+		return autoGo;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setAutoGo(boolean newAutoGo) {
+		boolean oldAutoGo = autoGo;
+		autoGo = newAutoGo;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.BUTTON__AUTO_GO, oldAutoGo, autoGo));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isAutoEndkey() {
+		return autoEndkey;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setAutoEndkey(boolean newAutoEndkey) {
+		boolean oldAutoEndkey = autoEndkey;
+		autoEndkey = newAutoEndkey;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.BUTTON__AUTO_ENDKEY, oldAutoEndkey, autoEndkey));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isDefault() {
+		return default_;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setDefault(boolean newDefault) {
+		boolean oldDefault = default_;
+		default_ = newDefault;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.BUTTON__DEFAULT, oldDefault, default_));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Expression getContextHelpId() {
+		if (contextHelpId != null && contextHelpId.eIsProxy()) {
+			InternalEObject oldContextHelpId = (InternalEObject)contextHelpId;
+			contextHelpId = (Expression)eResolveProxy(oldContextHelpId);
+			if (contextHelpId != oldContextHelpId) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, OpenEdgeAblPackage.BUTTON__CONTEXT_HELP_ID, oldContextHelpId, contextHelpId));
+			}
+		}
+		return contextHelpId;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Expression basicGetContextHelpId() {
+		return contextHelpId;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setContextHelpId(Expression newContextHelpId) {
+		Expression oldContextHelpId = contextHelpId;
+		contextHelpId = newContextHelpId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.BUTTON__CONTEXT_HELP_ID, oldContextHelpId, contextHelpId));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Expression getDcolor() {
+		if (dcolor != null && dcolor.eIsProxy()) {
+			InternalEObject oldDcolor = (InternalEObject)dcolor;
+			dcolor = (Expression)eResolveProxy(oldDcolor);
+			if (dcolor != oldDcolor) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, OpenEdgeAblPackage.BUTTON__DCOLOR, oldDcolor, dcolor));
+			}
+		}
+		return dcolor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Expression basicGetDcolor() {
+		return dcolor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setDcolor(Expression newDcolor) {
+		Expression oldDcolor = dcolor;
+		dcolor = newDcolor;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.BUTTON__DCOLOR, oldDcolor, dcolor));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isDropTarget() {
+		return dropTarget;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setDropTarget(boolean newDropTarget) {
+		boolean oldDropTarget = dropTarget;
+		dropTarget = newDropTarget;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.BUTTON__DROP_TARGET, oldDropTarget, dropTarget));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getFont() {
+		return font;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setFont(String newFont) {
+		String oldFont = font;
+		font = newFont;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.BUTTON__FONT, oldFont, font));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getMousePointer() {
+		return mousePointer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setMousePointer(String newMousePointer) {
+		String oldMousePointer = mousePointer;
+		mousePointer = newMousePointer;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.BUTTON__MOUSE_POINTER, oldMousePointer, mousePointer));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getLike() {
+		return like;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setLike(String newLike) {
+		String oldLike = like;
+		like = newLike;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.BUTTON__LIKE, oldLike, like));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isNoConvert3dColors() {
+		return noConvert3dColors;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setNoConvert3dColors(boolean newNoConvert3dColors) {
+		boolean oldNoConvert3dColors = noConvert3dColors;
+		noConvert3dColors = newNoConvert3dColors;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.BUTTON__NO_CONVERT3D_COLORS, oldNoConvert3dColors, noConvert3dColors));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Expression getPfccolor() {
+		if (pfccolor != null && pfccolor.eIsProxy()) {
+			InternalEObject oldPfccolor = (InternalEObject)pfccolor;
+			pfccolor = (Expression)eResolveProxy(oldPfccolor);
+			if (pfccolor != oldPfccolor) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, OpenEdgeAblPackage.BUTTON__PFCCOLOR, oldPfccolor, pfccolor));
+			}
+		}
+		return pfccolor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Expression basicGetPfccolor() {
+		return pfccolor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setPfccolor(Expression newPfccolor) {
+		Expression oldPfccolor = pfccolor;
+		pfccolor = newPfccolor;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.BUTTON__PFCCOLOR, oldPfccolor, pfccolor));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isFlatButton() {
+		return flatButton;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setFlatButton(boolean newFlatButton) {
+		boolean oldFlatButton = flatButton;
+		flatButton = newFlatButton;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.BUTTON__FLAT_BUTTON, oldFlatButton, flatButton));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isNoFocus() {
+		return noFocus;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setNoFocus(boolean newNoFocus) {
+		boolean oldNoFocus = noFocus;
+		noFocus = newNoFocus;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.BUTTON__NO_FOCUS, oldNoFocus, noFocus));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isImageDown() {
+		return imageDown;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setImageDown(boolean newImageDown) {
+		boolean oldImageDown = imageDown;
+		imageDown = newImageDown;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.BUTTON__IMAGE_DOWN, oldImageDown, imageDown));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isImageUp() {
+		return imageUp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setImageUp(boolean newImageUp) {
+		boolean oldImageUp = imageUp;
+		imageUp = newImageUp;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.BUTTON__IMAGE_UP, oldImageUp, imageUp));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isImageInsensitive() {
+		return imageInsensitive;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setImageInsensitive(boolean newImageInsensitive) {
+		boolean oldImageInsensitive = imageInsensitive;
+		imageInsensitive = newImageInsensitive;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.BUTTON__IMAGE_INSENSITIVE, oldImageInsensitive, imageInsensitive));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<WidgetTrigger> getTrigger() {
+		if (trigger == null) {
+			trigger = new EObjectContainmentEList<WidgetTrigger>(WidgetTrigger.class, this, OpenEdgeAblPackage.BUTTON__TRIGGER);
+		}
+		return trigger;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case OpenEdgeAblPackage.BUTTON__TRIGGER:
+				return ((InternalEList<?>)getTrigger()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case OpenEdgeAblPackage.BUTTON__AUTO_GO:
+				return isAutoGo();
+			case OpenEdgeAblPackage.BUTTON__AUTO_ENDKEY:
+				return isAutoEndkey();
+			case OpenEdgeAblPackage.BUTTON__DEFAULT:
+				return isDefault();
+			case OpenEdgeAblPackage.BUTTON__CONTEXT_HELP_ID:
+				if (resolve) return getContextHelpId();
+				return basicGetContextHelpId();
+			case OpenEdgeAblPackage.BUTTON__DCOLOR:
+				if (resolve) return getDcolor();
+				return basicGetDcolor();
+			case OpenEdgeAblPackage.BUTTON__DROP_TARGET:
+				return isDropTarget();
+			case OpenEdgeAblPackage.BUTTON__FONT:
+				return getFont();
+			case OpenEdgeAblPackage.BUTTON__MOUSE_POINTER:
+				return getMousePointer();
+			case OpenEdgeAblPackage.BUTTON__LIKE:
+				return getLike();
+			case OpenEdgeAblPackage.BUTTON__NO_CONVERT3D_COLORS:
+				return isNoConvert3dColors();
+			case OpenEdgeAblPackage.BUTTON__PFCCOLOR:
+				if (resolve) return getPfccolor();
+				return basicGetPfccolor();
+			case OpenEdgeAblPackage.BUTTON__FLAT_BUTTON:
+				return isFlatButton();
+			case OpenEdgeAblPackage.BUTTON__NO_FOCUS:
+				return isNoFocus();
+			case OpenEdgeAblPackage.BUTTON__IMAGE_DOWN:
+				return isImageDown();
+			case OpenEdgeAblPackage.BUTTON__IMAGE_UP:
+				return isImageUp();
+			case OpenEdgeAblPackage.BUTTON__IMAGE_INSENSITIVE:
+				return isImageInsensitive();
+			case OpenEdgeAblPackage.BUTTON__TRIGGER:
+				return getTrigger();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case OpenEdgeAblPackage.BUTTON__AUTO_GO:
+				setAutoGo((Boolean)newValue);
+				return;
+			case OpenEdgeAblPackage.BUTTON__AUTO_ENDKEY:
+				setAutoEndkey((Boolean)newValue);
+				return;
+			case OpenEdgeAblPackage.BUTTON__DEFAULT:
+				setDefault((Boolean)newValue);
+				return;
+			case OpenEdgeAblPackage.BUTTON__CONTEXT_HELP_ID:
+				setContextHelpId((Expression)newValue);
+				return;
+			case OpenEdgeAblPackage.BUTTON__DCOLOR:
+				setDcolor((Expression)newValue);
+				return;
+			case OpenEdgeAblPackage.BUTTON__DROP_TARGET:
+				setDropTarget((Boolean)newValue);
+				return;
+			case OpenEdgeAblPackage.BUTTON__FONT:
+				setFont((String)newValue);
+				return;
+			case OpenEdgeAblPackage.BUTTON__MOUSE_POINTER:
+				setMousePointer((String)newValue);
+				return;
+			case OpenEdgeAblPackage.BUTTON__LIKE:
+				setLike((String)newValue);
+				return;
+			case OpenEdgeAblPackage.BUTTON__NO_CONVERT3D_COLORS:
+				setNoConvert3dColors((Boolean)newValue);
+				return;
+			case OpenEdgeAblPackage.BUTTON__PFCCOLOR:
+				setPfccolor((Expression)newValue);
+				return;
+			case OpenEdgeAblPackage.BUTTON__FLAT_BUTTON:
+				setFlatButton((Boolean)newValue);
+				return;
+			case OpenEdgeAblPackage.BUTTON__NO_FOCUS:
+				setNoFocus((Boolean)newValue);
+				return;
+			case OpenEdgeAblPackage.BUTTON__IMAGE_DOWN:
+				setImageDown((Boolean)newValue);
+				return;
+			case OpenEdgeAblPackage.BUTTON__IMAGE_UP:
+				setImageUp((Boolean)newValue);
+				return;
+			case OpenEdgeAblPackage.BUTTON__IMAGE_INSENSITIVE:
+				setImageInsensitive((Boolean)newValue);
+				return;
+			case OpenEdgeAblPackage.BUTTON__TRIGGER:
+				getTrigger().clear();
+				getTrigger().addAll((Collection<? extends WidgetTrigger>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case OpenEdgeAblPackage.BUTTON__AUTO_GO:
+				setAutoGo(AUTO_GO_EDEFAULT);
+				return;
+			case OpenEdgeAblPackage.BUTTON__AUTO_ENDKEY:
+				setAutoEndkey(AUTO_ENDKEY_EDEFAULT);
+				return;
+			case OpenEdgeAblPackage.BUTTON__DEFAULT:
+				setDefault(DEFAULT_EDEFAULT);
+				return;
+			case OpenEdgeAblPackage.BUTTON__CONTEXT_HELP_ID:
+				setContextHelpId((Expression)null);
+				return;
+			case OpenEdgeAblPackage.BUTTON__DCOLOR:
+				setDcolor((Expression)null);
+				return;
+			case OpenEdgeAblPackage.BUTTON__DROP_TARGET:
+				setDropTarget(DROP_TARGET_EDEFAULT);
+				return;
+			case OpenEdgeAblPackage.BUTTON__FONT:
+				setFont(FONT_EDEFAULT);
+				return;
+			case OpenEdgeAblPackage.BUTTON__MOUSE_POINTER:
+				setMousePointer(MOUSE_POINTER_EDEFAULT);
+				return;
+			case OpenEdgeAblPackage.BUTTON__LIKE:
+				setLike(LIKE_EDEFAULT);
+				return;
+			case OpenEdgeAblPackage.BUTTON__NO_CONVERT3D_COLORS:
+				setNoConvert3dColors(NO_CONVERT3D_COLORS_EDEFAULT);
+				return;
+			case OpenEdgeAblPackage.BUTTON__PFCCOLOR:
+				setPfccolor((Expression)null);
+				return;
+			case OpenEdgeAblPackage.BUTTON__FLAT_BUTTON:
+				setFlatButton(FLAT_BUTTON_EDEFAULT);
+				return;
+			case OpenEdgeAblPackage.BUTTON__NO_FOCUS:
+				setNoFocus(NO_FOCUS_EDEFAULT);
+				return;
+			case OpenEdgeAblPackage.BUTTON__IMAGE_DOWN:
+				setImageDown(IMAGE_DOWN_EDEFAULT);
+				return;
+			case OpenEdgeAblPackage.BUTTON__IMAGE_UP:
+				setImageUp(IMAGE_UP_EDEFAULT);
+				return;
+			case OpenEdgeAblPackage.BUTTON__IMAGE_INSENSITIVE:
+				setImageInsensitive(IMAGE_INSENSITIVE_EDEFAULT);
+				return;
+			case OpenEdgeAblPackage.BUTTON__TRIGGER:
+				getTrigger().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case OpenEdgeAblPackage.BUTTON__AUTO_GO:
+				return autoGo != AUTO_GO_EDEFAULT;
+			case OpenEdgeAblPackage.BUTTON__AUTO_ENDKEY:
+				return autoEndkey != AUTO_ENDKEY_EDEFAULT;
+			case OpenEdgeAblPackage.BUTTON__DEFAULT:
+				return default_ != DEFAULT_EDEFAULT;
+			case OpenEdgeAblPackage.BUTTON__CONTEXT_HELP_ID:
+				return contextHelpId != null;
+			case OpenEdgeAblPackage.BUTTON__DCOLOR:
+				return dcolor != null;
+			case OpenEdgeAblPackage.BUTTON__DROP_TARGET:
+				return dropTarget != DROP_TARGET_EDEFAULT;
+			case OpenEdgeAblPackage.BUTTON__FONT:
+				return FONT_EDEFAULT == null ? font != null : !FONT_EDEFAULT.equals(font);
+			case OpenEdgeAblPackage.BUTTON__MOUSE_POINTER:
+				return MOUSE_POINTER_EDEFAULT == null ? mousePointer != null : !MOUSE_POINTER_EDEFAULT.equals(mousePointer);
+			case OpenEdgeAblPackage.BUTTON__LIKE:
+				return LIKE_EDEFAULT == null ? like != null : !LIKE_EDEFAULT.equals(like);
+			case OpenEdgeAblPackage.BUTTON__NO_CONVERT3D_COLORS:
+				return noConvert3dColors != NO_CONVERT3D_COLORS_EDEFAULT;
+			case OpenEdgeAblPackage.BUTTON__PFCCOLOR:
+				return pfccolor != null;
+			case OpenEdgeAblPackage.BUTTON__FLAT_BUTTON:
+				return flatButton != FLAT_BUTTON_EDEFAULT;
+			case OpenEdgeAblPackage.BUTTON__NO_FOCUS:
+				return noFocus != NO_FOCUS_EDEFAULT;
+			case OpenEdgeAblPackage.BUTTON__IMAGE_DOWN:
+				return imageDown != IMAGE_DOWN_EDEFAULT;
+			case OpenEdgeAblPackage.BUTTON__IMAGE_UP:
+				return imageUp != IMAGE_UP_EDEFAULT;
+			case OpenEdgeAblPackage.BUTTON__IMAGE_INSENSITIVE:
+				return imageInsensitive != IMAGE_INSENSITIVE_EDEFAULT;
+			case OpenEdgeAblPackage.BUTTON__TRIGGER:
+				return trigger != null && !trigger.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (autoGo: ");
+		result.append(autoGo);
+		result.append(", autoEndkey: ");
+		result.append(autoEndkey);
+		result.append(", default: ");
+		result.append(default_);
+		result.append(", dropTarget: ");
+		result.append(dropTarget);
+		result.append(", font: ");
+		result.append(font);
+		result.append(", mousePointer: ");
+		result.append(mousePointer);
+		result.append(", like: ");
+		result.append(like);
+		result.append(", noConvert3dColors: ");
+		result.append(noConvert3dColors);
+		result.append(", flatButton: ");
+		result.append(flatButton);
+		result.append(", noFocus: ");
+		result.append(noFocus);
+		result.append(", imageDown: ");
+		result.append(imageDown);
+		result.append(", imageUp: ");
+		result.append(imageUp);
+		result.append(", imageInsensitive: ");
+		result.append(imageInsensitive);
+		result.append(')');
+		return result.toString();
+	}
+
+} //ButtonImpl

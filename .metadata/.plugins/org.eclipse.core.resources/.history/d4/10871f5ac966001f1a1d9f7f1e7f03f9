@@ -1,0 +1,19 @@
+package org.xtext.example.mydsl;
+
+public class ArrayLiterals {
+
+    public static <T> T[][] createArray(int size0, int size1) {
+        
+        @SuppressWarnings("unchecked")
+        T[][] array = (T[][]) new Object[size0][size1];
+        return array;
+    }
+
+    public static char[] createCharArray(int size) {
+        return new char[size];
+    }
+
+    public static int[] createIntArray(int size) {
+        return new int[size];
+    }
+}

@@ -1,0 +1,75 @@
+package org.xtext.example.mydsl;
+
+import java.io.IOException;
+import java.util.Collections;
+
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.xtext.example.mydsl.myDsl.MyDslFactory;
+import org.xtext.example.mydsl.myDsl.MyDslPackage;
+
+public class MyDslUtil {
+	
+	 public static Runtime loadRuntime(String version) {
+		  String filePath = String.format(".runtime_%s.xml", version);
+
+	        // Create a resource set and resource
+	        ResourceSetImpl resourceSet = new ResourceSetImpl();
+	        Resource resource = resourceSet.createResource(URI.createFileURI(filePath));
+
+	        try {
+	            resource.load(Collections.emptyMap());
+
+	            for (EObject eobj : resource.getContents()) {
+	                if (eobj instanceof Runtime) {
+	                    return (Runtime) eobj;
+	                }
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace(); 
+	        }
+
+	        EClass runtimeClass = null;
+
+	        for (EClassifier cls : MyDslPackage.eINSTANCE.getEClassifiers()) {
+	            if (cls instanceof EClass && MyDslPackage.Literals.RUNTIME != cls
+	                && ((EClass) MyDslPackage.Literals.RUNTIME).isSuperTypeOf((EClass) cls)) {
+	                String v = EcoreUtil.getAnnotation((EClass) cls, "http://www.eclipse.org/emf/2002/GenModel", "version");
+
+	                if (version == null || version.equalsIgnoreCase(v)) {
+	                    runtimeClass = (EClass) cls;
+	                    break;
+	                }
+
+	                if (runtimeClass == null) {
+	                    runtimeClass = (EClass) cls;
+	                }
+	            }
+	        }
+
+	        Runtime runtime = (Runtime) MyDslFactory.eINSTANCE.create(runtimeClass);
+
+	        for (EClassifier cls : ((EPackage) runtime.getClass().getPackage()).getEClassifiers()) {
+	            if (cls instanceof EClass && ((EClass) MyDslPackage.Literals.PRIMITIVE).isSuperTypeOf((EClass) cls)) {
+	                Primitive primitive = MyDslFactory.eINSTANCE.createPrimitive();
+	                primitive.setName(cls.getName().replace('_', '-').toLowerCase());
+	                runtime.getPrimitives().add(primitive);
+	            }
+	        }
+
+	        resource.getContents().add((EObject) runtime);
+	        try {
+	            resource.save(Collections.emptyMap());
+	        } catch (IOException ex) {
+	            ex.printStackTrace(); 
+	        }
+
+	        return runtime;
+	    }
+	}

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functions xmlns="http://www.example.org/builtInFunctions">
+    <function>
+        <name>eval</name>
+        <description>Evaluates the given expression and returns the result.</description>
+    </function>
+    <!-- Poți adăuga aici și alte funcții -->
+</functions>

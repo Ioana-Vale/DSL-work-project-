@@ -1,0 +1,26 @@
+package org.xtext.example.mydsl;
+
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtext.resource.IResourceServiceProvider;
+import org.eclipse.xtext.resource.XtextResource;
+import org.eclipse.xtext.resource.XtextResourceSet;
+
+/**
+ * Custom implementation of IResourceServiceProvider.
+ */
+public class MyDslResourceServiceProvider implements IResourceServiceProvider {
+
+    @Override
+    public <T> T get(Class<T> serviceClass) {
+        // Handle other services if necessary
+        return null;
+    }
+
+    // Factory class to create instances of MyDslResourceServiceProvider
+    public static class Factory implements IResourceServiceProvider.Factory {
+        @Override
+        public IResourceServiceProvider get(Resource resource) {
+            return new MyDslResourceServiceProvider();
+        }
+    }
+}

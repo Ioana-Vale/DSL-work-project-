@@ -1,0 +1,1810 @@
+/**
+ * ACORN IT 2024
+ */
+package ro.acorn.zamolxis.oe.demo.abl.util;
+
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notifier;
+
+import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
+import org.eclipse.emf.ecore.EObject;
+
+import ro.acorn.zamolxis.oe.demo.abl.AbstractVariable;
+import ro.acorn.zamolxis.oe.demo.abl.AccessCodeBlock;
+import ro.acorn.zamolxis.oe.demo.abl.AccessOption;
+import ro.acorn.zamolxis.oe.demo.abl.Annotation;
+import ro.acorn.zamolxis.oe.demo.abl.ArgumentReference;
+import ro.acorn.zamolxis.oe.demo.abl.AssignBlock;
+import ro.acorn.zamolxis.oe.demo.abl.Assignable;
+import ro.acorn.zamolxis.oe.demo.abl.Assignment;
+import ro.acorn.zamolxis.oe.demo.abl.BinaryExpression;
+import ro.acorn.zamolxis.oe.demo.abl.Block;
+import ro.acorn.zamolxis.oe.demo.abl.BlockLevelStatement;
+import ro.acorn.zamolxis.oe.demo.abl.Buffer;
+import ro.acorn.zamolxis.oe.demo.abl.BufferParameter;
+import ro.acorn.zamolxis.oe.demo.abl.BuiltInFunctionReference;
+import ro.acorn.zamolxis.oe.demo.abl.BuiltinFunction;
+import ro.acorn.zamolxis.oe.demo.abl.CaseStatement;
+import ro.acorn.zamolxis.oe.demo.abl.CaseWhen;
+import ro.acorn.zamolxis.oe.demo.abl.CatchBlock;
+import ro.acorn.zamolxis.oe.demo.abl.CodeBlock;
+import ro.acorn.zamolxis.oe.demo.abl.DataType;
+import ro.acorn.zamolxis.oe.demo.abl.Dataset;
+import ro.acorn.zamolxis.oe.demo.abl.DatasetHandleParameter;
+import ro.acorn.zamolxis.oe.demo.abl.DatasetParameter;
+import ro.acorn.zamolxis.oe.demo.abl.DateExpression;
+import ro.acorn.zamolxis.oe.demo.abl.Definition;
+import ro.acorn.zamolxis.oe.demo.abl.DirectionalParameter;
+import ro.acorn.zamolxis.oe.demo.abl.ElseIfPreprocessor;
+import ro.acorn.zamolxis.oe.demo.abl.EnumLiteral;
+import ro.acorn.zamolxis.oe.demo.abl.Expression;
+import ro.acorn.zamolxis.oe.demo.abl.ExpressionOption;
+import ro.acorn.zamolxis.oe.demo.abl.FunctionBlock;
+import ro.acorn.zamolxis.oe.demo.abl.FunctionReference;
+import ro.acorn.zamolxis.oe.demo.abl.IDataType;
+import ro.acorn.zamolxis.oe.demo.abl.INamed;
+import ro.acorn.zamolxis.oe.demo.abl.ISerializable;
+import ro.acorn.zamolxis.oe.demo.abl.IfPreprocessor;
+import ro.acorn.zamolxis.oe.demo.abl.IfStatement;
+import ro.acorn.zamolxis.oe.demo.abl.Image;
+import ro.acorn.zamolxis.oe.demo.abl.IncludeArgument;
+import ro.acorn.zamolxis.oe.demo.abl.IncludeStatement;
+import ro.acorn.zamolxis.oe.demo.abl.InitialOption;
+import ro.acorn.zamolxis.oe.demo.abl.Interface;
+import ro.acorn.zamolxis.oe.demo.abl.IterationBlock;
+import ro.acorn.zamolxis.oe.demo.abl.LogicalExpression;
+import ro.acorn.zamolxis.oe.demo.abl.LoopBlock;
+import ro.acorn.zamolxis.oe.demo.abl.MethodBlock;
+import ro.acorn.zamolxis.oe.demo.abl.MethodReference;
+import ro.acorn.zamolxis.oe.demo.abl.Model;
+import ro.acorn.zamolxis.oe.demo.abl.NamedBlock;
+import ro.acorn.zamolxis.oe.demo.abl.NamedOption;
+import ro.acorn.zamolxis.oe.demo.abl.NumericExpression;
+import ro.acorn.zamolxis.oe.demo.abl.ObjectDefinition;
+import ro.acorn.zamolxis.oe.demo.abl.ObjectReference;
+import ro.acorn.zamolxis.oe.demo.abl.OnWidgetTrigger;
+import ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage;
+import ro.acorn.zamolxis.oe.demo.abl.Option;
+import ro.acorn.zamolxis.oe.demo.abl.Parameter;
+import ro.acorn.zamolxis.oe.demo.abl.PreprocessorDirective;
+import ro.acorn.zamolxis.oe.demo.abl.PreprocessorReference;
+import ro.acorn.zamolxis.oe.demo.abl.Primitive;
+import ro.acorn.zamolxis.oe.demo.abl.ProcedureBlock;
+import ro.acorn.zamolxis.oe.demo.abl.Project;
+import ro.acorn.zamolxis.oe.demo.abl.Property;
+import ro.acorn.zamolxis.oe.demo.abl.PropertyReference;
+import ro.acorn.zamolxis.oe.demo.abl.Reference;
+import ro.acorn.zamolxis.oe.demo.abl.ReturnCodeBlock;
+import ro.acorn.zamolxis.oe.demo.abl.Runtime12_2;
+import ro.acorn.zamolxis.oe.demo.abl.ShareOption;
+import ro.acorn.zamolxis.oe.demo.abl.SizeOption;
+import ro.acorn.zamolxis.oe.demo.abl.Statement;
+import ro.acorn.zamolxis.oe.demo.abl.StringExpression;
+import ro.acorn.zamolxis.oe.demo.abl.TableHandleParameter;
+import ro.acorn.zamolxis.oe.demo.abl.TableParameter;
+import ro.acorn.zamolxis.oe.demo.abl.TableReference;
+import ro.acorn.zamolxis.oe.demo.abl.TempTable;
+import ro.acorn.zamolxis.oe.demo.abl.TempTableField;
+import ro.acorn.zamolxis.oe.demo.abl.TempTableFieldDataType;
+import ro.acorn.zamolxis.oe.demo.abl.TempTableReference;
+import ro.acorn.zamolxis.oe.demo.abl.TypedParameter;
+import ro.acorn.zamolxis.oe.demo.abl.UnaryExpression;
+import ro.acorn.zamolxis.oe.demo.abl.UndefineDirective;
+import ro.acorn.zamolxis.oe.demo.abl.UnknownExpression;
+import ro.acorn.zamolxis.oe.demo.abl.UsingStatement;
+import ro.acorn.zamolxis.oe.demo.abl.ValueOption;
+import ro.acorn.zamolxis.oe.demo.abl.Variable;
+import ro.acorn.zamolxis.oe.demo.abl.VariableParameter;
+import ro.acorn.zamolxis.oe.demo.abl.WidgetTrigger;
+import ro.acorn.zamolxis.oe.demo.abl.Workspace;
+
+/**
+ * <!-- begin-user-doc -->
+ * The <b>Adapter Factory</b> for the model.
+ * It provides an adapter <code>createXXX</code> method for each class of the model.
+ * <!-- end-user-doc -->
+ * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage
+ * @generated
+ */
+public class OpenEdgeAblAdapterFactory extends AdapterFactoryImpl {
+	/**
+	 * The cached model package.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static OpenEdgeAblPackage modelPackage;
+
+	/**
+	 * Creates an instance of the adapter factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OpenEdgeAblAdapterFactory() {
+		if (modelPackage == null) {
+			modelPackage = OpenEdgeAblPackage.eINSTANCE;
+		}
+	}
+
+	/**
+	 * Returns whether this factory is applicable for the type of the object.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model.
+	 * <!-- end-user-doc -->
+	 * @return whether this factory is applicable for the type of the object.
+	 * @generated
+	 */
+	@Override
+	public boolean isFactoryForType(Object object) {
+		if (object == modelPackage) {
+			return true;
+		}
+		if (object instanceof EObject) {
+			return ((EObject)object).eClass().getEPackage() == modelPackage;
+		}
+		return false;
+	}
+
+	/**
+	 * The switch that delegates to the <code>createXXX</code> methods.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OpenEdgeAblSwitch<Adapter> modelSwitch =
+		new OpenEdgeAblSwitch<Adapter>() {
+			@Override
+			public Adapter caseModel(Model object) {
+				return createModelAdapter();
+			}
+			@Override
+			public Adapter caseStatement(Statement object) {
+				return createStatementAdapter();
+			}
+			@Override
+			public Adapter caseDefinition(Definition object) {
+				return createDefinitionAdapter();
+			}
+			@Override
+			public Adapter caseAssignment(Assignment object) {
+				return createAssignmentAdapter();
+			}
+			@Override
+			public Adapter caseAssignable(Assignable object) {
+				return createAssignableAdapter();
+			}
+			@Override
+			public Adapter caseReference(Reference object) {
+				return createReferenceAdapter();
+			}
+			@Override
+			public Adapter caseProperty(Property object) {
+				return createPropertyAdapter();
+			}
+			@Override
+			public Adapter caseVariable(Variable object) {
+				return createVariableAdapter();
+			}
+			@Override
+			public Adapter caseINamed(INamed object) {
+				return createINamedAdapter();
+			}
+			@Override
+			public Adapter caseOption(Option object) {
+				return createOptionAdapter();
+			}
+			@Override
+			public Adapter caseShareOption(ShareOption object) {
+				return createShareOptionAdapter();
+			}
+			@Override
+			public Adapter caseAccessOption(AccessOption object) {
+				return createAccessOptionAdapter();
+			}
+			@Override
+			public Adapter caseObjectDefinition(ObjectDefinition object) {
+				return createObjectDefinitionAdapter();
+			}
+			@Override
+			public Adapter caseInitialOption(InitialOption object) {
+				return createInitialOptionAdapter();
+			}
+			@Override
+			public Adapter caseNamedOption(NamedOption object) {
+				return createNamedOptionAdapter();
+			}
+			@Override
+			public Adapter caseExpression(Expression object) {
+				return createExpressionAdapter();
+			}
+			@Override
+			public Adapter caseNumericExpression(NumericExpression object) {
+				return createNumericExpressionAdapter();
+			}
+			@Override
+			public Adapter caseUnaryExpression(UnaryExpression object) {
+				return createUnaryExpressionAdapter();
+			}
+			@Override
+			public Adapter caseStringExpression(StringExpression object) {
+				return createStringExpressionAdapter();
+			}
+			@Override
+			public Adapter caseDateExpression(DateExpression object) {
+				return createDateExpressionAdapter();
+			}
+			@Override
+			public Adapter caseUnknownExpression(UnknownExpression object) {
+				return createUnknownExpressionAdapter();
+			}
+			@Override
+			public Adapter caseLogicalExpression(LogicalExpression object) {
+				return createLogicalExpressionAdapter();
+			}
+			@Override
+			public Adapter caseBlock(Block object) {
+				return createBlockAdapter();
+			}
+			@Override
+			public Adapter caseAssignBlock(AssignBlock object) {
+				return createAssignBlockAdapter();
+			}
+			@Override
+			public Adapter caseIterationBlock(IterationBlock object) {
+				return createIterationBlockAdapter();
+			}
+			@Override
+			public Adapter caseCodeBlock(CodeBlock object) {
+				return createCodeBlockAdapter();
+			}
+			@Override
+			public Adapter caseDirectionalParameter(DirectionalParameter object) {
+				return createDirectionalParameterAdapter();
+			}
+			@Override
+			public Adapter caseInterface(Interface object) {
+				return createInterfaceAdapter();
+			}
+			@Override
+			public Adapter caseClass(ro.acorn.zamolxis.oe.demo.abl.Class object) {
+				return createClassAdapter();
+			}
+			@Override
+			public Adapter caseBlockLevelStatement(BlockLevelStatement object) {
+				return createBlockLevelStatementAdapter();
+			}
+			@Override
+			public Adapter caseUsingStatement(UsingStatement object) {
+				return createUsingStatementAdapter();
+			}
+			@Override
+			public Adapter caseBinaryExpression(BinaryExpression object) {
+				return createBinaryExpressionAdapter();
+			}
+			@Override
+			public Adapter casePropertyReference(PropertyReference object) {
+				return createPropertyReferenceAdapter();
+			}
+			@Override
+			public Adapter caseObjectReference(ObjectReference object) {
+				return createObjectReferenceAdapter();
+			}
+			@Override
+			public Adapter caseMethodReference(MethodReference object) {
+				return createMethodReferenceAdapter();
+			}
+			@Override
+			public Adapter caseFunctionReference(FunctionReference object) {
+				return createFunctionReferenceAdapter();
+			}
+			@Override
+			public Adapter caseBuiltInFunctionReference(BuiltInFunctionReference object) {
+				return createBuiltInFunctionReferenceAdapter();
+			}
+			@Override
+			public Adapter caseBuiltinFunction(BuiltinFunction object) {
+				return createBuiltinFunctionAdapter();
+			}
+			@Override
+			public Adapter casePrimitive(Primitive object) {
+				return createPrimitiveAdapter();
+			}
+			@Override
+			public Adapter caseDataType(DataType object) {
+				return createDataTypeAdapter();
+			}
+			@Override
+			public Adapter caseRuntime(ro.acorn.zamolxis.oe.demo.abl.Runtime object) {
+				return createRuntimeAdapter();
+			}
+			@Override
+			public Adapter caseProject(Project object) {
+				return createProjectAdapter();
+			}
+			@Override
+			public Adapter caseRuntime12_2(Runtime12_2 object) {
+				return createRuntime12_2Adapter();
+			}
+			@Override
+			public Adapter caseWorkspace(Workspace object) {
+				return createWorkspaceAdapter();
+			}
+			@Override
+			public Adapter caseISerializable(ISerializable object) {
+				return createISerializableAdapter();
+			}
+			@Override
+			public Adapter caseIncludeStatement(IncludeStatement object) {
+				return createIncludeStatementAdapter();
+			}
+			@Override
+			public Adapter caseIncludeArgument(IncludeArgument object) {
+				return createIncludeArgumentAdapter();
+			}
+			@Override
+			public Adapter caseLoopBlock(LoopBlock object) {
+				return createLoopBlockAdapter();
+			}
+			@Override
+			public Adapter caseNamedBlock(NamedBlock object) {
+				return createNamedBlockAdapter();
+			}
+			@Override
+			public Adapter caseArgumentReference(ArgumentReference object) {
+				return createArgumentReferenceAdapter();
+			}
+			@Override
+			public Adapter casePreprocessorReference(PreprocessorReference object) {
+				return createPreprocessorReferenceAdapter();
+			}
+			@Override
+			public Adapter casePreprocessorDirective(PreprocessorDirective object) {
+				return createPreprocessorDirectiveAdapter();
+			}
+			@Override
+			public Adapter caseUndefineDirective(UndefineDirective object) {
+				return createUndefineDirectiveAdapter();
+			}
+			@Override
+			public Adapter caseVariableParameter(VariableParameter object) {
+				return createVariableParameterAdapter();
+			}
+			@Override
+			public Adapter caseParameter(Parameter object) {
+				return createParameterAdapter();
+			}
+			@Override
+			public Adapter caseBufferParameter(BufferParameter object) {
+				return createBufferParameterAdapter();
+			}
+			@Override
+			public Adapter caseTypedParameter(TypedParameter object) {
+				return createTypedParameterAdapter();
+			}
+			@Override
+			public Adapter caseTableParameter(TableParameter object) {
+				return createTableParameterAdapter();
+			}
+			@Override
+			public Adapter caseTempTable(TempTable object) {
+				return createTempTableAdapter();
+			}
+			@Override
+			public Adapter caseTableHandleParameter(TableHandleParameter object) {
+				return createTableHandleParameterAdapter();
+			}
+			@Override
+			public Adapter caseDataset(Dataset object) {
+				return createDatasetAdapter();
+			}
+			@Override
+			public Adapter caseDatasetHandleParameter(DatasetHandleParameter object) {
+				return createDatasetHandleParameterAdapter();
+			}
+			@Override
+			public Adapter caseDatasetParameter(DatasetParameter object) {
+				return createDatasetParameterAdapter();
+			}
+			@Override
+			public Adapter caseBuffer(Buffer object) {
+				return createBufferAdapter();
+			}
+			@Override
+			public Adapter caseTableReference(TableReference object) {
+				return createTableReferenceAdapter();
+			}
+			@Override
+			public Adapter caseTempTableReference(TempTableReference object) {
+				return createTempTableReferenceAdapter();
+			}
+			@Override
+			public Adapter caseValueOption(ValueOption object) {
+				return createValueOptionAdapter();
+			}
+			@Override
+			public Adapter caseAbstractVariable(AbstractVariable object) {
+				return createAbstractVariableAdapter();
+			}
+			@Override
+			public Adapter caseTempTableField(TempTableField object) {
+				return createTempTableFieldAdapter();
+			}
+			@Override
+			public Adapter caseTempTableFieldDataType(TempTableFieldDataType object) {
+				return createTempTableFieldDataTypeAdapter();
+			}
+			@Override
+			public Adapter caseAccessCodeBlock(AccessCodeBlock object) {
+				return createAccessCodeBlockAdapter();
+			}
+			@Override
+			public Adapter caseReturnCodeBlock(ReturnCodeBlock object) {
+				return createReturnCodeBlockAdapter();
+			}
+			@Override
+			public Adapter caseCatchBlock(CatchBlock object) {
+				return createCatchBlockAdapter();
+			}
+			@Override
+			public Adapter caseFunctionBlock(FunctionBlock object) {
+				return createFunctionBlockAdapter();
+			}
+			@Override
+			public Adapter caseMethodBlock(MethodBlock object) {
+				return createMethodBlockAdapter();
+			}
+			@Override
+			public Adapter caseProcedureBlock(ProcedureBlock object) {
+				return createProcedureBlockAdapter();
+			}
+			@Override
+			public Adapter caseIDataType(IDataType object) {
+				return createIDataTypeAdapter();
+			}
+			@Override
+			public Adapter caseIfStatement(IfStatement object) {
+				return createIfStatementAdapter();
+			}
+			@Override
+			public Adapter caseEnum(ro.acorn.zamolxis.oe.demo.abl.Enum object) {
+				return createEnumAdapter();
+			}
+			@Override
+			public Adapter caseCaseStatement(CaseStatement object) {
+				return createCaseStatementAdapter();
+			}
+			@Override
+			public Adapter caseCaseWhen(CaseWhen object) {
+				return createCaseWhenAdapter();
+			}
+			@Override
+			public Adapter caseIfPreprocessor(IfPreprocessor object) {
+				return createIfPreprocessorAdapter();
+			}
+			@Override
+			public Adapter caseElseIfPreprocessor(ElseIfPreprocessor object) {
+				return createElseIfPreprocessorAdapter();
+			}
+			@Override
+			public Adapter caseAnnotation(Annotation object) {
+				return createAnnotationAdapter();
+			}
+			@Override
+			public Adapter caseEnumLiteral(EnumLiteral object) {
+				return createEnumLiteralAdapter();
+			}
+			@Override
+			public Adapter caseOnWidgetTrigger(OnWidgetTrigger object) {
+				return createOnWidgetTriggerAdapter();
+			}
+			@Override
+			public Adapter caseWidgetTrigger(WidgetTrigger object) {
+				return createWidgetTriggerAdapter();
+			}
+			@Override
+			public Adapter caseImage(Image object) {
+				return createImageAdapter();
+			}
+			@Override
+			public Adapter caseExpressionOption(ExpressionOption object) {
+				return createExpressionOptionAdapter();
+			}
+			@Override
+			public Adapter caseSizeOption(SizeOption object) {
+				return createSizeOptionAdapter();
+			}
+			@Override
+			public Adapter defaultCase(EObject object) {
+				return createEObjectAdapter();
+			}
+		};
+
+	/**
+	 * Creates an adapter for the <code>target</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param target the object to adapt.
+	 * @return the adapter for the <code>target</code>.
+	 * @generated
+	 */
+	@Override
+	public Adapter createAdapter(Notifier target) {
+		return modelSwitch.doSwitch((EObject)target);
+	}
+
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.Model <em>Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.Model
+	 * @generated
+	 */
+	public Adapter createModelAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.Statement <em>Statement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.Statement
+	 * @generated
+	 */
+	public Adapter createStatementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.Definition <em>Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.Definition
+	 * @generated
+	 */
+	public Adapter createDefinitionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.Assignment <em>Assignment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.Assignment
+	 * @generated
+	 */
+	public Adapter createAssignmentAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.Assignable <em>Assignable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.Assignable
+	 * @generated
+	 */
+	public Adapter createAssignableAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.Reference <em>Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.Reference
+	 * @generated
+	 */
+	public Adapter createReferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.Property <em>Property</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.Property
+	 * @generated
+	 */
+	public Adapter createPropertyAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.Variable <em>Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.Variable
+	 * @generated
+	 */
+	public Adapter createVariableAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.INamed <em>INamed</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.INamed
+	 * @generated
+	 */
+	public Adapter createINamedAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.Option <em>Option</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.Option
+	 * @generated
+	 */
+	public Adapter createOptionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.ShareOption <em>Share Option</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.ShareOption
+	 * @generated
+	 */
+	public Adapter createShareOptionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.AccessOption <em>Access Option</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.AccessOption
+	 * @generated
+	 */
+	public Adapter createAccessOptionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.ObjectDefinition <em>Object Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.ObjectDefinition
+	 * @generated
+	 */
+	public Adapter createObjectDefinitionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.InitialOption <em>Initial Option</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.InitialOption
+	 * @generated
+	 */
+	public Adapter createInitialOptionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.NamedOption <em>Named Option</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.NamedOption
+	 * @generated
+	 */
+	public Adapter createNamedOptionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.Expression <em>Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.Expression
+	 * @generated
+	 */
+	public Adapter createExpressionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.NumericExpression <em>Numeric Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.NumericExpression
+	 * @generated
+	 */
+	public Adapter createNumericExpressionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.UnaryExpression <em>Unary Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.UnaryExpression
+	 * @generated
+	 */
+	public Adapter createUnaryExpressionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.StringExpression <em>String Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.StringExpression
+	 * @generated
+	 */
+	public Adapter createStringExpressionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.DateExpression <em>Date Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.DateExpression
+	 * @generated
+	 */
+	public Adapter createDateExpressionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.UnknownExpression <em>Unknown Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.UnknownExpression
+	 * @generated
+	 */
+	public Adapter createUnknownExpressionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.LogicalExpression <em>Logical Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.LogicalExpression
+	 * @generated
+	 */
+	public Adapter createLogicalExpressionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.Block <em>Block</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.Block
+	 * @generated
+	 */
+	public Adapter createBlockAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.AssignBlock <em>Assign Block</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.AssignBlock
+	 * @generated
+	 */
+	public Adapter createAssignBlockAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.IterationBlock <em>Iteration Block</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.IterationBlock
+	 * @generated
+	 */
+	public Adapter createIterationBlockAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.CodeBlock <em>Code Block</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.CodeBlock
+	 * @generated
+	 */
+	public Adapter createCodeBlockAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.DirectionalParameter <em>Directional Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.DirectionalParameter
+	 * @generated
+	 */
+	public Adapter createDirectionalParameterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.Interface <em>Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.Interface
+	 * @generated
+	 */
+	public Adapter createInterfaceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.Class <em>Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.Class
+	 * @generated
+	 */
+	public Adapter createClassAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.BlockLevelStatement <em>Block Level Statement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.BlockLevelStatement
+	 * @generated
+	 */
+	public Adapter createBlockLevelStatementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.UsingStatement <em>Using Statement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.UsingStatement
+	 * @generated
+	 */
+	public Adapter createUsingStatementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.BinaryExpression <em>Binary Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.BinaryExpression
+	 * @generated
+	 */
+	public Adapter createBinaryExpressionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.PropertyReference <em>Property Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.PropertyReference
+	 * @generated
+	 */
+	public Adapter createPropertyReferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.ObjectReference <em>Object Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.ObjectReference
+	 * @generated
+	 */
+	public Adapter createObjectReferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.MethodReference <em>Method Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.MethodReference
+	 * @generated
+	 */
+	public Adapter createMethodReferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.FunctionReference <em>Function Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.FunctionReference
+	 * @generated
+	 */
+	public Adapter createFunctionReferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.BuiltInFunctionReference <em>Built In Function Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.BuiltInFunctionReference
+	 * @generated
+	 */
+	public Adapter createBuiltInFunctionReferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.BuiltinFunction <em>Builtin Function</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.BuiltinFunction
+	 * @generated
+	 */
+	public Adapter createBuiltinFunctionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.Primitive <em>Primitive</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.Primitive
+	 * @generated
+	 */
+	public Adapter createPrimitiveAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.DataType <em>Data Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.DataType
+	 * @generated
+	 */
+	public Adapter createDataTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.Runtime <em>Runtime</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.Runtime
+	 * @generated
+	 */
+	public Adapter createRuntimeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.Project <em>Project</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.Project
+	 * @generated
+	 */
+	public Adapter createProjectAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.Runtime12_2 <em>Runtime12 2</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.Runtime12_2
+	 * @generated
+	 */
+	public Adapter createRuntime12_2Adapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.Workspace <em>Workspace</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.Workspace
+	 * @generated
+	 */
+	public Adapter createWorkspaceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.ISerializable <em>ISerializable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.ISerializable
+	 * @generated
+	 */
+	public Adapter createISerializableAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.IncludeStatement <em>Include Statement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.IncludeStatement
+	 * @generated
+	 */
+	public Adapter createIncludeStatementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.IncludeArgument <em>Include Argument</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.IncludeArgument
+	 * @generated
+	 */
+	public Adapter createIncludeArgumentAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.LoopBlock <em>Loop Block</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.LoopBlock
+	 * @generated
+	 */
+	public Adapter createLoopBlockAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.NamedBlock <em>Named Block</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.NamedBlock
+	 * @generated
+	 */
+	public Adapter createNamedBlockAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.ArgumentReference <em>Argument Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.ArgumentReference
+	 * @generated
+	 */
+	public Adapter createArgumentReferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.PreprocessorReference <em>Preprocessor Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.PreprocessorReference
+	 * @generated
+	 */
+	public Adapter createPreprocessorReferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.PreprocessorDirective <em>Preprocessor Directive</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.PreprocessorDirective
+	 * @generated
+	 */
+	public Adapter createPreprocessorDirectiveAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.UndefineDirective <em>Undefine Directive</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.UndefineDirective
+	 * @generated
+	 */
+	public Adapter createUndefineDirectiveAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.VariableParameter <em>Variable Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.VariableParameter
+	 * @generated
+	 */
+	public Adapter createVariableParameterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.Parameter <em>Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.Parameter
+	 * @generated
+	 */
+	public Adapter createParameterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.BufferParameter <em>Buffer Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.BufferParameter
+	 * @generated
+	 */
+	public Adapter createBufferParameterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.TypedParameter <em>Typed Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.TypedParameter
+	 * @generated
+	 */
+	public Adapter createTypedParameterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.TableParameter <em>Table Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.TableParameter
+	 * @generated
+	 */
+	public Adapter createTableParameterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.TempTable <em>Temp Table</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.TempTable
+	 * @generated
+	 */
+	public Adapter createTempTableAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.TableHandleParameter <em>Table Handle Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.TableHandleParameter
+	 * @generated
+	 */
+	public Adapter createTableHandleParameterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.Dataset <em>Dataset</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.Dataset
+	 * @generated
+	 */
+	public Adapter createDatasetAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.DatasetHandleParameter <em>Dataset Handle Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.DatasetHandleParameter
+	 * @generated
+	 */
+	public Adapter createDatasetHandleParameterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.DatasetParameter <em>Dataset Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.DatasetParameter
+	 * @generated
+	 */
+	public Adapter createDatasetParameterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.Buffer <em>Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.Buffer
+	 * @generated
+	 */
+	public Adapter createBufferAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.TableReference <em>Table Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.TableReference
+	 * @generated
+	 */
+	public Adapter createTableReferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.TempTableReference <em>Temp Table Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.TempTableReference
+	 * @generated
+	 */
+	public Adapter createTempTableReferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.ValueOption <em>Value Option</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.ValueOption
+	 * @generated
+	 */
+	public Adapter createValueOptionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.AbstractVariable <em>Abstract Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.AbstractVariable
+	 * @generated
+	 */
+	public Adapter createAbstractVariableAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.TempTableField <em>Temp Table Field</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.TempTableField
+	 * @generated
+	 */
+	public Adapter createTempTableFieldAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.TempTableFieldDataType <em>Temp Table Field Data Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.TempTableFieldDataType
+	 * @generated
+	 */
+	public Adapter createTempTableFieldDataTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.AccessCodeBlock <em>Access Code Block</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.AccessCodeBlock
+	 * @generated
+	 */
+	public Adapter createAccessCodeBlockAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.ReturnCodeBlock <em>Return Code Block</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.ReturnCodeBlock
+	 * @generated
+	 */
+	public Adapter createReturnCodeBlockAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.CatchBlock <em>Catch Block</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.CatchBlock
+	 * @generated
+	 */
+	public Adapter createCatchBlockAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.FunctionBlock <em>Function Block</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.FunctionBlock
+	 * @generated
+	 */
+	public Adapter createFunctionBlockAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.MethodBlock <em>Method Block</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.MethodBlock
+	 * @generated
+	 */
+	public Adapter createMethodBlockAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.ProcedureBlock <em>Procedure Block</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.ProcedureBlock
+	 * @generated
+	 */
+	public Adapter createProcedureBlockAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.IDataType <em>IData Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.IDataType
+	 * @generated
+	 */
+	public Adapter createIDataTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.IfStatement <em>If Statement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.IfStatement
+	 * @generated
+	 */
+	public Adapter createIfStatementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.CaseStatement <em>Case Statement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.CaseStatement
+	 * @generated
+	 */
+	public Adapter createCaseStatementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.CaseWhen <em>Case When</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.CaseWhen
+	 * @generated
+	 */
+	public Adapter createCaseWhenAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.IfPreprocessor <em>If Preprocessor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.IfPreprocessor
+	 * @generated
+	 */
+	public Adapter createIfPreprocessorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.ElseIfPreprocessor <em>Else If Preprocessor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.ElseIfPreprocessor
+	 * @generated
+	 */
+	public Adapter createElseIfPreprocessorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.Annotation <em>Annotation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.Annotation
+	 * @generated
+	 */
+	public Adapter createAnnotationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.Enum <em>Enum</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.Enum
+	 * @generated
+	 */
+	public Adapter createEnumAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.EnumLiteral <em>Enum Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.EnumLiteral
+	 * @generated
+	 */
+	public Adapter createEnumLiteralAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.OnWidgetTrigger <em>On Widget Trigger</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.OnWidgetTrigger
+	 * @generated
+	 */
+	public Adapter createOnWidgetTriggerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.WidgetTrigger <em>Widget Trigger</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.WidgetTrigger
+	 * @generated
+	 */
+	public Adapter createWidgetTriggerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.Image <em>Image</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.Image
+	 * @generated
+	 */
+	public Adapter createImageAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.ExpressionOption <em>Expression Option</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.ExpressionOption
+	 * @generated
+	 */
+	public Adapter createExpressionOptionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ro.acorn.zamolxis.oe.demo.abl.SizeOption <em>Size Option</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ro.acorn.zamolxis.oe.demo.abl.SizeOption
+	 * @generated
+	 */
+	public Adapter createSizeOptionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for the default case.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @generated
+	 */
+	public Adapter createEObjectAdapter() {
+		return null;
+	}
+
+} //OpenEdgeAblAdapterFactory

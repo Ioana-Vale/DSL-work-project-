@@ -1,0 +1,428 @@
+/**
+ * ACORN IT 2024
+ */
+package ro.acorn.zamolxis.oe.demo.abl.impl;
+
+import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import ro.acorn.zamolxis.oe.demo.abl.Expression;
+import ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage;
+import ro.acorn.zamolxis.oe.demo.abl.ValueOption;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Value Option</b></em>'.
+ * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * </p>
+ * <ul>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.impl.ValueOptionImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.impl.ValueOptionImpl#getFileName <em>File Name</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.impl.ValueOptionImpl#getTooltip <em>Tooltip</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.impl.ValueOptionImpl#getBgColor <em>Bg Color</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.impl.ValueOptionImpl#getFgColor <em>Fg Color</em>}</li>
+ * </ul>
+ *
+ * @generated
+ */
+public class ValueOptionImpl extends NamedOptionImpl implements ValueOption {
+	/**
+	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Object VALUE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected Object value = VALUE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getFileName() <em>File Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFileName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String FILE_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getFileName() <em>File Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFileName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String fileName = FILE_NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getTooltip() <em>Tooltip</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTooltip()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String TOOLTIP_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getTooltip() <em>Tooltip</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTooltip()
+	 * @generated
+	 * @ordered
+	 */
+	protected String tooltip = TOOLTIP_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getBgColor() <em>Bg Color</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBgColor()
+	 * @generated
+	 * @ordered
+	 */
+	protected Expression bgColor;
+
+	/**
+	 * The cached value of the '{@link #getFgColor() <em>Fg Color</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFgColor()
+	 * @generated
+	 * @ordered
+	 */
+	protected Expression fgColor;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ValueOptionImpl() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return OpenEdgeAblPackage.Literals.VALUE_OPTION;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object getValue() {
+		return value;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setValue(Object newValue) {
+		Object oldValue = value;
+		value = newValue;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.VALUE_OPTION__VALUE, oldValue, value));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getFileName() {
+		return fileName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setFileName(String newFileName) {
+		String oldFileName = fileName;
+		fileName = newFileName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.VALUE_OPTION__FILE_NAME, oldFileName, fileName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getTooltip() {
+		return tooltip;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setTooltip(String newTooltip) {
+		String oldTooltip = tooltip;
+		tooltip = newTooltip;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.VALUE_OPTION__TOOLTIP, oldTooltip, tooltip));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Expression getBgColor() {
+		return bgColor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetBgColor(Expression newBgColor, NotificationChain msgs) {
+		Expression oldBgColor = bgColor;
+		bgColor = newBgColor;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.VALUE_OPTION__BG_COLOR, oldBgColor, newBgColor);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setBgColor(Expression newBgColor) {
+		if (newBgColor != bgColor) {
+			NotificationChain msgs = null;
+			if (bgColor != null)
+				msgs = ((InternalEObject)bgColor).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OpenEdgeAblPackage.VALUE_OPTION__BG_COLOR, null, msgs);
+			if (newBgColor != null)
+				msgs = ((InternalEObject)newBgColor).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OpenEdgeAblPackage.VALUE_OPTION__BG_COLOR, null, msgs);
+			msgs = basicSetBgColor(newBgColor, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.VALUE_OPTION__BG_COLOR, newBgColor, newBgColor));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Expression getFgColor() {
+		return fgColor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetFgColor(Expression newFgColor, NotificationChain msgs) {
+		Expression oldFgColor = fgColor;
+		fgColor = newFgColor;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.VALUE_OPTION__FG_COLOR, oldFgColor, newFgColor);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setFgColor(Expression newFgColor) {
+		if (newFgColor != fgColor) {
+			NotificationChain msgs = null;
+			if (fgColor != null)
+				msgs = ((InternalEObject)fgColor).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OpenEdgeAblPackage.VALUE_OPTION__FG_COLOR, null, msgs);
+			if (newFgColor != null)
+				msgs = ((InternalEObject)newFgColor).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OpenEdgeAblPackage.VALUE_OPTION__FG_COLOR, null, msgs);
+			msgs = basicSetFgColor(newFgColor, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.VALUE_OPTION__FG_COLOR, newFgColor, newFgColor));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case OpenEdgeAblPackage.VALUE_OPTION__BG_COLOR:
+				return basicSetBgColor(null, msgs);
+			case OpenEdgeAblPackage.VALUE_OPTION__FG_COLOR:
+				return basicSetFgColor(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case OpenEdgeAblPackage.VALUE_OPTION__VALUE:
+				return getValue();
+			case OpenEdgeAblPackage.VALUE_OPTION__FILE_NAME:
+				return getFileName();
+			case OpenEdgeAblPackage.VALUE_OPTION__TOOLTIP:
+				return getTooltip();
+			case OpenEdgeAblPackage.VALUE_OPTION__BG_COLOR:
+				return getBgColor();
+			case OpenEdgeAblPackage.VALUE_OPTION__FG_COLOR:
+				return getFgColor();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case OpenEdgeAblPackage.VALUE_OPTION__VALUE:
+				setValue(newValue);
+				return;
+			case OpenEdgeAblPackage.VALUE_OPTION__FILE_NAME:
+				setFileName((String)newValue);
+				return;
+			case OpenEdgeAblPackage.VALUE_OPTION__TOOLTIP:
+				setTooltip((String)newValue);
+				return;
+			case OpenEdgeAblPackage.VALUE_OPTION__BG_COLOR:
+				setBgColor((Expression)newValue);
+				return;
+			case OpenEdgeAblPackage.VALUE_OPTION__FG_COLOR:
+				setFgColor((Expression)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case OpenEdgeAblPackage.VALUE_OPTION__VALUE:
+				setValue(VALUE_EDEFAULT);
+				return;
+			case OpenEdgeAblPackage.VALUE_OPTION__FILE_NAME:
+				setFileName(FILE_NAME_EDEFAULT);
+				return;
+			case OpenEdgeAblPackage.VALUE_OPTION__TOOLTIP:
+				setTooltip(TOOLTIP_EDEFAULT);
+				return;
+			case OpenEdgeAblPackage.VALUE_OPTION__BG_COLOR:
+				setBgColor((Expression)null);
+				return;
+			case OpenEdgeAblPackage.VALUE_OPTION__FG_COLOR:
+				setFgColor((Expression)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case OpenEdgeAblPackage.VALUE_OPTION__VALUE:
+				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+			case OpenEdgeAblPackage.VALUE_OPTION__FILE_NAME:
+				return FILE_NAME_EDEFAULT == null ? fileName != null : !FILE_NAME_EDEFAULT.equals(fileName);
+			case OpenEdgeAblPackage.VALUE_OPTION__TOOLTIP:
+				return TOOLTIP_EDEFAULT == null ? tooltip != null : !TOOLTIP_EDEFAULT.equals(tooltip);
+			case OpenEdgeAblPackage.VALUE_OPTION__BG_COLOR:
+				return bgColor != null;
+			case OpenEdgeAblPackage.VALUE_OPTION__FG_COLOR:
+				return fgColor != null;
+		}
+		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (value: ");
+		result.append(value);
+		result.append(", fileName: ");
+		result.append(fileName);
+		result.append(", tooltip: ");
+		result.append(tooltip);
+		result.append(')');
+		return result.toString();
+	}
+
+} //ValueOptionImpl

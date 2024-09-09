@@ -1,0 +1,61 @@
+package org.xtext.example.mydsl.builtin;
+
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xtext.example.mydsl.myDsl.FunctionDeclaration;
+import org.xtext.example.mydsl.myDsl.MyDslFactory;
+
+public class MyDslBuiltInFunctions {
+
+	public static Resource loadBuiltInFunctions(ResourceSet resourceSet) {
+        // Creează un resource nou
+		URI uri = URI.createURI("platform:/plugin/org.xtext.example/mydsl/built-in.xmi");
+        Resource resource = resourceSet.createResource(org.eclipse.emf.common.util.URI.createURI("built-in.xml"));
+
+        try {
+        	InputStream xmlInput =  MyDslBuiltInFunctions.class.getClassLoader().getResourceAsStream("Resources/built-in.xml");
+            if (xmlInput == null) {
+                throw new RuntimeException("Cannot find built-in.xml");
+            }
+
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.parse(xmlInput);
+            NodeList functionNodes = document.getElementsByTagName("function");
+
+            for (int i = 0; i < functionNodes.getLength(); i++) {
+                Element functionElement = (Element) functionNodes.item(i);
+                String functionName = functionElement.getElementsByTagName("name").item(0).getTextContent();
+                FunctionDeclaration func = createFunctionDeclaration(functionName);
+                resource.getContents().add(func);
+            }
+
+            // Salvează resursa
+            resource.save(null);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return resource;
+    }
+
+    private static FunctionDeclaration createFunctionDeclaration(String name) {
+        FunctionDeclaration func = MyDslFactory.eINSTANCE.createFunctionDeclaration();
+        func.setName(name);
+        return func;
+    }}

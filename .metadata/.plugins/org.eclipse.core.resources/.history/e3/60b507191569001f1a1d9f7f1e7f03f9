@@ -1,0 +1,10 @@
+<functions>
+<function>
+<name>print</name>
+<parameters>1</parameters>
+</function>
+<function>
+<name>max</name>
+<parameters>value</parameters>
+</function>
+</functions>

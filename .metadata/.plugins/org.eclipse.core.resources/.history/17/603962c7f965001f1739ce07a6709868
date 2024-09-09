@@ -1,0 +1,14 @@
+package org.xtext.example.myDsl;
+
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtext.resource.IResourceServiceProvider;
+import org.eclipse.xtext.resource.impl.AbstractResourceServiceProvider;
+
+public class MyDslResourceServiceProvider extends AbstractResourceServiceProvider {
+    public static class Factory implements IResourceServiceProvider.Factory {
+        @Override
+        public IResourceServiceProvider get(Resource resource) {
+            return new MyDslResourceServiceProvider();
+        }
+    }
+}

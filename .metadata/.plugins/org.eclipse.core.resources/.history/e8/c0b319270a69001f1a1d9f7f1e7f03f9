@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+    <!-- Extensia pentru pachetul generat de EMF -->
+    <extension point="org.eclipse.emf.ecore.generated_package">
+        <package
+            uri="http://www.xtext.org/example/mydsl/MyDsl"
+            class="org.xtext.example.mydsl.myDsl.MyDslPackage"
+            genModel="model/generated/MyDsl.genmodel"/>
+    </extension>
+
+    <!-- Extensia pentru ScopeProvider -->
+    <extension point="org.eclipse.xtext.scoping.Scopes">
+        <scopeProvider
+            class="org.xtext.example.mydsl.scoping.MyDslScopeProvider"
+            uri="http://www.xtext.org/example/mydsl/MyDsl"/>
+    </extension>
+
+    <!-- Extensia pentru generatorul Xtext -->
+    <extension point="org.eclipse.xtext.xtext.generator">
+        <generator
+            class="org.xtext.example.mydsl.generator.MyDslGenerator"/>
+    </extension>
+
+    <!-- Extensia pentru resursa generică -->
+    <extension point="org.eclipse.xtext.resource.generic">
+        <resource
+            uri="http://www.xtext.org/example/mydsl/MyDsl"
+            class="org.xtext.example.mydsl.myDsl.MyDslResource"/>
+    </extension>
+</plugin>

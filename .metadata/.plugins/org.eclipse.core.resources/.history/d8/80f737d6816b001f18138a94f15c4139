@@ -1,0 +1,5369 @@
+/**
+ * ACORN IT 2024
+ */
+package ro.acorn.zamolxis.oe.demo.abl.impl;
+
+import org.eclipse.emf.common.util.URI;
+
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import ro.acorn.zamolxis.oe.demo.abl.AbstractVariable;
+import ro.acorn.zamolxis.oe.demo.abl.AccessCodeBlock;
+import ro.acorn.zamolxis.oe.demo.abl.AccessOption;
+import ro.acorn.zamolxis.oe.demo.abl.AccessType;
+import ro.acorn.zamolxis.oe.demo.abl.Annotation;
+import ro.acorn.zamolxis.oe.demo.abl.ArgumentReference;
+import ro.acorn.zamolxis.oe.demo.abl.AssignBlock;
+import ro.acorn.zamolxis.oe.demo.abl.Assignable;
+import ro.acorn.zamolxis.oe.demo.abl.Assignment;
+import ro.acorn.zamolxis.oe.demo.abl.AssignmentOperator;
+import ro.acorn.zamolxis.oe.demo.abl.BinaryExpression;
+import ro.acorn.zamolxis.oe.demo.abl.BinaryOperator;
+import ro.acorn.zamolxis.oe.demo.abl.Block;
+import ro.acorn.zamolxis.oe.demo.abl.BlockLevelStatement;
+import ro.acorn.zamolxis.oe.demo.abl.BlockLevelType;
+import ro.acorn.zamolxis.oe.demo.abl.Buffer;
+import ro.acorn.zamolxis.oe.demo.abl.BufferParameter;
+import ro.acorn.zamolxis.oe.demo.abl.BuiltInFunctionReference;
+import ro.acorn.zamolxis.oe.demo.abl.BuiltinFunction;
+import ro.acorn.zamolxis.oe.demo.abl.CallConventionType;
+import ro.acorn.zamolxis.oe.demo.abl.CaseStatement;
+import ro.acorn.zamolxis.oe.demo.abl.CaseWhen;
+import ro.acorn.zamolxis.oe.demo.abl.CatchBlock;
+import ro.acorn.zamolxis.oe.demo.abl.CodeBlock;
+import ro.acorn.zamolxis.oe.demo.abl.DataType;
+import ro.acorn.zamolxis.oe.demo.abl.Dataset;
+import ro.acorn.zamolxis.oe.demo.abl.DatasetHandleParameter;
+import ro.acorn.zamolxis.oe.demo.abl.DatasetParameter;
+import ro.acorn.zamolxis.oe.demo.abl.DateExpression;
+import ro.acorn.zamolxis.oe.demo.abl.Definition;
+import ro.acorn.zamolxis.oe.demo.abl.DirectionalParameter;
+import ro.acorn.zamolxis.oe.demo.abl.ElseIfPreprocessor;
+import ro.acorn.zamolxis.oe.demo.abl.EnumLiteral;
+import ro.acorn.zamolxis.oe.demo.abl.Expression;
+import ro.acorn.zamolxis.oe.demo.abl.FieldDataType;
+import ro.acorn.zamolxis.oe.demo.abl.FunctionBlock;
+import ro.acorn.zamolxis.oe.demo.abl.FunctionReference;
+import ro.acorn.zamolxis.oe.demo.abl.IDataType;
+import ro.acorn.zamolxis.oe.demo.abl.INamed;
+import ro.acorn.zamolxis.oe.demo.abl.ISerializable;
+import ro.acorn.zamolxis.oe.demo.abl.IfPreprocessor;
+import ro.acorn.zamolxis.oe.demo.abl.IfStatement;
+import ro.acorn.zamolxis.oe.demo.abl.Image;
+import ro.acorn.zamolxis.oe.demo.abl.ImplementType;
+import ro.acorn.zamolxis.oe.demo.abl.IncludeArgument;
+import ro.acorn.zamolxis.oe.demo.abl.IncludeStatement;
+import ro.acorn.zamolxis.oe.demo.abl.InitialOption;
+import ro.acorn.zamolxis.oe.demo.abl.Interface;
+import ro.acorn.zamolxis.oe.demo.abl.IterationBlock;
+import ro.acorn.zamolxis.oe.demo.abl.LogicalExpression;
+import ro.acorn.zamolxis.oe.demo.abl.LoopBlock;
+import ro.acorn.zamolxis.oe.demo.abl.MethodBlock;
+import ro.acorn.zamolxis.oe.demo.abl.MethodReference;
+import ro.acorn.zamolxis.oe.demo.abl.Model;
+import ro.acorn.zamolxis.oe.demo.abl.NamedBlock;
+import ro.acorn.zamolxis.oe.demo.abl.NamedOption;
+import ro.acorn.zamolxis.oe.demo.abl.NumericExpression;
+import ro.acorn.zamolxis.oe.demo.abl.ObjectDefinition;
+import ro.acorn.zamolxis.oe.demo.abl.ObjectReference;
+import ro.acorn.zamolxis.oe.demo.abl.OnWidgetTrigger;
+import ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblFactory;
+import ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage;
+import ro.acorn.zamolxis.oe.demo.abl.Option;
+import ro.acorn.zamolxis.oe.demo.abl.Parameter;
+import ro.acorn.zamolxis.oe.demo.abl.ParameterDirection;
+import ro.acorn.zamolxis.oe.demo.abl.PreprocessorDirective;
+import ro.acorn.zamolxis.oe.demo.abl.PreprocessorReference;
+import ro.acorn.zamolxis.oe.demo.abl.Primitive;
+import ro.acorn.zamolxis.oe.demo.abl.ProcedureBlock;
+import ro.acorn.zamolxis.oe.demo.abl.Project;
+import ro.acorn.zamolxis.oe.demo.abl.Property;
+import ro.acorn.zamolxis.oe.demo.abl.PropertyReference;
+import ro.acorn.zamolxis.oe.demo.abl.Reference;
+import ro.acorn.zamolxis.oe.demo.abl.ReturnCodeBlock;
+import ro.acorn.zamolxis.oe.demo.abl.Runtime12_2;
+import ro.acorn.zamolxis.oe.demo.abl.ShareOption;
+import ro.acorn.zamolxis.oe.demo.abl.ShareType;
+import ro.acorn.zamolxis.oe.demo.abl.Statement;
+import ro.acorn.zamolxis.oe.demo.abl.StringExpression;
+import ro.acorn.zamolxis.oe.demo.abl.TableHandleParameter;
+import ro.acorn.zamolxis.oe.demo.abl.TableParameter;
+import ro.acorn.zamolxis.oe.demo.abl.TableReference;
+import ro.acorn.zamolxis.oe.demo.abl.TempTable;
+import ro.acorn.zamolxis.oe.demo.abl.TempTableField;
+import ro.acorn.zamolxis.oe.demo.abl.TempTableFieldDataType;
+import ro.acorn.zamolxis.oe.demo.abl.TempTableReference;
+import ro.acorn.zamolxis.oe.demo.abl.TypedParameter;
+import ro.acorn.zamolxis.oe.demo.abl.UnaryExpression;
+import ro.acorn.zamolxis.oe.demo.abl.UnaryOperator;
+import ro.acorn.zamolxis.oe.demo.abl.UndefineDirective;
+import ro.acorn.zamolxis.oe.demo.abl.UnknownExpression;
+import ro.acorn.zamolxis.oe.demo.abl.UsingStatement;
+import ro.acorn.zamolxis.oe.demo.abl.UsingType;
+import ro.acorn.zamolxis.oe.demo.abl.ValueOption;
+import ro.acorn.zamolxis.oe.demo.abl.Variable;
+import ro.acorn.zamolxis.oe.demo.abl.VariableParameter;
+import ro.acorn.zamolxis.oe.demo.abl.WidgetTrigger;
+import ro.acorn.zamolxis.oe.demo.abl.Workspace;
+import ro.acorn.zamolxis.oe.demo.abl.XmlDataType;
+import ro.acorn.zamolxis.oe.demo.abl.XmlNodeType;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model <b>Package</b>.
+ * <!-- end-user-doc -->
+ * @generated
+ */
+public class OpenEdgeAblPackageImpl extends EPackageImpl implements OpenEdgeAblPackage {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass modelEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass statementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass definitionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass assignmentEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass assignableEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass referenceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass propertyEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass variableEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iNamedEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass optionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass shareOptionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass accessOptionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass objectDefinitionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass initialOptionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass namedOptionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass expressionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass numericExpressionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass unaryExpressionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass stringExpressionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass dateExpressionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass unknownExpressionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass logicalExpressionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass blockEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass assignBlockEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iterationBlockEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass codeBlockEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass directionalParameterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass interfaceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass classEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass blockLevelStatementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass usingStatementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass binaryExpressionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass propertyReferenceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass objectReferenceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass methodReferenceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass functionReferenceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass builtInFunctionReferenceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass builtinFunctionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass primitiveEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass dataTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass runtimeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass projectEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass runtime12_2EClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass workspaceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iSerializableEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass includeStatementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass includeArgumentEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass loopBlockEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass namedBlockEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass argumentReferenceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass preprocessorReferenceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass preprocessorDirectiveEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass undefineDirectiveEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass variableParameterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass parameterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass bufferParameterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass typedParameterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass tableParameterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass tempTableEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass tableHandleParameterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass datasetEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass datasetHandleParameterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass datasetParameterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass bufferEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass tableReferenceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass tempTableReferenceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass valueOptionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass abstractVariableEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass tempTableFieldEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass tempTableFieldDataTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass accessCodeBlockEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass returnCodeBlockEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass catchBlockEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass functionBlockEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass methodBlockEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass procedureBlockEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iDataTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass ifStatementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass caseStatementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass caseWhenEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass ifPreprocessorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass elseIfPreprocessorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass annotationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass enumEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass enumLiteralEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass onWidgetTriggerEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass widgetTriggerEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass imageEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum shareTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum accessTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum unaryOperatorEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum assignmentOperatorEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum binaryOperatorEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum parameterDirectionEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum implementTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum blockLevelTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum usingTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum fieldDataTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum xmlNodeTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum xmlDataTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum callConventionTypeEEnum = null;
+
+	/**
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * package URI value.
+	 * <p>Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ecore.EPackage.Registry
+	 * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#eNS_URI
+	 * @see #init()
+	 * @generated
+	 */
+	private OpenEdgeAblPackageImpl() {
+		super(eNS_URI, OpenEdgeAblFactory.eINSTANCE);
+	}
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private static boolean isInited = false;
+
+	/**
+	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+	 *
+	 * <p>This method is used to initialize {@link OpenEdgeAblPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #eNS_URI
+	 * @see #createPackageContents()
+	 * @see #initializePackageContents()
+	 * @generated
+	 */
+	public static OpenEdgeAblPackage init() {
+		if (isInited) return (OpenEdgeAblPackage)EPackage.Registry.INSTANCE.getEPackage(OpenEdgeAblPackage.eNS_URI);
+
+		// Obtain or create and register package
+		Object registeredOpenEdgeAblPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		OpenEdgeAblPackageImpl theOpenEdgeAblPackage = registeredOpenEdgeAblPackage instanceof OpenEdgeAblPackageImpl ? (OpenEdgeAblPackageImpl)registeredOpenEdgeAblPackage : new OpenEdgeAblPackageImpl();
+
+		isInited = true;
+
+		// Create package meta-data objects
+		theOpenEdgeAblPackage.createPackageContents();
+
+		// Initialize created meta-data
+		theOpenEdgeAblPackage.initializePackageContents();
+
+		// Mark meta-data to indicate it can't be changed
+		theOpenEdgeAblPackage.freeze();
+
+		// Update the registry and return the package
+		EPackage.Registry.INSTANCE.put(OpenEdgeAblPackage.eNS_URI, theOpenEdgeAblPackage);
+		return theOpenEdgeAblPackage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getModel() {
+		return modelEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getModel_Project() {
+		return (EReference)modelEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getModel_Main() {
+		return (EReference)modelEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getModel_Name() {
+		return (EAttribute)modelEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getModel_Headers() {
+		return (EReference)modelEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getStatement() {
+		return statementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getDefinition() {
+		return definitionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getDefinition_Options() {
+		return (EReference)definitionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getDefinition_Object() {
+		return (EReference)definitionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getAssignment() {
+		return assignmentEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getAssignment_Assignable() {
+		return (EReference)assignmentEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getAssignment_Expression() {
+		return (EReference)assignmentEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAssignment_Operator() {
+		return (EAttribute)assignmentEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getAssignable() {
+		return assignableEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getReference() {
+		return referenceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getReference_Reference() {
+		return (EReference)referenceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getProperty() {
+		return propertyEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getProperty_Access() {
+		return (EAttribute)propertyEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getProperty_Serializable() {
+		return (EAttribute)propertyEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getProperty_Override() {
+		return (EAttribute)propertyEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getProperty_Initial() {
+		return (EAttribute)propertyEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getProperty_SerializeName() {
+		return (EAttribute)propertyEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getProperty_NoUndo() {
+		return (EAttribute)propertyEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getProperty_Abstract() {
+		return (EAttribute)propertyEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getProperty_Static() {
+		return (EAttribute)propertyEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getProperty_Getter() {
+		return (EReference)propertyEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getProperty_Setter() {
+		return (EReference)propertyEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getVariable() {
+		return variableEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getVariable_Share() {
+		return (EAttribute)variableEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getVariable_Access() {
+		return (EAttribute)variableEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getVariable_Serializable() {
+		return (EAttribute)variableEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getVariable_NoUndo() {
+		return (EAttribute)variableEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getVariable_Static() {
+		return (EAttribute)variableEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getVariable_ContextHelpId() {
+		return (EAttribute)variableEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getVariable_DropTarget() {
+		return (EAttribute)variableEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getINamed() {
+		return iNamedEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getINamed_Name() {
+		return (EAttribute)iNamedEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getOption() {
+		return optionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getShareOption() {
+		return shareOptionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getShareOption_Share() {
+		return (EAttribute)shareOptionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getAccessOption() {
+		return accessOptionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAccessOption_Mode() {
+		return (EAttribute)accessOptionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getObjectDefinition() {
+		return objectDefinitionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getObjectDefinition_Options() {
+		return (EReference)objectDefinitionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getInitialOption() {
+		return initialOptionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getInitialOption_Value() {
+		return (EAttribute)initialOptionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getNamedOption() {
+		return namedOptionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getNamedOption_RetainShape() {
+		return (EAttribute)namedOptionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getNamedOption_Width() {
+		return (EAttribute)namedOptionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getNamedOption_Height() {
+		return (EAttribute)namedOptionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getExpression() {
+		return expressionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getNumericExpression() {
+		return numericExpressionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getNumericExpression__GetLong() {
+		return numericExpressionEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getNumericExpression__GetInt() {
+		return numericExpressionEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getUnaryExpression() {
+		return unaryExpressionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getUnaryExpression_Operator() {
+		return (EAttribute)unaryExpressionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getUnaryExpression_Expression() {
+		return (EReference)unaryExpressionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getStringExpression() {
+		return stringExpressionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getStringExpression_Value() {
+		return (EAttribute)stringExpressionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getDateExpression() {
+		return dateExpressionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getDateExpression__GetDate() {
+		return dateExpressionEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getUnknownExpression() {
+		return unknownExpressionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getLogicalExpression() {
+		return logicalExpressionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getLogicalExpression_Value() {
+		return (EAttribute)logicalExpressionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getBlock() {
+		return blockEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getBlock_Statements() {
+		return (EReference)blockEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getAssignBlock() {
+		return assignBlockEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getIterationBlock() {
+		return iterationBlockEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getCodeBlock() {
+		return codeBlockEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCodeBlock_Parameters() {
+		return (EReference)codeBlockEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCodeBlock_Finally() {
+		return (EReference)codeBlockEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCodeBlock_Catch() {
+		return (EReference)codeBlockEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getDirectionalParameter() {
+		return directionalParameterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDirectionalParameter_Direction() {
+		return (EAttribute)directionalParameterEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getDirectionalParameter_Type() {
+		return (EReference)directionalParameterEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getInterface() {
+		return interfaceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getInterface_Implements() {
+		return (EReference)interfaceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getInterface_Block() {
+		return (EReference)interfaceEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getClass_() {
+		return classEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getClass_Inherits() {
+		return (EReference)classEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getClass_Serializable() {
+		return (EAttribute)classEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getClass_WidgetPool() {
+		return (EAttribute)classEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getClass_Implementation() {
+		return (EAttribute)classEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getBlockLevelStatement() {
+		return blockLevelStatementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBlockLevelStatement_Level() {
+		return (EAttribute)blockLevelStatementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getUsingStatement() {
+		return usingStatementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getUsingStatement_Type() {
+		return (EAttribute)usingStatementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getUsingStatement_Package() {
+		return (EAttribute)usingStatementEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getUsingStatement_Class() {
+		return (EReference)usingStatementEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getBinaryExpression() {
+		return binaryExpressionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBinaryExpression_Operator() {
+		return (EAttribute)binaryExpressionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getBinaryExpression_Left() {
+		return (EReference)binaryExpressionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getBinaryExpression_Right() {
+		return (EReference)binaryExpressionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getPropertyReference() {
+		return propertyReferenceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getPropertyReference_Object() {
+		return (EReference)propertyReferenceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getObjectReference() {
+		return objectReferenceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getMethodReference() {
+		return methodReferenceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getMethodReference_Parameters() {
+		return (EReference)methodReferenceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getFunctionReference() {
+		return functionReferenceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getFunctionReference_Parameters() {
+		return (EReference)functionReferenceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getBuiltInFunctionReference() {
+		return builtInFunctionReferenceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getBuiltInFunctionReference_Function() {
+		return (EReference)builtInFunctionReferenceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getBuiltinFunction() {
+		return builtinFunctionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getPrimitive() {
+		return primitiveEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getDataType() {
+		return dataTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getRuntime() {
+		return runtimeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getRuntime_Primitives() {
+		return (EReference)runtimeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getRuntime__GetKeyword__String() {
+		return runtimeEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getRuntime__GetMajorVersion() {
+		return runtimeEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getRuntime__GetMinorVersion() {
+		return runtimeEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getRuntime__GetPatchVersion() {
+		return runtimeEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getRuntime__GetVersion() {
+		return runtimeEClass.getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getRuntime__GetPackage() {
+		return runtimeEClass.getEOperations().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getProject() {
+		return projectEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getProject_Runtime() {
+		return (EReference)projectEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getProject_Propath() {
+		return (EAttribute)projectEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getProject_Location() {
+		return (EAttribute)projectEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getProject_RuntimeVersion() {
+		return (EAttribute)projectEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getRuntime12_2() {
+		return runtime12_2EClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getWorkspace() {
+		return workspaceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getWorkspace_Projects() {
+		return (EReference)workspaceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getWorkspace_Runtimes() {
+		return (EReference)workspaceEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getWorkspace_Location() {
+		return (EAttribute)workspaceEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getISerializable() {
+		return iSerializableEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getISerializable__Serialize() {
+		return iSerializableEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getISerializable__Deserialize__String() {
+		return iSerializableEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getIncludeStatement() {
+		return includeStatementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getIncludeStatement_Arguments() {
+		return (EReference)includeStatementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getIncludeStatement_Include() {
+		return (EReference)includeStatementEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getIncludeArgument() {
+		return includeArgumentEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getIncludeArgument_Value() {
+		return (EAttribute)includeArgumentEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getLoopBlock() {
+		return loopBlockEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getNamedBlock() {
+		return namedBlockEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getNamedBlock_Block() {
+		return (EReference)namedBlockEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getArgumentReference() {
+		return argumentReferenceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getArgumentReference_Index() {
+		return (EAttribute)argumentReferenceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getPreprocessorReference() {
+		return preprocessorReferenceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getPreprocessorDirective() {
+		return preprocessorDirectiveEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getPreprocessorDirective_Global() {
+		return (EAttribute)preprocessorDirectiveEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getPreprocessorDirective_Definition() {
+		return (EAttribute)preprocessorDirectiveEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getPreprocessorDirective_Statement() {
+		return (EAttribute)preprocessorDirectiveEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getUndefineDirective() {
+		return undefineDirectiveEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getVariableParameter() {
+		return variableParameterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getVariableParameter_Class() {
+		return (EAttribute)variableParameterEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getVariableParameter_Handle() {
+		return (EAttribute)variableParameterEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getVariableParameter_DataType() {
+		return (EReference)variableParameterEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getParameter() {
+		return parameterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getBufferParameter() {
+		return bufferParameterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBufferParameter_Table() {
+		return (EAttribute)bufferParameterEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBufferParameter_Preselect() {
+		return (EAttribute)bufferParameterEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getTypedParameter() {
+		return typedParameterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getTableParameter() {
+		return tableParameterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getTableParameter_Append() {
+		return (EAttribute)tableParameterEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getTableParameter_Bind() {
+		return (EAttribute)tableParameterEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getTableParameter_ByValue() {
+		return (EAttribute)tableParameterEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getTableParameter_Table() {
+		return (EReference)tableParameterEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getTempTable() {
+		return tempTableEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getTempTable_Access() {
+		return (EAttribute)tempTableEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getTempTable_Serializable() {
+		return (EAttribute)tempTableEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getTempTable_NoUndo() {
+		return (EAttribute)tempTableEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getTableHandleParameter() {
+		return tableHandleParameterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getTableHandleParameter_Bind() {
+		return (EAttribute)tableHandleParameterEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getTableHandleParameter_ByValue() {
+		return (EAttribute)tableHandleParameterEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getDataset() {
+		return datasetEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDataset_Access() {
+		return (EAttribute)datasetEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDataset_Serializable() {
+		return (EAttribute)datasetEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDataset_NoUndo() {
+		return (EAttribute)datasetEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDataset_NamespaceUri() {
+		return (EAttribute)datasetEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDataset_NamespacePrefix() {
+		return (EAttribute)datasetEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDataset_XmlNodeName() {
+		return (EAttribute)datasetEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDataset_SerializeName() {
+		return (EAttribute)datasetEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDataset_SerializeHidden() {
+		return (EAttribute)datasetEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDataset_ReferenceOnly() {
+		return (EAttribute)datasetEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getDataset_Tables() {
+		return (EReference)datasetEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getDatasetHandleParameter() {
+		return datasetHandleParameterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getDatasetParameter() {
+		return datasetParameterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDatasetParameter_Append() {
+		return (EAttribute)datasetParameterEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDatasetParameter_Bind() {
+		return (EAttribute)datasetParameterEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getDatasetParameter_ByValue() {
+		return (EAttribute)datasetParameterEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getDatasetParameter_Dataset() {
+		return (EReference)datasetParameterEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getBuffer() {
+		return bufferEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBuffer_Preselect() {
+		return (EAttribute)bufferEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBuffer_NamespaceUri() {
+		return (EAttribute)bufferEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBuffer_NamespacePrefix() {
+		return (EAttribute)bufferEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBuffer_XmlNodeName() {
+		return (EAttribute)bufferEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBuffer_Label() {
+		return (EAttribute)bufferEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getBuffer_Table() {
+		return (EReference)bufferEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getTableReference() {
+		return tableReferenceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getTempTableReference() {
+		return tempTableReferenceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getTempTableReference_Table() {
+		return (EReference)tempTableReferenceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getValueOption() {
+		return valueOptionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getValueOption_Value() {
+		return (EAttribute)valueOptionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getValueOption_FileName() {
+		return (EAttribute)valueOptionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getValueOption_Tooltip() {
+		return (EAttribute)valueOptionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getValueOption_BgColor() {
+		return (EReference)valueOptionEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getValueOption_FgColor() {
+		return (EReference)valueOptionEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getAbstractVariable() {
+		return abstractVariableEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAbstractVariable_Decimals() {
+		return (EAttribute)abstractVariableEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAbstractVariable_ColumnLabel() {
+		return (EAttribute)abstractVariableEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAbstractVariable_Label() {
+		return (EAttribute)abstractVariableEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAbstractVariable_Format() {
+		return (EAttribute)abstractVariableEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAbstractVariable_BgColor() {
+		return (EAttribute)abstractVariableEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAbstractVariable_DColor() {
+		return (EAttribute)abstractVariableEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAbstractVariable_FgColor() {
+		return (EAttribute)abstractVariableEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAbstractVariable_Font() {
+		return (EAttribute)abstractVariableEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAbstractVariable_Help() {
+		return (EAttribute)abstractVariableEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAbstractVariable_PfColor() {
+		return (EAttribute)abstractVariableEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAbstractVariable_Initial() {
+		return (EAttribute)abstractVariableEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAbstractVariable_SerializeName() {
+		return (EAttribute)abstractVariableEClass.getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAbstractVariable_XmlNodeName() {
+		return (EAttribute)abstractVariableEClass.getEStructuralFeatures().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAbstractVariable_MousePointer() {
+		return (EAttribute)abstractVariableEClass.getEStructuralFeatures().get(13);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAbstractVariable_XmlNodeType() {
+		return (EAttribute)abstractVariableEClass.getEStructuralFeatures().get(14);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAbstractVariable_XmlDataType() {
+		return (EAttribute)abstractVariableEClass.getEStructuralFeatures().get(15);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAbstractVariable_CaseSensitive() {
+		return (EAttribute)abstractVariableEClass.getEStructuralFeatures().get(16);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getTempTableField() {
+		return tempTableFieldEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getTempTableField_TtCodePage() {
+		return (EAttribute)tempTableFieldEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getTempTableField_SerializeHidden() {
+		return (EAttribute)tempTableFieldEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getTempTableFieldDataType() {
+		return tempTableFieldDataTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getTempTableFieldDataType_Type() {
+		return (EAttribute)tempTableFieldDataTypeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getAccessCodeBlock() {
+		return accessCodeBlockEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAccessCodeBlock_Access() {
+		return (EAttribute)accessCodeBlockEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getReturnCodeBlock() {
+		return returnCodeBlockEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getReturnCodeBlock_Return() {
+		return (EReference)returnCodeBlockEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getReturnCodeBlock_Extent() {
+		return (EAttribute)returnCodeBlockEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getReturnCodeBlock_ExtentLen() {
+		return (EAttribute)returnCodeBlockEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getCatchBlock() {
+		return catchBlockEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getCatchBlock_Variable() {
+		return (EAttribute)catchBlockEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCatchBlock_ClassType() {
+		return (EReference)catchBlockEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getFunctionBlock() {
+		return functionBlockEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getFunctionBlock_Forward() {
+		return (EAttribute)functionBlockEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getFunctionBlock_MapTo() {
+		return (EAttribute)functionBlockEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getFunctionBlock_InSuper() {
+		return (EAttribute)functionBlockEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getFunctionBlock_InHandle() {
+		return (EReference)functionBlockEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getMethodBlock() {
+		return methodBlockEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getMethodBlock_Static() {
+		return (EAttribute)methodBlockEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getMethodBlock_Abstract() {
+		return (EAttribute)methodBlockEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getMethodBlock_Override() {
+		return (EAttribute)methodBlockEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getMethodBlock_Final() {
+		return (EAttribute)methodBlockEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getProcedureBlock() {
+		return procedureBlockEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getProcedureBlock_Persistent() {
+		return (EAttribute)procedureBlockEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getProcedureBlock_Ordinal() {
+		return (EAttribute)procedureBlockEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getProcedureBlock_InSuper() {
+		return (EAttribute)procedureBlockEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getProcedureBlock_ThreadSafe() {
+		return (EAttribute)procedureBlockEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getProcedureBlock_CallConvention() {
+		return (EAttribute)procedureBlockEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getProcedureBlock_External() {
+		return (EAttribute)procedureBlockEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getIDataType() {
+		return iDataTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getIDataType_DataType() {
+		return (EReference)iDataTypeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getIDataType_Extent() {
+		return (EAttribute)iDataTypeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getIDataType_ExtentLen() {
+		return (EAttribute)iDataTypeEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getIfStatement() {
+		return ifStatementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getIfStatement_Condition() {
+		return (EReference)ifStatementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getIfStatement_Then() {
+		return (EReference)ifStatementEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getIfStatement_Else() {
+		return (EReference)ifStatementEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getCaseStatement() {
+		return caseStatementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCaseStatement_Expression() {
+		return (EReference)caseStatementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCaseStatement_When() {
+		return (EReference)caseStatementEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCaseStatement_Otherwise() {
+		return (EReference)caseStatementEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getCaseWhen() {
+		return caseWhenEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCaseWhen_Value() {
+		return (EReference)caseWhenEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCaseWhen_Statement() {
+		return (EReference)caseWhenEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getIfPreprocessor() {
+		return ifPreprocessorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getIfPreprocessor_Condition() {
+		return (EReference)ifPreprocessorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getIfPreprocessor_Then() {
+		return (EReference)ifPreprocessorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getIfPreprocessor_Else() {
+		return (EReference)ifPreprocessorEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getIfPreprocessor_ElseIf() {
+		return (EReference)ifPreprocessorEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getElseIfPreprocessor() {
+		return elseIfPreprocessorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getElseIfPreprocessor_Condition() {
+		return (EReference)elseIfPreprocessorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getElseIfPreprocessor_Then() {
+		return (EReference)elseIfPreprocessorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getAnnotation() {
+		return annotationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAnnotation_Name() {
+		return (EAttribute)annotationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAnnotation_Object() {
+		return (EAttribute)annotationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getAnnotation_Value() {
+		return (EReference)annotationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getEnum() {
+		return enumEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getEnum_Flags() {
+		return (EAttribute)enumEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getEnum_Members() {
+		return (EReference)enumEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getEnumLiteral() {
+		return enumLiteralEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getEnumLiteral_Value() {
+		return (EAttribute)enumLiteralEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getEnumLiteral_Members() {
+		return (EReference)enumLiteralEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getOnWidgetTrigger() {
+		return onWidgetTriggerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getOnWidgetTrigger_Entries() {
+		return (EReference)onWidgetTriggerEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getWidgetTrigger() {
+		return widgetTriggerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getWidgetTrigger_Events() {
+		return (EAttribute)widgetTriggerEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getWidgetTrigger_Anywhere() {
+		return (EAttribute)widgetTriggerEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getWidgetTrigger_Widgets() {
+		return (EReference)widgetTriggerEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getWidgetTrigger_Revert() {
+		return (EAttribute)widgetTriggerEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getWidgetTrigger_Procedure() {
+		return (EAttribute)widgetTriggerEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getWidgetTrigger_Parameters() {
+		return (EReference)widgetTriggerEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getWidgetTrigger_In() {
+		return (EReference)widgetTriggerEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getWidgetTrigger_Block() {
+		return (EReference)widgetTriggerEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getImage() {
+		return imageEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getImage_Tooltip() {
+		return (EAttribute)imageEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getImage_Stretch_to_fit() {
+		return (EAttribute)imageEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getImage_Transparent() {
+		return (EAttribute)imageEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getImage_Convert_3d_colors() {
+		return (EAttribute)imageEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getImage_Retain_shape() {
+		return (EAttribute)imageEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getImage_BgColor() {
+		return (EReference)imageEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getImage_FgColor() {
+		return (EReference)imageEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EEnum getShareType() {
+		return shareTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EEnum getAccessType() {
+		return accessTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EEnum getUnaryOperator() {
+		return unaryOperatorEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EEnum getAssignmentOperator() {
+		return assignmentOperatorEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EEnum getBinaryOperator() {
+		return binaryOperatorEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EEnum getParameterDirection() {
+		return parameterDirectionEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EEnum getImplementType() {
+		return implementTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EEnum getBlockLevelType() {
+		return blockLevelTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EEnum getUsingType() {
+		return usingTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EEnum getFieldDataType() {
+		return fieldDataTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EEnum getXmlNodeType() {
+		return xmlNodeTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EEnum getXmlDataType() {
+		return xmlDataTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EEnum getCallConventionType() {
+		return callConventionTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public OpenEdgeAblFactory getOpenEdgeAblFactory() {
+		return (OpenEdgeAblFactory)getEFactoryInstance();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private boolean isCreated = false;
+
+	/**
+	 * Creates the meta-model objects for the package.  This method is
+	 * guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void createPackageContents() {
+		if (isCreated) return;
+		isCreated = true;
+
+		// Create classes and their features
+		modelEClass = createEClass(MODEL);
+		createEReference(modelEClass, MODEL__PROJECT);
+		createEReference(modelEClass, MODEL__MAIN);
+		createEAttribute(modelEClass, MODEL__NAME);
+		createEReference(modelEClass, MODEL__HEADERS);
+
+		statementEClass = createEClass(STATEMENT);
+
+		definitionEClass = createEClass(DEFINITION);
+		createEReference(definitionEClass, DEFINITION__OPTIONS);
+		createEReference(definitionEClass, DEFINITION__OBJECT);
+
+		assignmentEClass = createEClass(ASSIGNMENT);
+		createEReference(assignmentEClass, ASSIGNMENT__ASSIGNABLE);
+		createEReference(assignmentEClass, ASSIGNMENT__EXPRESSION);
+		createEAttribute(assignmentEClass, ASSIGNMENT__OPERATOR);
+
+		assignableEClass = createEClass(ASSIGNABLE);
+
+		referenceEClass = createEClass(REFERENCE);
+		createEReference(referenceEClass, REFERENCE__REFERENCE);
+
+		propertyEClass = createEClass(PROPERTY);
+		createEAttribute(propertyEClass, PROPERTY__ACCESS);
+		createEAttribute(propertyEClass, PROPERTY__SERIALIZABLE);
+		createEAttribute(propertyEClass, PROPERTY__OVERRIDE);
+		createEAttribute(propertyEClass, PROPERTY__INITIAL);
+		createEAttribute(propertyEClass, PROPERTY__SERIALIZE_NAME);
+		createEAttribute(propertyEClass, PROPERTY__NO_UNDO);
+		createEAttribute(propertyEClass, PROPERTY__ABSTRACT);
+		createEAttribute(propertyEClass, PROPERTY__STATIC);
+		createEReference(propertyEClass, PROPERTY__GETTER);
+		createEReference(propertyEClass, PROPERTY__SETTER);
+
+		variableEClass = createEClass(VARIABLE);
+		createEAttribute(variableEClass, VARIABLE__SHARE);
+		createEAttribute(variableEClass, VARIABLE__ACCESS);
+		createEAttribute(variableEClass, VARIABLE__SERIALIZABLE);
+		createEAttribute(variableEClass, VARIABLE__NO_UNDO);
+		createEAttribute(variableEClass, VARIABLE__STATIC);
+		createEAttribute(variableEClass, VARIABLE__CONTEXT_HELP_ID);
+		createEAttribute(variableEClass, VARIABLE__DROP_TARGET);
+
+		iNamedEClass = createEClass(INAMED);
+		createEAttribute(iNamedEClass, INAMED__NAME);
+
+		optionEClass = createEClass(OPTION);
+
+		shareOptionEClass = createEClass(SHARE_OPTION);
+		createEAttribute(shareOptionEClass, SHARE_OPTION__SHARE);
+
+		accessOptionEClass = createEClass(ACCESS_OPTION);
+		createEAttribute(accessOptionEClass, ACCESS_OPTION__MODE);
+
+		objectDefinitionEClass = createEClass(OBJECT_DEFINITION);
+		createEReference(objectDefinitionEClass, OBJECT_DEFINITION__OPTIONS);
+
+		initialOptionEClass = createEClass(INITIAL_OPTION);
+		createEAttribute(initialOptionEClass, INITIAL_OPTION__VALUE);
+
+		namedOptionEClass = createEClass(NAMED_OPTION);
+		createEAttribute(namedOptionEClass, NAMED_OPTION__RETAIN_SHAPE);
+		createEAttribute(namedOptionEClass, NAMED_OPTION__WIDTH);
+		createEAttribute(namedOptionEClass, NAMED_OPTION__HEIGHT);
+
+		expressionEClass = createEClass(EXPRESSION);
+
+		numericExpressionEClass = createEClass(NUMERIC_EXPRESSION);
+		createEOperation(numericExpressionEClass, NUMERIC_EXPRESSION___GET_LONG);
+		createEOperation(numericExpressionEClass, NUMERIC_EXPRESSION___GET_INT);
+
+		unaryExpressionEClass = createEClass(UNARY_EXPRESSION);
+		createEAttribute(unaryExpressionEClass, UNARY_EXPRESSION__OPERATOR);
+		createEReference(unaryExpressionEClass, UNARY_EXPRESSION__EXPRESSION);
+
+		stringExpressionEClass = createEClass(STRING_EXPRESSION);
+		createEAttribute(stringExpressionEClass, STRING_EXPRESSION__VALUE);
+
+		dateExpressionEClass = createEClass(DATE_EXPRESSION);
+		createEOperation(dateExpressionEClass, DATE_EXPRESSION___GET_DATE);
+
+		unknownExpressionEClass = createEClass(UNKNOWN_EXPRESSION);
+
+		logicalExpressionEClass = createEClass(LOGICAL_EXPRESSION);
+		createEAttribute(logicalExpressionEClass, LOGICAL_EXPRESSION__VALUE);
+
+		blockEClass = createEClass(BLOCK);
+		createEReference(blockEClass, BLOCK__STATEMENTS);
+
+		assignBlockEClass = createEClass(ASSIGN_BLOCK);
+
+		iterationBlockEClass = createEClass(ITERATION_BLOCK);
+
+		codeBlockEClass = createEClass(CODE_BLOCK);
+		createEReference(codeBlockEClass, CODE_BLOCK__PARAMETERS);
+		createEReference(codeBlockEClass, CODE_BLOCK__FINALLY);
+		createEReference(codeBlockEClass, CODE_BLOCK__CATCH);
+
+		directionalParameterEClass = createEClass(DIRECTIONAL_PARAMETER);
+		createEAttribute(directionalParameterEClass, DIRECTIONAL_PARAMETER__DIRECTION);
+		createEReference(directionalParameterEClass, DIRECTIONAL_PARAMETER__TYPE);
+
+		interfaceEClass = createEClass(INTERFACE);
+		createEReference(interfaceEClass, INTERFACE__IMPLEMENTS);
+		createEReference(interfaceEClass, INTERFACE__BLOCK);
+
+		classEClass = createEClass(CLASS);
+		createEReference(classEClass, CLASS__INHERITS);
+		createEAttribute(classEClass, CLASS__SERIALIZABLE);
+		createEAttribute(classEClass, CLASS__WIDGET_POOL);
+		createEAttribute(classEClass, CLASS__IMPLEMENTATION);
+
+		blockLevelStatementEClass = createEClass(BLOCK_LEVEL_STATEMENT);
+		createEAttribute(blockLevelStatementEClass, BLOCK_LEVEL_STATEMENT__LEVEL);
+
+		usingStatementEClass = createEClass(USING_STATEMENT);
+		createEAttribute(usingStatementEClass, USING_STATEMENT__TYPE);
+		createEAttribute(usingStatementEClass, USING_STATEMENT__PACKAGE);
+		createEReference(usingStatementEClass, USING_STATEMENT__CLASS);
+
+		binaryExpressionEClass = createEClass(BINARY_EXPRESSION);
+		createEAttribute(binaryExpressionEClass, BINARY_EXPRESSION__OPERATOR);
+		createEReference(binaryExpressionEClass, BINARY_EXPRESSION__LEFT);
+		createEReference(binaryExpressionEClass, BINARY_EXPRESSION__RIGHT);
+
+		propertyReferenceEClass = createEClass(PROPERTY_REFERENCE);
+		createEReference(propertyReferenceEClass, PROPERTY_REFERENCE__OBJECT);
+
+		objectReferenceEClass = createEClass(OBJECT_REFERENCE);
+
+		methodReferenceEClass = createEClass(METHOD_REFERENCE);
+		createEReference(methodReferenceEClass, METHOD_REFERENCE__PARAMETERS);
+
+		functionReferenceEClass = createEClass(FUNCTION_REFERENCE);
+		createEReference(functionReferenceEClass, FUNCTION_REFERENCE__PARAMETERS);
+
+		builtInFunctionReferenceEClass = createEClass(BUILT_IN_FUNCTION_REFERENCE);
+		createEReference(builtInFunctionReferenceEClass, BUILT_IN_FUNCTION_REFERENCE__FUNCTION);
+
+		builtinFunctionEClass = createEClass(BUILTIN_FUNCTION);
+
+		primitiveEClass = createEClass(PRIMITIVE);
+
+		dataTypeEClass = createEClass(DATA_TYPE);
+
+		runtimeEClass = createEClass(RUNTIME);
+		createEReference(runtimeEClass, RUNTIME__PRIMITIVES);
+		createEOperation(runtimeEClass, RUNTIME___GET_KEYWORD__STRING);
+		createEOperation(runtimeEClass, RUNTIME___GET_MAJOR_VERSION);
+		createEOperation(runtimeEClass, RUNTIME___GET_MINOR_VERSION);
+		createEOperation(runtimeEClass, RUNTIME___GET_PATCH_VERSION);
+		createEOperation(runtimeEClass, RUNTIME___GET_VERSION);
+		createEOperation(runtimeEClass, RUNTIME___GET_PACKAGE);
+
+		projectEClass = createEClass(PROJECT);
+		createEReference(projectEClass, PROJECT__RUNTIME);
+		createEAttribute(projectEClass, PROJECT__PROPATH);
+		createEAttribute(projectEClass, PROJECT__LOCATION);
+		createEAttribute(projectEClass, PROJECT__RUNTIME_VERSION);
+
+		runtime12_2EClass = createEClass(RUNTIME12_2);
+
+		workspaceEClass = createEClass(WORKSPACE);
+		createEReference(workspaceEClass, WORKSPACE__PROJECTS);
+		createEReference(workspaceEClass, WORKSPACE__RUNTIMES);
+		createEAttribute(workspaceEClass, WORKSPACE__LOCATION);
+
+		iSerializableEClass = createEClass(ISERIALIZABLE);
+		createEOperation(iSerializableEClass, ISERIALIZABLE___SERIALIZE);
+		createEOperation(iSerializableEClass, ISERIALIZABLE___DESERIALIZE__STRING);
+
+		includeStatementEClass = createEClass(INCLUDE_STATEMENT);
+		createEReference(includeStatementEClass, INCLUDE_STATEMENT__ARGUMENTS);
+		createEReference(includeStatementEClass, INCLUDE_STATEMENT__INCLUDE);
+
+		includeArgumentEClass = createEClass(INCLUDE_ARGUMENT);
+		createEAttribute(includeArgumentEClass, INCLUDE_ARGUMENT__VALUE);
+
+		loopBlockEClass = createEClass(LOOP_BLOCK);
+
+		namedBlockEClass = createEClass(NAMED_BLOCK);
+		createEReference(namedBlockEClass, NAMED_BLOCK__BLOCK);
+
+		argumentReferenceEClass = createEClass(ARGUMENT_REFERENCE);
+		createEAttribute(argumentReferenceEClass, ARGUMENT_REFERENCE__INDEX);
+
+		preprocessorReferenceEClass = createEClass(PREPROCESSOR_REFERENCE);
+
+		preprocessorDirectiveEClass = createEClass(PREPROCESSOR_DIRECTIVE);
+		createEAttribute(preprocessorDirectiveEClass, PREPROCESSOR_DIRECTIVE__GLOBAL);
+		createEAttribute(preprocessorDirectiveEClass, PREPROCESSOR_DIRECTIVE__DEFINITION);
+		createEAttribute(preprocessorDirectiveEClass, PREPROCESSOR_DIRECTIVE__STATEMENT);
+
+		undefineDirectiveEClass = createEClass(UNDEFINE_DIRECTIVE);
+
+		variableParameterEClass = createEClass(VARIABLE_PARAMETER);
+		createEAttribute(variableParameterEClass, VARIABLE_PARAMETER__CLASS);
+		createEAttribute(variableParameterEClass, VARIABLE_PARAMETER__HANDLE);
+		createEReference(variableParameterEClass, VARIABLE_PARAMETER__DATA_TYPE);
+
+		parameterEClass = createEClass(PARAMETER);
+
+		bufferParameterEClass = createEClass(BUFFER_PARAMETER);
+		createEAttribute(bufferParameterEClass, BUFFER_PARAMETER__TABLE);
+		createEAttribute(bufferParameterEClass, BUFFER_PARAMETER__PRESELECT);
+
+		typedParameterEClass = createEClass(TYPED_PARAMETER);
+
+		tableParameterEClass = createEClass(TABLE_PARAMETER);
+		createEAttribute(tableParameterEClass, TABLE_PARAMETER__APPEND);
+		createEAttribute(tableParameterEClass, TABLE_PARAMETER__BIND);
+		createEAttribute(tableParameterEClass, TABLE_PARAMETER__BY_VALUE);
+		createEReference(tableParameterEClass, TABLE_PARAMETER__TABLE);
+
+		tempTableEClass = createEClass(TEMP_TABLE);
+		createEAttribute(tempTableEClass, TEMP_TABLE__ACCESS);
+		createEAttribute(tempTableEClass, TEMP_TABLE__SERIALIZABLE);
+		createEAttribute(tempTableEClass, TEMP_TABLE__NO_UNDO);
+
+		tableHandleParameterEClass = createEClass(TABLE_HANDLE_PARAMETER);
+		createEAttribute(tableHandleParameterEClass, TABLE_HANDLE_PARAMETER__BIND);
+		createEAttribute(tableHandleParameterEClass, TABLE_HANDLE_PARAMETER__BY_VALUE);
+
+		datasetEClass = createEClass(DATASET);
+		createEAttribute(datasetEClass, DATASET__ACCESS);
+		createEAttribute(datasetEClass, DATASET__SERIALIZABLE);
+		createEAttribute(datasetEClass, DATASET__NO_UNDO);
+		createEAttribute(datasetEClass, DATASET__NAMESPACE_URI);
+		createEAttribute(datasetEClass, DATASET__NAMESPACE_PREFIX);
+		createEAttribute(datasetEClass, DATASET__XML_NODE_NAME);
+		createEAttribute(datasetEClass, DATASET__SERIALIZE_NAME);
+		createEAttribute(datasetEClass, DATASET__SERIALIZE_HIDDEN);
+		createEAttribute(datasetEClass, DATASET__REFERENCE_ONLY);
+		createEReference(datasetEClass, DATASET__TABLES);
+
+		datasetHandleParameterEClass = createEClass(DATASET_HANDLE_PARAMETER);
+
+		datasetParameterEClass = createEClass(DATASET_PARAMETER);
+		createEAttribute(datasetParameterEClass, DATASET_PARAMETER__APPEND);
+		createEAttribute(datasetParameterEClass, DATASET_PARAMETER__BIND);
+		createEAttribute(datasetParameterEClass, DATASET_PARAMETER__BY_VALUE);
+		createEReference(datasetParameterEClass, DATASET_PARAMETER__DATASET);
+
+		bufferEClass = createEClass(BUFFER);
+		createEAttribute(bufferEClass, BUFFER__PRESELECT);
+		createEAttribute(bufferEClass, BUFFER__NAMESPACE_URI);
+		createEAttribute(bufferEClass, BUFFER__NAMESPACE_PREFIX);
+		createEAttribute(bufferEClass, BUFFER__XML_NODE_NAME);
+		createEAttribute(bufferEClass, BUFFER__LABEL);
+		createEReference(bufferEClass, BUFFER__TABLE);
+
+		tableReferenceEClass = createEClass(TABLE_REFERENCE);
+
+		tempTableReferenceEClass = createEClass(TEMP_TABLE_REFERENCE);
+		createEReference(tempTableReferenceEClass, TEMP_TABLE_REFERENCE__TABLE);
+
+		valueOptionEClass = createEClass(VALUE_OPTION);
+		createEAttribute(valueOptionEClass, VALUE_OPTION__VALUE);
+		createEAttribute(valueOptionEClass, VALUE_OPTION__FILE_NAME);
+		createEAttribute(valueOptionEClass, VALUE_OPTION__TOOLTIP);
+		createEReference(valueOptionEClass, VALUE_OPTION__BG_COLOR);
+		createEReference(valueOptionEClass, VALUE_OPTION__FG_COLOR);
+
+		abstractVariableEClass = createEClass(ABSTRACT_VARIABLE);
+		createEAttribute(abstractVariableEClass, ABSTRACT_VARIABLE__DECIMALS);
+		createEAttribute(abstractVariableEClass, ABSTRACT_VARIABLE__COLUMN_LABEL);
+		createEAttribute(abstractVariableEClass, ABSTRACT_VARIABLE__LABEL);
+		createEAttribute(abstractVariableEClass, ABSTRACT_VARIABLE__FORMAT);
+		createEAttribute(abstractVariableEClass, ABSTRACT_VARIABLE__BG_COLOR);
+		createEAttribute(abstractVariableEClass, ABSTRACT_VARIABLE__DCOLOR);
+		createEAttribute(abstractVariableEClass, ABSTRACT_VARIABLE__FG_COLOR);
+		createEAttribute(abstractVariableEClass, ABSTRACT_VARIABLE__FONT);
+		createEAttribute(abstractVariableEClass, ABSTRACT_VARIABLE__HELP);
+		createEAttribute(abstractVariableEClass, ABSTRACT_VARIABLE__PF_COLOR);
+		createEAttribute(abstractVariableEClass, ABSTRACT_VARIABLE__INITIAL);
+		createEAttribute(abstractVariableEClass, ABSTRACT_VARIABLE__SERIALIZE_NAME);
+		createEAttribute(abstractVariableEClass, ABSTRACT_VARIABLE__XML_NODE_NAME);
+		createEAttribute(abstractVariableEClass, ABSTRACT_VARIABLE__MOUSE_POINTER);
+		createEAttribute(abstractVariableEClass, ABSTRACT_VARIABLE__XML_NODE_TYPE);
+		createEAttribute(abstractVariableEClass, ABSTRACT_VARIABLE__XML_DATA_TYPE);
+		createEAttribute(abstractVariableEClass, ABSTRACT_VARIABLE__CASE_SENSITIVE);
+
+		tempTableFieldEClass = createEClass(TEMP_TABLE_FIELD);
+		createEAttribute(tempTableFieldEClass, TEMP_TABLE_FIELD__TT_CODE_PAGE);
+		createEAttribute(tempTableFieldEClass, TEMP_TABLE_FIELD__SERIALIZE_HIDDEN);
+
+		tempTableFieldDataTypeEClass = createEClass(TEMP_TABLE_FIELD_DATA_TYPE);
+		createEAttribute(tempTableFieldDataTypeEClass, TEMP_TABLE_FIELD_DATA_TYPE__TYPE);
+
+		accessCodeBlockEClass = createEClass(ACCESS_CODE_BLOCK);
+		createEAttribute(accessCodeBlockEClass, ACCESS_CODE_BLOCK__ACCESS);
+
+		returnCodeBlockEClass = createEClass(RETURN_CODE_BLOCK);
+		createEReference(returnCodeBlockEClass, RETURN_CODE_BLOCK__RETURN);
+		createEAttribute(returnCodeBlockEClass, RETURN_CODE_BLOCK__EXTENT);
+		createEAttribute(returnCodeBlockEClass, RETURN_CODE_BLOCK__EXTENT_LEN);
+
+		catchBlockEClass = createEClass(CATCH_BLOCK);
+		createEAttribute(catchBlockEClass, CATCH_BLOCK__VARIABLE);
+		createEReference(catchBlockEClass, CATCH_BLOCK__CLASS_TYPE);
+
+		functionBlockEClass = createEClass(FUNCTION_BLOCK);
+		createEAttribute(functionBlockEClass, FUNCTION_BLOCK__FORWARD);
+		createEAttribute(functionBlockEClass, FUNCTION_BLOCK__MAP_TO);
+		createEAttribute(functionBlockEClass, FUNCTION_BLOCK__IN_SUPER);
+		createEReference(functionBlockEClass, FUNCTION_BLOCK__IN_HANDLE);
+
+		methodBlockEClass = createEClass(METHOD_BLOCK);
+		createEAttribute(methodBlockEClass, METHOD_BLOCK__STATIC);
+		createEAttribute(methodBlockEClass, METHOD_BLOCK__ABSTRACT);
+		createEAttribute(methodBlockEClass, METHOD_BLOCK__OVERRIDE);
+		createEAttribute(methodBlockEClass, METHOD_BLOCK__FINAL);
+
+		procedureBlockEClass = createEClass(PROCEDURE_BLOCK);
+		createEAttribute(procedureBlockEClass, PROCEDURE_BLOCK__PERSISTENT);
+		createEAttribute(procedureBlockEClass, PROCEDURE_BLOCK__ORDINAL);
+		createEAttribute(procedureBlockEClass, PROCEDURE_BLOCK__IN_SUPER);
+		createEAttribute(procedureBlockEClass, PROCEDURE_BLOCK__THREAD_SAFE);
+		createEAttribute(procedureBlockEClass, PROCEDURE_BLOCK__CALL_CONVENTION);
+		createEAttribute(procedureBlockEClass, PROCEDURE_BLOCK__EXTERNAL);
+
+		iDataTypeEClass = createEClass(IDATA_TYPE);
+		createEReference(iDataTypeEClass, IDATA_TYPE__DATA_TYPE);
+		createEAttribute(iDataTypeEClass, IDATA_TYPE__EXTENT);
+		createEAttribute(iDataTypeEClass, IDATA_TYPE__EXTENT_LEN);
+
+		ifStatementEClass = createEClass(IF_STATEMENT);
+		createEReference(ifStatementEClass, IF_STATEMENT__CONDITION);
+		createEReference(ifStatementEClass, IF_STATEMENT__THEN);
+		createEReference(ifStatementEClass, IF_STATEMENT__ELSE);
+
+		enumEClass = createEClass(ENUM);
+		createEAttribute(enumEClass, ENUM__FLAGS);
+		createEReference(enumEClass, ENUM__MEMBERS);
+
+		caseStatementEClass = createEClass(CASE_STATEMENT);
+		createEReference(caseStatementEClass, CASE_STATEMENT__EXPRESSION);
+		createEReference(caseStatementEClass, CASE_STATEMENT__WHEN);
+		createEReference(caseStatementEClass, CASE_STATEMENT__OTHERWISE);
+
+		caseWhenEClass = createEClass(CASE_WHEN);
+		createEReference(caseWhenEClass, CASE_WHEN__VALUE);
+		createEReference(caseWhenEClass, CASE_WHEN__STATEMENT);
+
+		ifPreprocessorEClass = createEClass(IF_PREPROCESSOR);
+		createEReference(ifPreprocessorEClass, IF_PREPROCESSOR__CONDITION);
+		createEReference(ifPreprocessorEClass, IF_PREPROCESSOR__THEN);
+		createEReference(ifPreprocessorEClass, IF_PREPROCESSOR__ELSE);
+		createEReference(ifPreprocessorEClass, IF_PREPROCESSOR__ELSE_IF);
+
+		elseIfPreprocessorEClass = createEClass(ELSE_IF_PREPROCESSOR);
+		createEReference(elseIfPreprocessorEClass, ELSE_IF_PREPROCESSOR__CONDITION);
+		createEReference(elseIfPreprocessorEClass, ELSE_IF_PREPROCESSOR__THEN);
+
+		annotationEClass = createEClass(ANNOTATION);
+		createEAttribute(annotationEClass, ANNOTATION__NAME);
+		createEAttribute(annotationEClass, ANNOTATION__OBJECT);
+		createEReference(annotationEClass, ANNOTATION__VALUE);
+
+		enumLiteralEClass = createEClass(ENUM_LITERAL);
+		createEAttribute(enumLiteralEClass, ENUM_LITERAL__VALUE);
+		createEReference(enumLiteralEClass, ENUM_LITERAL__MEMBERS);
+
+		onWidgetTriggerEClass = createEClass(ON_WIDGET_TRIGGER);
+		createEReference(onWidgetTriggerEClass, ON_WIDGET_TRIGGER__ENTRIES);
+
+		widgetTriggerEClass = createEClass(WIDGET_TRIGGER);
+		createEAttribute(widgetTriggerEClass, WIDGET_TRIGGER__EVENTS);
+		createEAttribute(widgetTriggerEClass, WIDGET_TRIGGER__ANYWHERE);
+		createEReference(widgetTriggerEClass, WIDGET_TRIGGER__WIDGETS);
+		createEAttribute(widgetTriggerEClass, WIDGET_TRIGGER__REVERT);
+		createEAttribute(widgetTriggerEClass, WIDGET_TRIGGER__PROCEDURE);
+		createEReference(widgetTriggerEClass, WIDGET_TRIGGER__PARAMETERS);
+		createEReference(widgetTriggerEClass, WIDGET_TRIGGER__IN);
+		createEReference(widgetTriggerEClass, WIDGET_TRIGGER__BLOCK);
+
+		imageEClass = createEClass(IMAGE);
+		createEAttribute(imageEClass, IMAGE__TOOLTIP);
+		createEAttribute(imageEClass, IMAGE__STRETCH_TO_FIT);
+		createEAttribute(imageEClass, IMAGE__TRANSPARENT);
+		createEAttribute(imageEClass, IMAGE__CONVERT_3D_COLORS);
+		createEAttribute(imageEClass, IMAGE__RETAIN_SHAPE);
+		createEReference(imageEClass, IMAGE__BG_COLOR);
+		createEReference(imageEClass, IMAGE__FG_COLOR);
+
+		// Create enums
+		shareTypeEEnum = createEEnum(SHARE_TYPE);
+		accessTypeEEnum = createEEnum(ACCESS_TYPE);
+		unaryOperatorEEnum = createEEnum(UNARY_OPERATOR);
+		assignmentOperatorEEnum = createEEnum(ASSIGNMENT_OPERATOR);
+		binaryOperatorEEnum = createEEnum(BINARY_OPERATOR);
+		parameterDirectionEEnum = createEEnum(PARAMETER_DIRECTION);
+		implementTypeEEnum = createEEnum(IMPLEMENT_TYPE);
+		blockLevelTypeEEnum = createEEnum(BLOCK_LEVEL_TYPE);
+		usingTypeEEnum = createEEnum(USING_TYPE);
+		fieldDataTypeEEnum = createEEnum(FIELD_DATA_TYPE);
+		xmlNodeTypeEEnum = createEEnum(XML_NODE_TYPE);
+		xmlDataTypeEEnum = createEEnum(XML_DATA_TYPE);
+		callConventionTypeEEnum = createEEnum(CALL_CONVENTION_TYPE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private boolean isInitialized = false;
+
+	/**
+	 * Complete the initialization of the package and its meta-model.  This
+	 * method is guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void initializePackageContents() {
+		if (isInitialized) return;
+		isInitialized = true;
+
+		// Initialize package
+		setName(eNAME);
+		setNsPrefix(eNS_PREFIX);
+		setNsURI(eNS_URI);
+
+		// Create type parameters
+
+		// Set bounds for type parameters
+
+		// Add supertypes to classes
+		definitionEClass.getESuperTypes().add(this.getStatement());
+		assignmentEClass.getESuperTypes().add(this.getStatement());
+		assignableEClass.getESuperTypes().add(this.getExpression());
+		referenceEClass.getESuperTypes().add(this.getAssignable());
+		propertyEClass.getESuperTypes().add(this.getObjectDefinition());
+		propertyEClass.getESuperTypes().add(this.getIDataType());
+		variableEClass.getESuperTypes().add(this.getAbstractVariable());
+		shareOptionEClass.getESuperTypes().add(this.getOption());
+		accessOptionEClass.getESuperTypes().add(this.getOption());
+		objectDefinitionEClass.getESuperTypes().add(this.getINamed());
+		objectDefinitionEClass.getESuperTypes().add(this.getObjectReference());
+		initialOptionEClass.getESuperTypes().add(this.getOption());
+		namedOptionEClass.getESuperTypes().add(this.getINamed());
+		namedOptionEClass.getESuperTypes().add(this.getOption());
+		expressionEClass.getESuperTypes().add(this.getStatement());
+		numericExpressionEClass.getESuperTypes().add(this.getDateExpression());
+		unaryExpressionEClass.getESuperTypes().add(this.getExpression());
+		stringExpressionEClass.getESuperTypes().add(this.getExpression());
+		dateExpressionEClass.getESuperTypes().add(this.getStringExpression());
+		unknownExpressionEClass.getESuperTypes().add(this.getExpression());
+		logicalExpressionEClass.getESuperTypes().add(this.getExpression());
+		blockEClass.getESuperTypes().add(this.getStatement());
+		assignBlockEClass.getESuperTypes().add(this.getBlock());
+		iterationBlockEClass.getESuperTypes().add(this.getBlock());
+		codeBlockEClass.getESuperTypes().add(this.getObjectDefinition());
+		codeBlockEClass.getESuperTypes().add(this.getBlock());
+		directionalParameterEClass.getESuperTypes().add(this.getParameter());
+		interfaceEClass.getESuperTypes().add(this.getStatement());
+		interfaceEClass.getESuperTypes().add(this.getDataType());
+		classEClass.getESuperTypes().add(this.getInterface());
+		blockLevelStatementEClass.getESuperTypes().add(this.getStatement());
+		usingStatementEClass.getESuperTypes().add(this.getStatement());
+		binaryExpressionEClass.getESuperTypes().add(this.getExpression());
+		propertyReferenceEClass.getESuperTypes().add(this.getReference());
+		methodReferenceEClass.getESuperTypes().add(this.getPropertyReference());
+		functionReferenceEClass.getESuperTypes().add(this.getReference());
+		builtInFunctionReferenceEClass.getESuperTypes().add(this.getFunctionReference());
+		builtinFunctionEClass.getESuperTypes().add(ecorePackage.getEObject());
+		primitiveEClass.getESuperTypes().add(this.getDataType());
+		dataTypeEClass.getESuperTypes().add(this.getINamed());
+		projectEClass.getESuperTypes().add(this.getINamed());
+		projectEClass.getESuperTypes().add(this.getISerializable());
+		runtime12_2EClass.getESuperTypes().add(this.getRuntime());
+		workspaceEClass.getESuperTypes().add(this.getISerializable());
+		workspaceEClass.getESuperTypes().add(this.getINamed());
+		includeStatementEClass.getESuperTypes().add(this.getStatement());
+		includeArgumentEClass.getESuperTypes().add(this.getINamed());
+		loopBlockEClass.getESuperTypes().add(this.getBlock());
+		namedBlockEClass.getESuperTypes().add(this.getINamed());
+		namedBlockEClass.getESuperTypes().add(this.getStatement());
+		argumentReferenceEClass.getESuperTypes().add(this.getExpression());
+		preprocessorReferenceEClass.getESuperTypes().add(this.getExpression());
+		preprocessorReferenceEClass.getESuperTypes().add(this.getINamed());
+		preprocessorDirectiveEClass.getESuperTypes().add(this.getINamed());
+		preprocessorDirectiveEClass.getESuperTypes().add(this.getStatement());
+		undefineDirectiveEClass.getESuperTypes().add(this.getINamed());
+		undefineDirectiveEClass.getESuperTypes().add(this.getStatement());
+		variableParameterEClass.getESuperTypes().add(this.getTypedParameter());
+		bufferParameterEClass.getESuperTypes().add(this.getParameter());
+		bufferParameterEClass.getESuperTypes().add(this.getINamed());
+		tableParameterEClass.getESuperTypes().add(this.getTypedParameter());
+		tempTableEClass.getESuperTypes().add(this.getObjectDefinition());
+		tableHandleParameterEClass.getESuperTypes().add(this.getTypedParameter());
+		tableHandleParameterEClass.getESuperTypes().add(this.getINamed());
+		datasetEClass.getESuperTypes().add(this.getObjectDefinition());
+		datasetHandleParameterEClass.getESuperTypes().add(this.getTableHandleParameter());
+		datasetParameterEClass.getESuperTypes().add(this.getTypedParameter());
+		bufferEClass.getESuperTypes().add(this.getObjectDefinition());
+		tempTableReferenceEClass.getESuperTypes().add(this.getTableReference());
+		valueOptionEClass.getESuperTypes().add(this.getNamedOption());
+		abstractVariableEClass.getESuperTypes().add(this.getObjectDefinition());
+		abstractVariableEClass.getESuperTypes().add(this.getIDataType());
+		tempTableFieldEClass.getESuperTypes().add(this.getAbstractVariable());
+		tempTableFieldDataTypeEClass.getESuperTypes().add(this.getDataType());
+		accessCodeBlockEClass.getESuperTypes().add(this.getCodeBlock());
+		returnCodeBlockEClass.getESuperTypes().add(this.getAccessCodeBlock());
+		catchBlockEClass.getESuperTypes().add(this.getBlock());
+		functionBlockEClass.getESuperTypes().add(this.getReturnCodeBlock());
+		methodBlockEClass.getESuperTypes().add(this.getReturnCodeBlock());
+		procedureBlockEClass.getESuperTypes().add(this.getCodeBlock());
+		ifStatementEClass.getESuperTypes().add(this.getExpression());
+		enumEClass.getESuperTypes().add(this.getStatement());
+		enumEClass.getESuperTypes().add(this.getDataType());
+		caseStatementEClass.getESuperTypes().add(this.getStatement());
+		ifPreprocessorEClass.getESuperTypes().add(this.getStatement());
+		annotationEClass.getESuperTypes().add(this.getStatement());
+		enumLiteralEClass.getESuperTypes().add(this.getINamed());
+		imageEClass.getESuperTypes().add(this.getObjectDefinition());
+
+		// Initialize classes, features, and operations; add parameters
+		initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getModel_Project(), this.getProject(), null, "project", null, 0, 1, Model.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModel_Main(), this.getBlock(), null, "main", null, 0, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getModel_Name(), ecorePackage.getEString(), "name", null, 0, 1, Model.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModel_Headers(), this.getStatement(), null, "headers", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(statementEClass, Statement.class, "Statement", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(definitionEClass, Definition.class, "Definition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDefinition_Options(), this.getOption(), null, "options", null, 0, -1, Definition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDefinition_Object(), this.getObjectDefinition(), null, "object", null, 0, 1, Definition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(assignmentEClass, Assignment.class, "Assignment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAssignment_Assignable(), this.getAssignable(), null, "assignable", null, 0, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAssignment_Expression(), this.getExpression(), null, "expression", null, 0, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAssignment_Operator(), this.getAssignmentOperator(), "operator", null, 0, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(assignableEClass, Assignable.class, "Assignable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(referenceEClass, Reference.class, "Reference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getReference_Reference(), this.getObjectDefinition(), null, "reference", null, 0, 1, Reference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(propertyEClass, Property.class, "Property", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getProperty_Access(), this.getAccessType(), "access", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProperty_Serializable(), ecorePackage.getEBooleanObject(), "serializable", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProperty_Override(), ecorePackage.getEBoolean(), "override", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProperty_Initial(), ecorePackage.getEJavaObject(), "initial", null, 0, -1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProperty_SerializeName(), ecorePackage.getEString(), "serializeName", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProperty_NoUndo(), ecorePackage.getEBoolean(), "noUndo", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProperty_Abstract(), ecorePackage.getEBoolean(), "abstract", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProperty_Static(), ecorePackage.getEBoolean(), "static", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProperty_Getter(), this.getAccessCodeBlock(), null, "getter", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProperty_Setter(), this.getAccessCodeBlock(), null, "setter", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(variableEClass, Variable.class, "Variable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getVariable_Share(), this.getShareType(), "share", null, 0, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getVariable_Access(), this.getAccessType(), "access", null, 0, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getVariable_Serializable(), ecorePackage.getEBooleanObject(), "serializable", null, 0, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getVariable_NoUndo(), ecorePackage.getEBoolean(), "noUndo", null, 0, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getVariable_Static(), ecorePackage.getEBoolean(), "static", null, 0, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getVariable_ContextHelpId(), ecorePackage.getEString(), "contextHelpId", null, 0, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getVariable_DropTarget(), ecorePackage.getEBoolean(), "dropTarget", null, 0, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(iNamedEClass, INamed.class, "INamed", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getINamed_Name(), ecorePackage.getEString(), "name", null, 0, 1, INamed.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(optionEClass, Option.class, "Option", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(shareOptionEClass, ShareOption.class, "ShareOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getShareOption_Share(), this.getShareType(), "share", null, 0, 1, ShareOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(accessOptionEClass, AccessOption.class, "AccessOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAccessOption_Mode(), this.getAccessType(), "mode", null, 0, 1, AccessOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(objectDefinitionEClass, ObjectDefinition.class, "ObjectDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getObjectDefinition_Options(), this.getOption(), null, "options", null, 0, -1, ObjectDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(initialOptionEClass, InitialOption.class, "InitialOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getInitialOption_Value(), ecorePackage.getEJavaObject(), "value", null, 0, -1, InitialOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(namedOptionEClass, NamedOption.class, "NamedOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getNamedOption_RetainShape(), ecorePackage.getEBoolean(), "retainShape", null, 0, 1, NamedOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNamedOption_Width(), ecorePackage.getEString(), "width", null, 0, 1, NamedOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNamedOption_Height(), ecorePackage.getEString(), "height", null, 0, 1, NamedOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(expressionEClass, Expression.class, "Expression", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(numericExpressionEClass, NumericExpression.class, "NumericExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEOperation(getNumericExpression__GetLong(), ecorePackage.getELong(), "getLong", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getNumericExpression__GetInt(), ecorePackage.getEInt(), "getInt", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(unaryExpressionEClass, UnaryExpression.class, "UnaryExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getUnaryExpression_Operator(), this.getUnaryOperator(), "operator", null, 0, 1, UnaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUnaryExpression_Expression(), this.getExpression(), null, "expression", null, 0, 1, UnaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(stringExpressionEClass, StringExpression.class, "StringExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getStringExpression_Value(), ecorePackage.getEString(), "value", null, 0, 1, StringExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(dateExpressionEClass, DateExpression.class, "DateExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEOperation(getDateExpression__GetDate(), ecorePackage.getEDate(), "getDate", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(unknownExpressionEClass, UnknownExpression.class, "UnknownExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(logicalExpressionEClass, LogicalExpression.class, "LogicalExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getLogicalExpression_Value(), ecorePackage.getEBoolean(), "value", null, 0, 1, LogicalExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(blockEClass, Block.class, "Block", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBlock_Statements(), this.getStatement(), null, "statements", null, 0, -1, Block.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(assignBlockEClass, AssignBlock.class, "AssignBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(iterationBlockEClass, IterationBlock.class, "IterationBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(codeBlockEClass, CodeBlock.class, "CodeBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCodeBlock_Parameters(), this.getParameter(), null, "parameters", null, 0, -1, CodeBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCodeBlock_Finally(), this.getBlock(), null, "finally", null, 0, 1, CodeBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCodeBlock_Catch(), this.getCatchBlock(), null, "catch", null, 0, -1, CodeBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(directionalParameterEClass, DirectionalParameter.class, "DirectionalParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDirectionalParameter_Direction(), this.getParameterDirection(), "direction", null, 0, 1, DirectionalParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDirectionalParameter_Type(), this.getTypedParameter(), null, "type", null, 0, 1, DirectionalParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(interfaceEClass, Interface.class, "Interface", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getInterface_Implements(), this.getInterface(), null, "implements", null, 0, -1, Interface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInterface_Block(), this.getBlock(), null, "block", null, 0, 1, Interface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(classEClass, ro.acorn.zamolxis.oe.demo.abl.Class.class, "Class", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getClass_Inherits(), this.getClass_(), null, "inherits", null, 0, 1, ro.acorn.zamolxis.oe.demo.abl.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getClass_Serializable(), ecorePackage.getEBoolean(), "serializable", null, 0, 1, ro.acorn.zamolxis.oe.demo.abl.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getClass_WidgetPool(), ecorePackage.getEBoolean(), "widgetPool", null, 0, 1, ro.acorn.zamolxis.oe.demo.abl.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getClass_Implementation(), this.getImplementType(), "implementation", null, 0, 1, ro.acorn.zamolxis.oe.demo.abl.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(blockLevelStatementEClass, BlockLevelStatement.class, "BlockLevelStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getBlockLevelStatement_Level(), this.getBlockLevelType(), "level", null, 0, 1, BlockLevelStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(usingStatementEClass, UsingStatement.class, "UsingStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getUsingStatement_Type(), this.getUsingType(), "type", null, 0, 1, UsingStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUsingStatement_Package(), ecorePackage.getEString(), "package", null, 0, 1, UsingStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUsingStatement_Class(), this.getInterface(), null, "class", null, 0, 1, UsingStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(binaryExpressionEClass, BinaryExpression.class, "BinaryExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getBinaryExpression_Operator(), this.getBinaryOperator(), "operator", null, 0, 1, BinaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBinaryExpression_Left(), this.getExpression(), null, "left", null, 0, 1, BinaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBinaryExpression_Right(), this.getExpression(), null, "right", null, 0, 1, BinaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(propertyReferenceEClass, PropertyReference.class, "PropertyReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPropertyReference_Object(), this.getObjectReference(), null, "object", null, 0, 1, PropertyReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(objectReferenceEClass, ObjectReference.class, "ObjectReference", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(methodReferenceEClass, MethodReference.class, "MethodReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getMethodReference_Parameters(), this.getExpression(), null, "parameters", null, 0, -1, MethodReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(functionReferenceEClass, FunctionReference.class, "FunctionReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFunctionReference_Parameters(), this.getExpression(), null, "parameters", null, 0, -1, FunctionReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(builtInFunctionReferenceEClass, BuiltInFunctionReference.class, "BuiltInFunctionReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBuiltInFunctionReference_Function(), ecorePackage.getEObject(), null, "function", null, 0, 1, BuiltInFunctionReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(builtinFunctionEClass, BuiltinFunction.class, "BuiltinFunction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(primitiveEClass, Primitive.class, "Primitive", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(dataTypeEClass, DataType.class, "DataType", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(runtimeEClass, ro.acorn.zamolxis.oe.demo.abl.Runtime.class, "Runtime", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRuntime_Primitives(), this.getPrimitive(), null, "primitives", null, 0, -1, ro.acorn.zamolxis.oe.demo.abl.Runtime.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		EOperation op = initEOperation(getRuntime__GetKeyword__String(), ecorePackage.getEString(), "getKeyword", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "expression", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getRuntime__GetMajorVersion(), ecorePackage.getEInt(), "getMajorVersion", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getRuntime__GetMinorVersion(), ecorePackage.getEInt(), "getMinorVersion", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getRuntime__GetPatchVersion(), ecorePackage.getEInt(), "getPatchVersion", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getRuntime__GetVersion(), ecorePackage.getEString(), "getVersion", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getRuntime__GetPackage(), ecorePackage.getEPackage(), "getPackage", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(projectEClass, Project.class, "Project", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getProject_Runtime(), this.getRuntime(), null, "runtime", null, 0, 1, Project.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProject_Propath(), ecorePackage.getEString(), "propath", null, 0, -1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProject_Location(), ecorePackage.getEString(), "location", null, 0, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProject_RuntimeVersion(), ecorePackage.getEString(), "runtimeVersion", "12_2", 0, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(runtime12_2EClass, Runtime12_2.class, "Runtime12_2", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(workspaceEClass, Workspace.class, "Workspace", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getWorkspace_Projects(), this.getProject(), null, "projects", null, 0, -1, Workspace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWorkspace_Runtimes(), this.getRuntime(), null, "runtimes", null, 0, -1, Workspace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getWorkspace_Location(), ecorePackage.getEString(), "location", null, 0, 1, Workspace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(iSerializableEClass, ISerializable.class, "ISerializable", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEOperation(getISerializable__Serialize(), null, "serialize", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getISerializable__Deserialize__String(), null, "deserialize", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "file", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(includeStatementEClass, IncludeStatement.class, "IncludeStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getIncludeStatement_Arguments(), this.getIncludeArgument(), null, "arguments", null, 0, -1, IncludeStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIncludeStatement_Include(), this.getModel(), null, "include", null, 0, 1, IncludeStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(includeArgumentEClass, IncludeArgument.class, "IncludeArgument", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getIncludeArgument_Value(), ecorePackage.getEString(), "value", null, 0, 1, IncludeArgument.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(loopBlockEClass, LoopBlock.class, "LoopBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(namedBlockEClass, NamedBlock.class, "NamedBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getNamedBlock_Block(), this.getBlock(), null, "block", null, 0, 1, NamedBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(argumentReferenceEClass, ArgumentReference.class, "ArgumentReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getArgumentReference_Index(), ecorePackage.getEInt(), "index", null, 0, 1, ArgumentReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(preprocessorReferenceEClass, PreprocessorReference.class, "PreprocessorReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(preprocessorDirectiveEClass, PreprocessorDirective.class, "PreprocessorDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPreprocessorDirective_Global(), ecorePackage.getEBoolean(), "global", null, 0, 1, PreprocessorDirective.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPreprocessorDirective_Definition(), ecorePackage.getEString(), "definition", null, 0, 1, PreprocessorDirective.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPreprocessorDirective_Statement(), ecorePackage.getEString(), "statement", null, 0, 1, PreprocessorDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(undefineDirectiveEClass, UndefineDirective.class, "UndefineDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(variableParameterEClass, VariableParameter.class, "VariableParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getVariableParameter_Class(), ecorePackage.getEBoolean(), "class", null, 0, 1, VariableParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getVariableParameter_Handle(), ecorePackage.getEBoolean(), "handle", null, 0, 1, VariableParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getVariableParameter_DataType(), this.getDataType(), null, "dataType", null, 0, 1, VariableParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(parameterEClass, Parameter.class, "Parameter", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(bufferParameterEClass, BufferParameter.class, "BufferParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getBufferParameter_Table(), ecorePackage.getEString(), "table", null, 0, 1, BufferParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBufferParameter_Preselect(), ecorePackage.getEBoolean(), "preselect", null, 0, 1, BufferParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(typedParameterEClass, TypedParameter.class, "TypedParameter", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(tableParameterEClass, TableParameter.class, "TableParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTableParameter_Append(), ecorePackage.getEBoolean(), "append", null, 0, 1, TableParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTableParameter_Bind(), ecorePackage.getEBoolean(), "bind", null, 0, 1, TableParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTableParameter_ByValue(), ecorePackage.getEBoolean(), "byValue", null, 0, 1, TableParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTableParameter_Table(), this.getTempTable(), null, "table", null, 0, 1, TableParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(tempTableEClass, TempTable.class, "TempTable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTempTable_Access(), this.getAccessType(), "access", null, 0, 1, TempTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTempTable_Serializable(), ecorePackage.getEBooleanObject(), "serializable", null, 0, 1, TempTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTempTable_NoUndo(), ecorePackage.getEBoolean(), "noUndo", null, 0, 1, TempTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(tableHandleParameterEClass, TableHandleParameter.class, "TableHandleParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTableHandleParameter_Bind(), ecorePackage.getEBoolean(), "bind", null, 0, 1, TableHandleParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTableHandleParameter_ByValue(), ecorePackage.getEBoolean(), "byValue", null, 0, 1, TableHandleParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(datasetEClass, Dataset.class, "Dataset", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDataset_Access(), this.getAccessType(), "access", null, 0, 1, Dataset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDataset_Serializable(), ecorePackage.getEBooleanObject(), "serializable", null, 0, 1, Dataset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDataset_NoUndo(), ecorePackage.getEBoolean(), "noUndo", null, 0, 1, Dataset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDataset_NamespaceUri(), ecorePackage.getEString(), "namespaceUri", null, 0, 1, Dataset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDataset_NamespacePrefix(), ecorePackage.getEString(), "namespacePrefix", null, 0, 1, Dataset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDataset_XmlNodeName(), ecorePackage.getEString(), "xmlNodeName", null, 0, 1, Dataset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDataset_SerializeName(), ecorePackage.getEString(), "serializeName", null, 0, 1, Dataset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDataset_SerializeHidden(), ecorePackage.getEBoolean(), "serializeHidden", null, 0, 1, Dataset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDataset_ReferenceOnly(), ecorePackage.getEBoolean(), "referenceOnly", null, 0, 1, Dataset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getDataset_Tables(), this.getTableReference(), null, "tables", null, 0, -1, Dataset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(datasetHandleParameterEClass, DatasetHandleParameter.class, "DatasetHandleParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(datasetParameterEClass, DatasetParameter.class, "DatasetParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDatasetParameter_Append(), ecorePackage.getEBoolean(), "append", null, 0, 1, DatasetParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDatasetParameter_Bind(), ecorePackage.getEBoolean(), "bind", null, 0, 1, DatasetParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDatasetParameter_ByValue(), ecorePackage.getEBoolean(), "byValue", null, 0, 1, DatasetParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDatasetParameter_Dataset(), this.getDataset(), null, "dataset", null, 0, 1, DatasetParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(bufferEClass, Buffer.class, "Buffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getBuffer_Preselect(), ecorePackage.getEBoolean(), "preselect", null, 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBuffer_NamespaceUri(), ecorePackage.getEString(), "namespaceUri", null, 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBuffer_NamespacePrefix(), ecorePackage.getEString(), "namespacePrefix", null, 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBuffer_XmlNodeName(), ecorePackage.getEString(), "xmlNodeName", null, 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBuffer_Label(), ecorePackage.getEString(), "label", null, 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBuffer_Table(), this.getTableReference(), null, "table", null, 0, 1, Buffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(tableReferenceEClass, TableReference.class, "TableReference", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(tempTableReferenceEClass, TempTableReference.class, "TempTableReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTempTableReference_Table(), this.getTempTable(), null, "table", null, 0, 1, TempTableReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(valueOptionEClass, ValueOption.class, "ValueOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getValueOption_Value(), ecorePackage.getEJavaObject(), "value", null, 0, 1, ValueOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getValueOption_FileName(), ecorePackage.getEString(), "fileName", null, 0, 1, ValueOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getValueOption_Tooltip(), ecorePackage.getEString(), "tooltip", null, 0, 1, ValueOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getValueOption_BgColor(), this.getExpression(), null, "bgColor", null, 0, 1, ValueOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getValueOption_FgColor(), this.getExpression(), null, "fgColor", null, 0, 1, ValueOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(abstractVariableEClass, AbstractVariable.class, "AbstractVariable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAbstractVariable_Decimals(), ecorePackage.getEInt(), "decimals", null, 0, 1, AbstractVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractVariable_ColumnLabel(), ecorePackage.getEString(), "columnLabel", null, 0, 1, AbstractVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractVariable_Label(), ecorePackage.getEString(), "label", null, 0, -1, AbstractVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractVariable_Format(), ecorePackage.getEString(), "format", null, 0, 1, AbstractVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractVariable_BgColor(), ecorePackage.getEJavaObject(), "bgColor", null, 0, 1, AbstractVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractVariable_DColor(), ecorePackage.getEJavaObject(), "dColor", null, 0, 1, AbstractVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractVariable_FgColor(), ecorePackage.getEJavaObject(), "fgColor", null, 0, 1, AbstractVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractVariable_Font(), ecorePackage.getEJavaObject(), "font", null, 0, 1, AbstractVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractVariable_Help(), ecorePackage.getEString(), "help", null, 0, 1, AbstractVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractVariable_PfColor(), ecorePackage.getEJavaObject(), "pfColor", null, 0, 1, AbstractVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractVariable_Initial(), ecorePackage.getEJavaObject(), "initial", null, 0, -1, AbstractVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractVariable_SerializeName(), ecorePackage.getEString(), "serializeName", null, 0, 1, AbstractVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractVariable_XmlNodeName(), ecorePackage.getEString(), "xmlNodeName", null, 0, 1, AbstractVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractVariable_MousePointer(), ecorePackage.getEJavaObject(), "mousePointer", null, 0, 1, AbstractVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractVariable_XmlNodeType(), this.getXmlNodeType(), "xmlNodeType", null, 0, 1, AbstractVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractVariable_XmlDataType(), this.getXmlDataType(), "xmlDataType", null, 0, 1, AbstractVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractVariable_CaseSensitive(), ecorePackage.getEBooleanObject(), "caseSensitive", null, 0, 1, AbstractVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(tempTableFieldEClass, TempTableField.class, "TempTableField", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTempTableField_TtCodePage(), ecorePackage.getEBoolean(), "ttCodePage", null, 0, 1, TempTableField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTempTableField_SerializeHidden(), ecorePackage.getEBoolean(), "serializeHidden", null, 0, 1, TempTableField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(tempTableFieldDataTypeEClass, TempTableFieldDataType.class, "TempTableFieldDataType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTempTableFieldDataType_Type(), this.getFieldDataType(), "type", null, 0, 1, TempTableFieldDataType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(accessCodeBlockEClass, AccessCodeBlock.class, "AccessCodeBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAccessCodeBlock_Access(), this.getAccessType(), "access", null, 0, 1, AccessCodeBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(returnCodeBlockEClass, ReturnCodeBlock.class, "ReturnCodeBlock", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getReturnCodeBlock_Return(), this.getDataType(), null, "return", null, 0, 1, ReturnCodeBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getReturnCodeBlock_Extent(), ecorePackage.getEBoolean(), "extent", null, 0, 1, ReturnCodeBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getReturnCodeBlock_ExtentLen(), ecorePackage.getEInt(), "extentLen", null, 0, 1, ReturnCodeBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(catchBlockEClass, CatchBlock.class, "CatchBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getCatchBlock_Variable(), ecorePackage.getEString(), "variable", null, 0, 1, CatchBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCatchBlock_ClassType(), this.getInterface(), null, "classType", null, 0, 1, CatchBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(functionBlockEClass, FunctionBlock.class, "FunctionBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getFunctionBlock_Forward(), ecorePackage.getEBoolean(), "forward", null, 0, 1, FunctionBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFunctionBlock_MapTo(), ecorePackage.getEString(), "mapTo", null, 0, 1, FunctionBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFunctionBlock_InSuper(), ecorePackage.getEBoolean(), "inSuper", null, 0, 1, FunctionBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionBlock_InHandle(), this.getObjectReference(), null, "inHandle", null, 0, 1, FunctionBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(methodBlockEClass, MethodBlock.class, "MethodBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getMethodBlock_Static(), ecorePackage.getEBoolean(), "static", null, 0, 1, MethodBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMethodBlock_Abstract(), ecorePackage.getEBoolean(), "abstract", null, 0, 1, MethodBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMethodBlock_Override(), ecorePackage.getEBoolean(), "override", null, 0, 1, MethodBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMethodBlock_Final(), ecorePackage.getEBoolean(), "final", null, 0, 1, MethodBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(procedureBlockEClass, ProcedureBlock.class, "ProcedureBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getProcedureBlock_Persistent(), ecorePackage.getEBoolean(), "persistent", null, 0, 1, ProcedureBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProcedureBlock_Ordinal(), ecorePackage.getEInt(), "ordinal", null, 0, 1, ProcedureBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProcedureBlock_InSuper(), ecorePackage.getEBoolean(), "inSuper", null, 0, 1, ProcedureBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProcedureBlock_ThreadSafe(), ecorePackage.getEBoolean(), "threadSafe", null, 0, 1, ProcedureBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProcedureBlock_CallConvention(), this.getCallConventionType(), "callConvention", null, 0, 1, ProcedureBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProcedureBlock_External(), ecorePackage.getEString(), "external", null, 0, 1, ProcedureBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(iDataTypeEClass, IDataType.class, "IDataType", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getIDataType_DataType(), this.getDataType(), null, "dataType", null, 0, 1, IDataType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getIDataType_Extent(), ecorePackage.getEBoolean(), "extent", null, 0, 1, IDataType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getIDataType_ExtentLen(), ecorePackage.getEInt(), "extentLen", null, 0, 1, IDataType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(ifStatementEClass, IfStatement.class, "IfStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getIfStatement_Condition(), this.getExpression(), null, "condition", null, 0, 1, IfStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIfStatement_Then(), this.getStatement(), null, "then", null, 0, 1, IfStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIfStatement_Else(), this.getStatement(), null, "else", null, 0, 1, IfStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(enumEClass, ro.acorn.zamolxis.oe.demo.abl.Enum.class, "Enum", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getEnum_Flags(), ecorePackage.getEBoolean(), "flags", null, 0, 1, ro.acorn.zamolxis.oe.demo.abl.Enum.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEnum_Members(), this.getEnumLiteral(), null, "members", null, 0, -1, ro.acorn.zamolxis.oe.demo.abl.Enum.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(caseStatementEClass, CaseStatement.class, "CaseStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCaseStatement_Expression(), this.getExpression(), null, "expression", null, 0, 1, CaseStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCaseStatement_When(), this.getCaseWhen(), null, "when", null, 0, -1, CaseStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCaseStatement_Otherwise(), this.getStatement(), null, "otherwise", null, 0, 1, CaseStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(caseWhenEClass, CaseWhen.class, "CaseWhen", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCaseWhen_Value(), this.getExpression(), null, "value", null, 0, -1, CaseWhen.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCaseWhen_Statement(), this.getStatement(), null, "statement", null, 0, 1, CaseWhen.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(ifPreprocessorEClass, IfPreprocessor.class, "IfPreprocessor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getIfPreprocessor_Condition(), this.getExpression(), null, "condition", null, 0, 1, IfPreprocessor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIfPreprocessor_Then(), this.getBlock(), null, "then", null, 0, 1, IfPreprocessor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIfPreprocessor_Else(), this.getBlock(), null, "else", null, 0, 1, IfPreprocessor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIfPreprocessor_ElseIf(), this.getElseIfPreprocessor(), null, "elseIf", null, 0, -1, IfPreprocessor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(elseIfPreprocessorEClass, ElseIfPreprocessor.class, "ElseIfPreprocessor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getElseIfPreprocessor_Condition(), this.getExpression(), null, "condition", null, 0, 1, ElseIfPreprocessor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getElseIfPreprocessor_Then(), this.getBlock(), null, "then", null, 0, 1, ElseIfPreprocessor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(annotationEClass, Annotation.class, "Annotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAnnotation_Name(), ecorePackage.getEString(), "name", null, 0, 1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAnnotation_Object(), ecorePackage.getEString(), "object", null, 0, 1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAnnotation_Value(), this.getValueOption(), null, "value", null, 0, -1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(enumLiteralEClass, EnumLiteral.class, "EnumLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getEnumLiteral_Value(), ecorePackage.getEInt(), "value", null, 0, 1, EnumLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEnumLiteral_Members(), this.getEnumLiteral(), null, "members", null, 0, -1, EnumLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(onWidgetTriggerEClass, OnWidgetTrigger.class, "OnWidgetTrigger", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getOnWidgetTrigger_Entries(), this.getWidgetTrigger(), null, "entries", null, 0, -1, OnWidgetTrigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(widgetTriggerEClass, WidgetTrigger.class, "WidgetTrigger", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getWidgetTrigger_Events(), ecorePackage.getEString(), "events", null, 0, -1, WidgetTrigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getWidgetTrigger_Anywhere(), ecorePackage.getEBoolean(), "anywhere", null, 0, 1, WidgetTrigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWidgetTrigger_Widgets(), this.getReference(), null, "widgets", null, 0, -1, WidgetTrigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getWidgetTrigger_Revert(), ecorePackage.getEBoolean(), "revert", null, 0, 1, WidgetTrigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getWidgetTrigger_Procedure(), ecorePackage.getEString(), "procedure", null, 0, 1, WidgetTrigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWidgetTrigger_Parameters(), this.getExpression(), null, "parameters", null, 0, -1, WidgetTrigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWidgetTrigger_In(), this.getExpression(), null, "in", null, 0, 1, WidgetTrigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWidgetTrigger_Block(), this.getStatement(), null, "block", null, 0, 1, WidgetTrigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(imageEClass, Image.class, "Image", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getImage_Tooltip(), ecorePackage.getEString(), "tooltip", null, 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImage_Stretch_to_fit(), ecorePackage.getEBoolean(), "stretch_to_fit", null, 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImage_Transparent(), ecorePackage.getEBoolean(), "transparent", null, 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImage_Convert_3d_colors(), ecorePackage.getEBoolean(), "convert_3d_colors", null, 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImage_Retain_shape(), ecorePackage.getEBoolean(), "retain_shape", null, 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getImage_BgColor(), this.getExpression(), null, "bgColor", null, 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getImage_FgColor(), this.getExpression(), null, "fgColor", null, 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(shareTypeEEnum, ShareType.class, "ShareType");
+		addEEnumLiteral(shareTypeEEnum, ShareType.SHARED);
+		addEEnumLiteral(shareTypeEEnum, ShareType.NEW);
+		addEEnumLiteral(shareTypeEEnum, ShareType.GLOBAL);
+
+		initEEnum(accessTypeEEnum, AccessType.class, "AccessType");
+		addEEnumLiteral(accessTypeEEnum, AccessType.PUBLIC);
+		addEEnumLiteral(accessTypeEEnum, AccessType.PRIVATE);
+		addEEnumLiteral(accessTypeEEnum, AccessType.PROTECTED);
+		addEEnumLiteral(accessTypeEEnum, AccessType.PACKAGE_PRIVATE);
+		addEEnumLiteral(accessTypeEEnum, AccessType.PACKAGE_PROTECTED);
+
+		initEEnum(unaryOperatorEEnum, UnaryOperator.class, "UnaryOperator");
+		addEEnumLiteral(unaryOperatorEEnum, UnaryOperator.NOT);
+		addEEnumLiteral(unaryOperatorEEnum, UnaryOperator.PLUS);
+		addEEnumLiteral(unaryOperatorEEnum, UnaryOperator.MINUS);
+
+		initEEnum(assignmentOperatorEEnum, AssignmentOperator.class, "AssignmentOperator");
+		addEEnumLiteral(assignmentOperatorEEnum, AssignmentOperator.ASSIGN);
+		addEEnumLiteral(assignmentOperatorEEnum, AssignmentOperator.ADDITION);
+		addEEnumLiteral(assignmentOperatorEEnum, AssignmentOperator.SUBSTRACTION);
+		addEEnumLiteral(assignmentOperatorEEnum, AssignmentOperator.MULTIPLICATION);
+		addEEnumLiteral(assignmentOperatorEEnum, AssignmentOperator.DIVISION);
+
+		initEEnum(binaryOperatorEEnum, BinaryOperator.class, "BinaryOperator");
+		addEEnumLiteral(binaryOperatorEEnum, BinaryOperator.EQ);
+		addEEnumLiteral(binaryOperatorEEnum, BinaryOperator.ADDITION);
+		addEEnumLiteral(binaryOperatorEEnum, BinaryOperator.SUBSTRACTION);
+		addEEnumLiteral(binaryOperatorEEnum, BinaryOperator.MULTIPLICATION);
+		addEEnumLiteral(binaryOperatorEEnum, BinaryOperator.DIVISION);
+		addEEnumLiteral(binaryOperatorEEnum, BinaryOperator.AND);
+		addEEnumLiteral(binaryOperatorEEnum, BinaryOperator.OR);
+		addEEnumLiteral(binaryOperatorEEnum, BinaryOperator.XOR);
+		addEEnumLiteral(binaryOperatorEEnum, BinaryOperator.NE);
+		addEEnumLiteral(binaryOperatorEEnum, BinaryOperator.GT);
+		addEEnumLiteral(binaryOperatorEEnum, BinaryOperator.GE);
+		addEEnumLiteral(binaryOperatorEEnum, BinaryOperator.LT);
+		addEEnumLiteral(binaryOperatorEEnum, BinaryOperator.LE);
+		addEEnumLiteral(binaryOperatorEEnum, BinaryOperator.BEGINS);
+		addEEnumLiteral(binaryOperatorEEnum, BinaryOperator.MATCHES);
+		addEEnumLiteral(binaryOperatorEEnum, BinaryOperator.MODULO);
+
+		initEEnum(parameterDirectionEEnum, ParameterDirection.class, "ParameterDirection");
+		addEEnumLiteral(parameterDirectionEEnum, ParameterDirection.INPUT);
+		addEEnumLiteral(parameterDirectionEEnum, ParameterDirection.OUTPUT);
+		addEEnumLiteral(parameterDirectionEEnum, ParameterDirection.INPUT_OUTPUT);
+		addEEnumLiteral(parameterDirectionEEnum, ParameterDirection.RETURN);
+
+		initEEnum(implementTypeEEnum, ImplementType.class, "ImplementType");
+		addEEnumLiteral(implementTypeEEnum, ImplementType.DEFAULT);
+		addEEnumLiteral(implementTypeEEnum, ImplementType.ABSTRACT);
+		addEEnumLiteral(implementTypeEEnum, ImplementType.FINAL);
+
+		initEEnum(blockLevelTypeEEnum, BlockLevelType.class, "BlockLevelType");
+		addEEnumLiteral(blockLevelTypeEEnum, BlockLevelType.BLOCK);
+		addEEnumLiteral(blockLevelTypeEEnum, BlockLevelType.ROUTINE);
+
+		initEEnum(usingTypeEEnum, UsingType.class, "UsingType");
+		addEEnumLiteral(usingTypeEEnum, UsingType.PROPATH);
+		addEEnumLiteral(usingTypeEEnum, UsingType.ASSEMBLY);
+
+		initEEnum(fieldDataTypeEEnum, FieldDataType.class, "FieldDataType");
+		addEEnumLiteral(fieldDataTypeEEnum, FieldDataType.CHARACTER);
+		addEEnumLiteral(fieldDataTypeEEnum, FieldDataType.INTEGER);
+		addEEnumLiteral(fieldDataTypeEEnum, FieldDataType.INT64);
+		addEEnumLiteral(fieldDataTypeEEnum, FieldDataType.LOGICAL);
+		addEEnumLiteral(fieldDataTypeEEnum, FieldDataType.DECIMAL);
+		addEEnumLiteral(fieldDataTypeEEnum, FieldDataType.DATE);
+		addEEnumLiteral(fieldDataTypeEEnum, FieldDataType.DATETIME);
+		addEEnumLiteral(fieldDataTypeEEnum, FieldDataType.DATETIME_TZ);
+		addEEnumLiteral(fieldDataTypeEEnum, FieldDataType.RAW);
+		addEEnumLiteral(fieldDataTypeEEnum, FieldDataType.RECID);
+		addEEnumLiteral(fieldDataTypeEEnum, FieldDataType.ROWID);
+		addEEnumLiteral(fieldDataTypeEEnum, FieldDataType.CLOB);
+		addEEnumLiteral(fieldDataTypeEEnum, FieldDataType.BLOB);
+		addEEnumLiteral(fieldDataTypeEEnum, FieldDataType.CLASS);
+
+		initEEnum(xmlNodeTypeEEnum, XmlNodeType.class, "XmlNodeType");
+		addEEnumLiteral(xmlNodeTypeEEnum, XmlNodeType.ELEMENT);
+		addEEnumLiteral(xmlNodeTypeEEnum, XmlNodeType.ATTRIBUTE);
+		addEEnumLiteral(xmlNodeTypeEEnum, XmlNodeType.TEXT);
+		addEEnumLiteral(xmlNodeTypeEEnum, XmlNodeType.HIDDEN);
+
+		initEEnum(xmlDataTypeEEnum, XmlDataType.class, "XmlDataType");
+		addEEnumLiteral(xmlDataTypeEEnum, XmlDataType.DEFAULT);
+		addEEnumLiteral(xmlDataTypeEEnum, XmlDataType.DATE_TIME);
+		addEEnumLiteral(xmlDataTypeEEnum, XmlDataType.BOOLEAN);
+		addEEnumLiteral(xmlDataTypeEEnum, XmlDataType.INTEGER);
+		addEEnumLiteral(xmlDataTypeEEnum, XmlDataType.FLOAT);
+		addEEnumLiteral(xmlDataTypeEEnum, XmlDataType.DOUBLE);
+		addEEnumLiteral(xmlDataTypeEEnum, XmlDataType.DECIMAL);
+		addEEnumLiteral(xmlDataTypeEEnum, XmlDataType.ANY_URI);
+		addEEnumLiteral(xmlDataTypeEEnum, XmlDataType.BASE64_BINARY);
+		addEEnumLiteral(xmlDataTypeEEnum, XmlDataType.BYTE);
+		addEEnumLiteral(xmlDataTypeEEnum, XmlDataType.DATE);
+		addEEnumLiteral(xmlDataTypeEEnum, XmlDataType.DURATION);
+		addEEnumLiteral(xmlDataTypeEEnum, XmlDataType.HEX_BINARY);
+		addEEnumLiteral(xmlDataTypeEEnum, XmlDataType.INT);
+		addEEnumLiteral(xmlDataTypeEEnum, XmlDataType.LONG);
+		addEEnumLiteral(xmlDataTypeEEnum, XmlDataType.SHORT);
+		addEEnumLiteral(xmlDataTypeEEnum, XmlDataType.TIME);
+		addEEnumLiteral(xmlDataTypeEEnum, XmlDataType.UNSIGNED_BYTE);
+		addEEnumLiteral(xmlDataTypeEEnum, XmlDataType.UNSIGNED_INT);
+		addEEnumLiteral(xmlDataTypeEEnum, XmlDataType.UNSIGNED_LONG);
+		addEEnumLiteral(xmlDataTypeEEnum, XmlDataType.UNSIGNED_SHORT);
+		addEEnumLiteral(xmlDataTypeEEnum, XmlDataType.STRING);
+
+		initEEnum(callConventionTypeEEnum, CallConventionType.class, "CallConventionType");
+		addEEnumLiteral(callConventionTypeEEnum, CallConventionType.STDCALL);
+		addEEnumLiteral(callConventionTypeEEnum, CallConventionType.CDECL);
+		addEEnumLiteral(callConventionTypeEEnum, CallConventionType.PASCAL);
+
+		// Create resource
+		createResource(eNS_URI);
+
+		// Create annotations
+		// meta
+		createMetaAnnotations();
+		// column-label
+		createColumnlabelAnnotations();
+		// serialize-name
+		createSerializenameAnnotations();
+		// xml-node-name
+		createXmlnodenameAnnotations();
+		// mouse-pointer
+		createMousepointerAnnotations();
+		// xml-node-type
+		createXmlnodetypeAnnotations();
+		// xml-data-type
+		createXmldatatypeAnnotations();
+		// case-sensitive
+		createCasesensitiveAnnotations();
+		// thread-safe
+		createThreadsafeAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>meta</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createMetaAnnotations() {
+		String source = "meta";
+		addAnnotation
+		  (getProperty_SerializeName(),
+		   source,
+		   new String[] {
+			   "name", "serialize-name"
+		   });
+		addAnnotation
+		  (getProperty_NoUndo(),
+		   source,
+		   new String[] {
+			   "name", "no-undo"
+		   });
+		addAnnotation
+		  (getVariable_NoUndo(),
+		   source,
+		   new String[] {
+			   "name", "no-undo"
+		   });
+		addAnnotation
+		  (getVariable_ContextHelpId(),
+		   source,
+		   new String[] {
+			   "name", "context-help-id"
+		   });
+		addAnnotation
+		  (getVariable_DropTarget(),
+		   source,
+		   new String[] {
+			   "name", "drop-target"
+		   });
+		addAnnotation
+		  (getClass_WidgetPool(),
+		   source,
+		   new String[] {
+			   "name", "widget-pool"
+		   });
+		addAnnotation
+		  (runtime12_2EClass,
+		   source,
+		   new String[] {
+			   "version", "12_2"
+		   });
+		addAnnotation
+		  (getTempTable_NoUndo(),
+		   source,
+		   new String[] {
+			   "name", "no-undo"
+		   });
+		addAnnotation
+		  (getDataset_NoUndo(),
+		   source,
+		   new String[] {
+			   "name", "no-undo"
+		   });
+		addAnnotation
+		  (getDataset_NamespaceUri(),
+		   source,
+		   new String[] {
+			   "name", "namespace-uri"
+		   });
+		addAnnotation
+		  (getDataset_NamespacePrefix(),
+		   source,
+		   new String[] {
+			   "name", "namespace-prefix"
+		   });
+		addAnnotation
+		  (getDataset_XmlNodeName(),
+		   source,
+		   new String[] {
+			   "name", "xml-node-name"
+		   });
+		addAnnotation
+		  (getDataset_SerializeName(),
+		   source,
+		   new String[] {
+			   "name", "serialize-name"
+		   });
+		addAnnotation
+		  (getDataset_SerializeHidden(),
+		   source,
+		   new String[] {
+			   "name", "serialize-hidden"
+		   });
+		addAnnotation
+		  (getDataset_ReferenceOnly(),
+		   source,
+		   new String[] {
+			   "name", "reference-only"
+		   });
+		addAnnotation
+		  (getBuffer_NamespaceUri(),
+		   source,
+		   new String[] {
+			   "name", "namespace-uri"
+		   });
+		addAnnotation
+		  (getBuffer_NamespacePrefix(),
+		   source,
+		   new String[] {
+			   "name", "namespace-prefix"
+		   });
+		addAnnotation
+		  (getBuffer_XmlNodeName(),
+		   source,
+		   new String[] {
+			   "name", "xml-node-name"
+		   });
+		addAnnotation
+		  (getTempTableField_SerializeHidden(),
+		   source,
+		   new String[] {
+			   "name", "serialize-hidden"
+		   });
+		addAnnotation
+		  (getImage_Stretch_to_fit(),
+		   source,
+		   new String[] {
+			   "name", "stretch-to-fit"
+		   });
+		addAnnotation
+		  (getImage_Convert_3d_colors(),
+		   source,
+		   new String[] {
+			   "name", "convert-3d-colors"
+		   });
+		addAnnotation
+		  (getImage_Retain_shape(),
+		   source,
+		   new String[] {
+			   "name", "retain-shape"
+		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>column-label</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createColumnlabelAnnotations() {
+		String source = "column-label";
+		addAnnotation
+		  (getAbstractVariable_ColumnLabel(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("/")
+		   });
+		addAnnotation
+		  (getAbstractVariable_Label(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("/")
+		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>serialize-name</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createSerializenameAnnotations() {
+		String source = "serialize-name";
+		addAnnotation
+		  (getAbstractVariable_SerializeName(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("/")
+		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>xml-node-name</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createXmlnodenameAnnotations() {
+		String source = "xml-node-name";
+		addAnnotation
+		  (getAbstractVariable_XmlNodeName(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("/")
+		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>mouse-pointer</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createMousepointerAnnotations() {
+		String source = "mouse-pointer";
+		addAnnotation
+		  (getAbstractVariable_MousePointer(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("/")
+		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>xml-node-type</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createXmlnodetypeAnnotations() {
+		String source = "xml-node-type";
+		addAnnotation
+		  (getAbstractVariable_XmlNodeType(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("/")
+		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>xml-data-type</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createXmldatatypeAnnotations() {
+		String source = "xml-data-type";
+		addAnnotation
+		  (getAbstractVariable_XmlDataType(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("/")
+		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>case-sensitive</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createCasesensitiveAnnotations() {
+		String source = "case-sensitive";
+		addAnnotation
+		  (getAbstractVariable_CaseSensitive(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("/")
+		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>thread-safe</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createThreadsafeAnnotations() {
+		String source = "thread-safe";
+		addAnnotation
+		  (getProcedureBlock_ThreadSafe(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("/")
+		   });
+	}
+
+} //OpenEdgeAblPackageImpl

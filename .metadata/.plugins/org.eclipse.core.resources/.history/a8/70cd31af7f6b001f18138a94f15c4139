@@ -1,0 +1,18 @@
+/**
+ * ACORN IT 2024
+ */
+package ro.acorn.zamolxis.oe.demo.abl;
+
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Named Option</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ *
+ * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getNamedOption()
+ * @model
+ * @generated
+ */
+public interface NamedOption extends INamed, Option {
+} // NamedOption

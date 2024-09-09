@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="OpenEdgeAblParsingTest.loadModel1" project="ro.acorn.zamolxis.oe.abl.demo.dsl.tests" tests="1" started="1" failures="1" errors="0" ignored="0">
+  <testsuite name="ro.acorn.zamolxis.oe.abl.dsl.tests.OpenEdgeAblParsingTest" time="0.289" displayname="OpenEdgeAblParsingTest" uniqueid="[engine:junit-jupiter]/[class:ro.acorn.zamolxis.oe.abl.dsl.tests.OpenEdgeAblParsingTest]">
+    <testcase name="loadModel1" classname="ro.acorn.zamolxis.oe.abl.dsl.tests.OpenEdgeAblParsingTest" time="0.289" displayname="loadModel1()" uniqueid="[engine:junit-jupiter]/[class:ro.acorn.zamolxis.oe.abl.dsl.tests.OpenEdgeAblParsingTest]/[method:loadModel1()]">
+      <failure>
+        <expected>true</expected>
+        <actual>false</actual>
+        org.opentest4j.AssertionFailedError: Unexpected errors: XtextSyntaxDiagnostic: null:1 no viable alternative at input 'trigger', XtextSyntaxDiagnostic: null:1 mismatched input 'trigger' expecting '.', XtextSyntaxDiagnostic: null:1 no viable alternative at input 'on', XtextSyntaxDiagnostic: null:1 missing EOF at 'on' ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;&#13;
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)&#13;
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)&#13;
+	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)&#13;
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)&#13;
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:214)&#13;
+	at ro.acorn.zamolxis.oe.abl.dsl.tests.OpenEdgeAblParsingTest.loadModel1(OpenEdgeAblParsingTest.java:65)&#13;
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)&#13;
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)&#13;
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)&#13;
+&#13;
+
+      </failure>
+    </testcase>
+  </testsuite>
+</testrun>

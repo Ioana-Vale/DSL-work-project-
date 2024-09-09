@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="OpenEdgeAblParsingTest.loadModel" project="ro.acorn.zamolxis.oe.abl.demo.dsl.tests" tests="1" started="1" failures="0" errors="1" ignored="0">
+  <testsuite name="ro.acorn.zamolxis.oe.abl.dsl.tests.OpenEdgeAblParsingTest" time="0.004" displayname="OpenEdgeAblParsingTest" uniqueid="[engine:junit-jupiter]/[class:ro.acorn.zamolxis.oe.abl.dsl.tests.OpenEdgeAblParsingTest]">
+    <testcase name="loadModel" classname="ro.acorn.zamolxis.oe.abl.dsl.tests.OpenEdgeAblParsingTest" time="0.004" displayname="loadModel()" uniqueid="[engine:junit-jupiter]/[class:ro.acorn.zamolxis.oe.abl.dsl.tests.OpenEdgeAblParsingTest]/[method:loadModel()]">
+      <error>java.lang.NoClassDefFoundError: Image&#13;
+	at java.base/java.lang.Class.getDeclaredMethods0(Native Method)&#13;
+	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3601)&#13;
+	at java.base/java.lang.Class.getDeclaredMethods(Class.java:2686)&#13;
+	at com.google.inject.internal.DeclaredMembers.getDeclaredMethods(DeclaredMembers.java:48)&#13;
+	at com.google.inject.spi.InjectionPoint.getDeclaredMethods(InjectionPoint.java:813)&#13;
+	at com.google.inject.spi.InjectionPoint.getInjectionPoints(InjectionPoint.java:732)&#13;
+	at com.google.inject.spi.InjectionPoint.forInstanceMethodsAndFields(InjectionPoint.java:432)&#13;
+	at com.google.inject.internal.ConstructorBindingImpl.getInternalDependencies(ConstructorBindingImpl.java:177)&#13;
+	at com.google.inject.internal.InjectorImpl.getInternalDependencies(InjectorImpl.java:686)&#13;
+	at com.google.inject.internal.InjectorImpl.cleanup(InjectorImpl.java:629)&#13;
+	at com.google.inject.internal.InjectorImpl.initializeJitBinding(InjectorImpl.java:615)&#13;
+	at com.google.inject.internal.InjectorImpl.createJustInTimeBinding(InjectorImpl.java:990)&#13;
+	at com.google.inject.internal.InjectorImpl.createJustInTimeBindingRecursive(InjectorImpl.java:902)&#13;
+	at com.google.inject.internal.InjectorImpl.getJustInTimeBinding(InjectorImpl.java:302)&#13;
+	at com.google.inject.internal.InjectorImpl.getBindingOrThrow(InjectorImpl.java:225)&#13;
+	at com.google.inject.internal.InjectorImpl.getInternalFactory(InjectorImpl.java:996)&#13;
+	at com.google.inject.internal.FactoryProxy.notify(FactoryProxy.java:48)&#13;
+	at com.google.inject.internal.ProcessedBindingData.runCreationListeners(ProcessedBindingData.java:60)&#13;
+	at com.google.inject.internal.InternalInjectorCreator.initializeStatically(InternalInjectorCreator.java:137)&#13;
+	at com.google.inject.internal.InternalInjectorCreator.build(InternalInjectorCreator.java:110)&#13;
+	at com.google.inject.Guice.createInjector(Guice.java:87)&#13;
+	at com.google.inject.Guice.createInjector(Guice.java:69)&#13;
+	at com.google.inject.Guice.createInjector(Guice.java:59)&#13;
+	at ro.acorn.zamolxis.oe.abl.dsl.tests.OpenEdgeAblInjectorProvider$1.createInjector(OpenEdgeAblInjectorProvider.java:38)&#13;
+	at ro.acorn.zamolxis.oe.abl.dsl.OpenEdgeAblStandaloneSetupGenerated.createInjectorAndDoEMFRegistration(OpenEdgeAblStandaloneSetupGenerated.java:36)&#13;
+	at ro.acorn.zamolxis.oe.abl.dsl.tests.OpenEdgeAblInjectorProvider.internalCreateInjector(OpenEdgeAblInjectorProvider.java:40)&#13;
+	at ro.acorn.zamolxis.oe.abl.dsl.tests.OpenEdgeAblInjectorProvider.getInjector(OpenEdgeAblInjectorProvider.java:28)&#13;
+	at ro.acorn.zamolxis.oe.abl.dsl.tests.OpenEdgeAblInjectorProvider.setupRegistry(OpenEdgeAblInjectorProvider.java:67)&#13;
+	at org.eclipse.xtext.testing.extensions.InjectionExtension$RegistryReset.setup(InjectionExtension.java:72)&#13;
+	at org.eclipse.xtext.testing.extensions.InjectionExtension$RegistryReset.&lt;init&gt;(InjectionExtension.java:66)&#13;
+	at org.eclipse.xtext.testing.extensions.InjectionExtension.setupRegistry(InjectionExtension.java:106)&#13;
+	at org.eclipse.xtext.testing.extensions.InjectionExtension.postProcessTestInstance(InjectionExtension.java:92)&#13;
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:212)&#13;
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:194)&#13;
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1709)&#13;
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:556)&#13;
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:546)&#13;
+	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:310)&#13;
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735)&#13;
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734)&#13;
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:782)&#13;
+	at java.base/java.util.Optional.orElseGet(Optional.java:364)&#13;
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)&#13;
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)&#13;
+Caused by: java.lang.ClassNotFoundException: Image&#13;
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)&#13;
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)&#13;
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)&#13;
+	... 44 more&#13;
+&#13;
+</error>
+    </testcase>
+  </testsuite>
+</testrun>

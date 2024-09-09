@@ -1,0 +1,246 @@
+/**
+ * ACORN IT 2024
+ */
+package ro.acorn.zamolxis.oe.demo.abl.impl;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import ro.acorn.zamolxis.oe.demo.abl.Expression;
+import ro.acorn.zamolxis.oe.demo.abl.ExpressionOption;
+import ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Expression Option</b></em>'.
+ * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * </p>
+ * <ul>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.impl.ExpressionOptionImpl#getBgColor <em>Bg Color</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.impl.ExpressionOptionImpl#getFgColor <em>Fg Color</em>}</li>
+ * </ul>
+ *
+ * @generated
+ */
+public class ExpressionOptionImpl extends ValueOptionImpl implements ExpressionOption {
+	/**
+	 * The cached value of the '{@link #getBgColor() <em>Bg Color</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBgColor()
+	 * @generated
+	 * @ordered
+	 */
+	protected Expression bgColor;
+
+	/**
+	 * The cached value of the '{@link #getFgColor() <em>Fg Color</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFgColor()
+	 * @generated
+	 * @ordered
+	 */
+	protected Expression fgColor;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ExpressionOptionImpl() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return OpenEdgeAblPackage.Literals.EXPRESSION_OPTION;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Expression getBgColor() {
+		return bgColor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetBgColor(Expression newBgColor, NotificationChain msgs) {
+		Expression oldBgColor = bgColor;
+		bgColor = newBgColor;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.EXPRESSION_OPTION__BG_COLOR, oldBgColor, newBgColor);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setBgColor(Expression newBgColor) {
+		if (newBgColor != bgColor) {
+			NotificationChain msgs = null;
+			if (bgColor != null)
+				msgs = ((InternalEObject)bgColor).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OpenEdgeAblPackage.EXPRESSION_OPTION__BG_COLOR, null, msgs);
+			if (newBgColor != null)
+				msgs = ((InternalEObject)newBgColor).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OpenEdgeAblPackage.EXPRESSION_OPTION__BG_COLOR, null, msgs);
+			msgs = basicSetBgColor(newBgColor, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.EXPRESSION_OPTION__BG_COLOR, newBgColor, newBgColor));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Expression getFgColor() {
+		return fgColor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetFgColor(Expression newFgColor, NotificationChain msgs) {
+		Expression oldFgColor = fgColor;
+		fgColor = newFgColor;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.EXPRESSION_OPTION__FG_COLOR, oldFgColor, newFgColor);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setFgColor(Expression newFgColor) {
+		if (newFgColor != fgColor) {
+			NotificationChain msgs = null;
+			if (fgColor != null)
+				msgs = ((InternalEObject)fgColor).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OpenEdgeAblPackage.EXPRESSION_OPTION__FG_COLOR, null, msgs);
+			if (newFgColor != null)
+				msgs = ((InternalEObject)newFgColor).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OpenEdgeAblPackage.EXPRESSION_OPTION__FG_COLOR, null, msgs);
+			msgs = basicSetFgColor(newFgColor, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OpenEdgeAblPackage.EXPRESSION_OPTION__FG_COLOR, newFgColor, newFgColor));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case OpenEdgeAblPackage.EXPRESSION_OPTION__BG_COLOR:
+				return basicSetBgColor(null, msgs);
+			case OpenEdgeAblPackage.EXPRESSION_OPTION__FG_COLOR:
+				return basicSetFgColor(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case OpenEdgeAblPackage.EXPRESSION_OPTION__BG_COLOR:
+				return getBgColor();
+			case OpenEdgeAblPackage.EXPRESSION_OPTION__FG_COLOR:
+				return getFgColor();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case OpenEdgeAblPackage.EXPRESSION_OPTION__BG_COLOR:
+				setBgColor((Expression)newValue);
+				return;
+			case OpenEdgeAblPackage.EXPRESSION_OPTION__FG_COLOR:
+				setFgColor((Expression)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case OpenEdgeAblPackage.EXPRESSION_OPTION__BG_COLOR:
+				setBgColor((Expression)null);
+				return;
+			case OpenEdgeAblPackage.EXPRESSION_OPTION__FG_COLOR:
+				setFgColor((Expression)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case OpenEdgeAblPackage.EXPRESSION_OPTION__BG_COLOR:
+				return bgColor != null;
+			case OpenEdgeAblPackage.EXPRESSION_OPTION__FG_COLOR:
+				return fgColor != null;
+		}
+		return super.eIsSet(featureID);
+	}
+
+} //ExpressionOptionImpl

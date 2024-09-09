@@ -1,0 +1,184 @@
+/**
+ * ACORN IT 2024
+ */
+package ro.acorn.zamolxis.oe.demo.abl;
+
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Image</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.Image#getTooltip <em>Tooltip</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.Image#isStretch_to_fit <em>Stretch to fit</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.Image#isTransparent <em>Transparent</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.Image#isConvert_3d_colors <em>Convert 3d colors</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.Image#isRetain_shape <em>Retain shape</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.Image#getBgColor <em>Bg Color</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.Image#getFgColor <em>Fg Color</em>}</li>
+ * </ul>
+ *
+ * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getImage()
+ * @model
+ * @generated
+ */
+public interface Image extends ObjectDefinition {
+	/**
+	 * Returns the value of the '<em><b>Tooltip</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Tooltip</em>' attribute.
+	 * @see #setTooltip(String)
+	 * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getImage_Tooltip()
+	 * @model
+	 * @generated
+	 */
+	String getTooltip();
+
+	/**
+	 * Sets the value of the '{@link ro.acorn.zamolxis.oe.demo.abl.Image#getTooltip <em>Tooltip</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Tooltip</em>' attribute.
+	 * @see #getTooltip()
+	 * @generated
+	 */
+	void setTooltip(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Stretch to fit</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Stretch to fit</em>' attribute.
+	 * @see #setStretch_to_fit(boolean)
+	 * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getImage_Stretch_to_fit()
+	 * @model annotation="meta name='stretch-to-fit'"
+	 * @generated
+	 */
+	boolean isStretch_to_fit();
+
+	/**
+	 * Sets the value of the '{@link ro.acorn.zamolxis.oe.demo.abl.Image#isStretch_to_fit <em>Stretch to fit</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Stretch to fit</em>' attribute.
+	 * @see #isStretch_to_fit()
+	 * @generated
+	 */
+	void setStretch_to_fit(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Transparent</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Transparent</em>' attribute.
+	 * @see #setTransparent(boolean)
+	 * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getImage_Transparent()
+	 * @model
+	 * @generated
+	 */
+	boolean isTransparent();
+
+	/**
+	 * Sets the value of the '{@link ro.acorn.zamolxis.oe.demo.abl.Image#isTransparent <em>Transparent</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Transparent</em>' attribute.
+	 * @see #isTransparent()
+	 * @generated
+	 */
+	void setTransparent(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Convert 3d colors</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Convert 3d colors</em>' attribute.
+	 * @see #setConvert_3d_colors(boolean)
+	 * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getImage_Convert_3d_colors()
+	 * @model annotation="meta name='convert-3d-colors'"
+	 * @generated
+	 */
+	boolean isConvert_3d_colors();
+
+	/**
+	 * Sets the value of the '{@link ro.acorn.zamolxis.oe.demo.abl.Image#isConvert_3d_colors <em>Convert 3d colors</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Convert 3d colors</em>' attribute.
+	 * @see #isConvert_3d_colors()
+	 * @generated
+	 */
+	void setConvert_3d_colors(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Retain shape</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Retain shape</em>' attribute.
+	 * @see #setRetain_shape(boolean)
+	 * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getImage_Retain_shape()
+	 * @model annotation="meta name='retain-shape'"
+	 * @generated
+	 */
+	boolean isRetain_shape();
+
+	/**
+	 * Sets the value of the '{@link ro.acorn.zamolxis.oe.demo.abl.Image#isRetain_shape <em>Retain shape</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Retain shape</em>' attribute.
+	 * @see #isRetain_shape()
+	 * @generated
+	 */
+	void setRetain_shape(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Bg Color</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Bg Color</em>' containment reference.
+	 * @see #setBgColor(Expression)
+	 * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getImage_BgColor()
+	 * @model containment="true"
+	 * @generated
+	 */
+	Expression getBgColor();
+
+	/**
+	 * Sets the value of the '{@link ro.acorn.zamolxis.oe.demo.abl.Image#getBgColor <em>Bg Color</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Bg Color</em>' containment reference.
+	 * @see #getBgColor()
+	 * @generated
+	 */
+	void setBgColor(Expression value);
+
+	/**
+	 * Returns the value of the '<em><b>Fg Color</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Fg Color</em>' containment reference.
+	 * @see #setFgColor(Expression)
+	 * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getImage_FgColor()
+	 * @model containment="true"
+	 * @generated
+	 */
+	Expression getFgColor();
+
+	/**
+	 * Sets the value of the '{@link ro.acorn.zamolxis.oe.demo.abl.Image#getFgColor <em>Fg Color</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Fg Color</em>' containment reference.
+	 * @see #getFgColor()
+	 * @generated
+	 */
+	void setFgColor(Expression value);
+
+} // Image

@@ -1,0 +1,87 @@
+package ro.acorn.zamolxis.oe.demo.abl;
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Image</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.Image#getTitle <em>Title</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.Image#getHeight <em>Height</em>}</li>
+ *   <li>{@link ro.acorn.zamolxis.oe.demo.abl.Image#getWidth <em>Width</em>}</li>
+ * </ul>
+ *
+ * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getImage()
+ * @model
+ * @generated
+ */
+public interface Image extends ObjectDefinition {
+    /**
+     * Returns the value of the '<em><b>Title</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Title</em>' attribute.
+     * @see #setTitle(String)
+     * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getImage_Title()
+     * @model
+     * @generated
+     */
+    String getTitle();
+
+    /**
+     * Sets the value of the '{@link ro.acorn.zamolxis.oe.demo.abl.Image#getTitle <em>Title</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Title</em>' attribute.
+     * @see #getTitle()
+     * @generated
+     */
+    void setTitle(String value);
+
+    /**
+     * Returns the value of the '<em><b>Height</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Height</em>' attribute.
+     * @see #setHeight(int)
+     * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getImage_Height()
+     * @model
+     * @generated
+     */
+    int getHeight();
+
+    /**
+     * Sets the value of the '{@link ro.acorn.zamolxis.oe.demo.abl.Image#getHeight <em>Height</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Height</em>' attribute.
+     * @see #getHeight()
+     * @generated
+     */
+    void setHeight(int value);
+
+    /**
+     * Returns the value of the '<em><b>Width</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Width</em>' attribute.
+     * @see #setWidth(int)
+     * @see ro.acorn.zamolxis.oe.demo.abl.OpenEdgeAblPackage#getImage_Width()
+     * @model
+     * @generated
+     */
+    int getWidth();
+
+    /**
+     * Sets the value of the '{@link ro.acorn.zamolxis.oe.demo.abl.Image#getWidth <em>Width</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Width</em>' attribute.
+     * @see #getWidth()
+     * @generated
+     */
+    void setWidth(int value);
+}
